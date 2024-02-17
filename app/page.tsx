@@ -1,25 +1,29 @@
-import Image from "next/image";
-import { DatabaseService } from "./db";
-import MainPage from "./pages/MainPage";
 
-const dbService = new DatabaseService();
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import Banner from "./components/Banner";
+import ProductGrid from "./components/productGrid";
+config.autoAddCss = false
 
-async function main() {
-  try {
+import { options } from './api/auth/[...nextauth]/options';
+import { getServerSession } from 'next-auth';
 
-    const newProduct = await dbService.getAllProducts();
+export default async function Home() {
 
-    console.log(newProduct);
-  } catch (error) {
-    console.error('Eroare la adăugarea produsului:', error);
 
-  }
-}
+  const session = await getServerSession(options)
 
-main();
-
-export default function Home() {
   return (
-    <MainPage />
+    <>
+
+      {session ? (
+        <>
+          <Banner />
+          <ProductGrid />
+        </>
+      ) : (
+        <h2>Conecteaza-te!</h2>
+      )}
+    </>
   );
 }

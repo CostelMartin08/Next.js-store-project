@@ -1,0 +1,42 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 99vh;
+    width: 40dvw;
+    top: 2px;
+    left: 10px;
+    position: fixed;
+    color: white;
+}
+
+#menuToggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button-x {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 640px) {
+
+    .menu {
+
+
+        width: 95dvw;
+    }
+
+
+
+
+}

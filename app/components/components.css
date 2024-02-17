@@ -1,0 +1,66 @@
+/* -------------------------------------------------------------------------- */
+/*                                   PRODUCT                                  */
+/* -------------------------------------------------------------------------- */
+
+
+.discount {
+    padding: 4px 8px 4px 8px;
+    border-radius: 6px;
+    color: theme('colors.orange');
+    background-color: theme('colors.orangeBg');
+}
+
+.increment {
+    height: 50px;
+    display: flex;
+    border-radius: 8px;
+
+}
+
+.order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 280px;
+    background-color: theme('colors.orange');
+    color: theme('colors.textColor');
+    border-radius: 10px;
+
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Banner                                   */
+/* -------------------------------------------------------------------------- */
+
+
+.banner-section {
+
+    height: 65dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-banner {
+    padding: 50px;
+   color:white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 28px;
+    height: 50dvh;
+    width: 100dvw;
+    background: linear-gradient(to bottom, theme('colors.orange') 20%, theme('colors.grayishBlue') 60%);
+}
+
+.banner-button {
+    border-radius: 25px;
+    background-color: white;
+    color:black;
+    height: 50px;
+    width: 220px;
+}
+
+

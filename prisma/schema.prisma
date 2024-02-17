@@ -9,11 +9,15 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+ 
 
-//Test1
-model Todo {
+model Products {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  title      String
-  complete   Boolean
+  nameProduct    String
+  photoProduct   String
+  productStock Int
+  priceProduct Int
+  productDiscount Boolean
+  discountPrice  Int
 
 }

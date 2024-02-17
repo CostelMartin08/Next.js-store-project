@@ -2,32 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* -------------------------------------------------------------------------- */
+/*                                    FONT                                    */
+/* -------------------------------------------------------------------------- */
+
+.font-sm {
+    font-family: theme('fontFamily.custom');
+    font-size: theme('fontSize.sm');
+    font-optical-sizing: auto;
+    font-weight: 800;
+    letter-spacing: 2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.font-md {
+    font-family: theme('fontFamily.custom');
+    font-size: theme('fontSize.md');
+    font-optical-sizing: auto;
+    font-weight: 100;
+
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.font-lg {
+    font-family: theme('fontFamily.custom');
+    font-size: theme('fontSize.lg');
+    font-optical-sizing: auto;
+    font-weight: 800;
+
+
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.font-xl {
+    font-family: theme('fontFamily.custom');
+    font-size: theme('fontSize.xl');
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+/* ------------------------------------END----------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                    COLOR                                   */
+/* -------------------------------------------------------------------------- */
+
+.clr-primary {
+    color: theme('colors.orange');
+}
+
+.clr-gray {
+    color: theme('colors.grayishBlue')
+}
+
+/* ------------------------------------END----------------------------------- */
+
+@media screen and (max-width: 640px) {
+
+    .font-lg{
+        font-size: theme('fontSize.md');
+    }
+
+
 }
