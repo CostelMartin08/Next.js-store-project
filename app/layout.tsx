@@ -1,8 +1,11 @@
 
 import {Inter} from 'next/font/google';
-import AuthProvider from "./context/AuthProvider";
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false
+
+
 import Head from "next/head";
-import Header from "./components/Header";
 import "./globals.css";
 
 const inter = Inter({subsets: ['latin']})
@@ -23,10 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet" />
       </Head>
       <body className={inter.className}>
-        <AuthProvider>
-          <Header />
+  
           {children}
-        </AuthProvider>
+    
       </body>
     </html>
 

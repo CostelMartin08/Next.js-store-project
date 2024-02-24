@@ -1,29 +1,27 @@
+'use client'
 
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 import Banner from "./components/Banner";
 import ProductGrid from "./components/productGrid";
-config.autoAddCss = false
 
-import { options } from './api/auth/[...nextauth]/options';
-import { getServerSession } from 'next-auth';
+import Header from './components/Header';
 
-export default async function Home() {
+export default function Home() {
 
 
-  const session = await getServerSession(options)
+
+
 
   return (
-    <>
 
-      {session ? (
+
+     
         <>
+          <Header  pagetype={"Client"} />
           <Banner />
           <ProductGrid />
         </>
-      ) : (
-        <h2>Conecteaza-te!</h2>
-      )}
-    </>
+     
+
+ 
   );
 }

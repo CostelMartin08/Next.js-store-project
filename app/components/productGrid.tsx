@@ -1,22 +1,12 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import ElementGrid from "./productGridElement";
-
-
-type Product = {
-    id: string;
-    nameProduct: string;
-    photoProduct: string;
-    productStock: number;
-    priceProduct: number;
-    productDiscount: boolean;
-    discountPrice: number;
-};
+import { ProductT } from "./product";
 
 
 const ProductGrid = () => {
 
-    const [data, setData] = useState<Product[]>([]);
+    const [data, setData] = useState<ProductT[]>([]);
 
 
     useEffect(() => {
@@ -51,12 +41,13 @@ const ProductGrid = () => {
 
                 {data.map(element => (
                     <ElementGrid
-                        key={element.id}
-                        name={element.nameProduct}
-                        photo={element.photoProduct}
-                        price={element.priceProduct}
-                        discount={element.productDiscount}
-                        stock={element.productStock}
+                        id={element.id}
+                        nameProduct={element.nameProduct}
+                        photoProduct={element.photoProduct}
+                        priceProduct={element.priceProduct}
+                        productDiscount={element.productDiscount}
+                        discountPrice = {element.discountPrice}
+                        productStock={element.productStock}
                     />))}
 
             </div>

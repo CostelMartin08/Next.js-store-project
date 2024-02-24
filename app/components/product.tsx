@@ -9,7 +9,7 @@ import '../components/components.css';
 import { useParams } from 'next/navigation'
 
 
-type Product = {
+export type ProductT = {
     id: string;
     nameProduct: string;
     photoProduct: string;
@@ -28,7 +28,7 @@ export default function Product() {
     const decodedItem = decodeURIComponent(item);
     const afterEqualSign = decodedItem.split('=')[1];
 
-    const [data, setData] = useState<Product | null>(null);
+    const [data, setData] = useState<ProductT | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {

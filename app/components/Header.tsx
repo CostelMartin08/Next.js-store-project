@@ -4,11 +4,23 @@ import '../components/components.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Image from "next/image";
-import img from '../../public/img/MartinescuConstantin.webp'
+
 import ToggleSwitch from "./toggleSwitch";
 import Link from "next/link";
 
-export default function Header() {
+
+type User = {
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+} | undefined
+
+type Props = {
+  user?: User,
+  pagetype?: string,
+}
+
+export default function Header({ user, pagetype }: Props) {
 
 
 
@@ -51,12 +63,17 @@ export default function Header() {
 
             <FontAwesomeIcon className="text-lg" icon={faCartShopping} />
 
-            <Image className="w-6 sm:w-8 lg:w-11 rounded-full " src={img} alt={"userPhoto"} />
+            {user?.image ? <Image width={200} height={200} className="w-6 sm:w-8 lg:w-11 rounded-full " src={user?.image} alt={"userPhoto"} /> : null}
 
           </div>
 
         </div>
 
+        <div className="p-5 md:p-8 lg:p-10 pb-0">
+
+          {user?.name ? <p>Bună {user?.name}</p> : null}
+
+        </div>
       </header>
 
 
