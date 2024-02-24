@@ -45,6 +45,17 @@ export class DatabaseService {
             await prisma?.$disconnect();
         }
     }
+    async getUserByid(id: string) {
+        try {
+            const user =  await prisma.user.findUnique({
+                where: { id },
+            });
+            return user;
+        } catch  {
+            return null;
+          
+        }
+    }
 
     async addProduct(nameProduct: string, photoProduct: string, productStock: number, priceProduct: number, productDiscount: boolean, discountPrice: number): Promise<Products> {
         try {
