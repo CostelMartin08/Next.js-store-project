@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
-import '../components/components.css';
+import '../components.css';
 
 
 export default function RegisterForm() {
@@ -61,7 +61,7 @@ export default function RegisterForm() {
                 if (resRegister.ok) {
                     const form = e.target as HTMLFormElement;
                     form.reset();
-                    router.push('/signIn')
+                    router.push('/auth/signIn')
                 } else {
                     console.log('Înregistrarea a eșuat');
                 }
@@ -130,7 +130,7 @@ export default function RegisterForm() {
                     )}
                     <button className="submit">Submit</button>
                     <Link href="/signIn" className="border-2 p-2 rounded-xl text-center">Continue with GitHub</Link>
-                    <p className="signin">Already have an acount ? <Link href="/signIn"> Signin</Link> </p>
+                    <p className="signin">Already have an acount ? <Link href="/auth/signIn"> Signin</Link> </p>
 
                 </form>
 

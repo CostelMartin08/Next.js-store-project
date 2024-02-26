@@ -1,7 +1,13 @@
 import { PrismaClient, Products, User } from '@prisma/client'
 
 
-const prisma = new PrismaClient();
+declare global {
+    var prisma: PrismaClient | undefined;
+}
+
+export const prisma = globalThis.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalThis.prisma = prisma;
 
 export class DatabaseService {
 
@@ -28,7 +34,7 @@ export class DatabaseService {
         } catch (error) {
             console.error('Error fetching product by name:', error);
             throw error;
-        }finally {
+        } finally {
             await prisma?.$disconnect();
         }
     }
@@ -41,19 +47,19 @@ export class DatabaseService {
         } catch (error) {
             console.error('Error fetching users by id:', error);
             throw error;
-        }finally {
+        } finally {
             await prisma?.$disconnect();
         }
     }
     async getUserByid(id: string) {
         try {
-            const user =  await prisma.user.findUnique({
+            const user = await prisma.user.findUnique({
                 where: { id },
             });
             return user;
-        } catch  {
+        } catch {
             return null;
-          
+
         }
     }
 
@@ -72,12 +78,13 @@ export class DatabaseService {
         } catch (error) {
             console.error('Error adding product:', error);
             throw error;
-        }finally {
+        } finally {
             await prisma?.$disconnect();
         }
     }
 
-    async addUser(name:string, email: string, password: string): Promise<User> {
+
+    async addUser(name: string, email: string, password: string): Promise<User> {
         try {
             return await prisma.user.create({
                 data: {
@@ -90,12 +97,29 @@ export class DatabaseService {
         } catch (error) {
             console.error('Error adding user:', error);
             throw error;
-        }finally {
+        } finally {
             await prisma?.$disconnect();
         }
 
     }
+    async UpdateUser(param: any): Promise<User> {
+        try {
+            return await prisma.user.update({
+                where: { id: param.id },
 
+                data: {
+                    emailVerified: new Date()
+
+                }
+            });
+        } catch (error) {
+            console.error('eroare confirmare utilizator:', error);
+            throw error;
+        } finally {
+            await prisma?.$disconnect();
+        }
+
+    }
 
     async disconnect() {
         await prisma.$disconnect();

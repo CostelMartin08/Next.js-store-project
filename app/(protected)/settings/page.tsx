@@ -1,4 +1,5 @@
 import { auth, signOut } from "@/auth";
+import { redirect } from "next/dist/server/api-utils";
 
 
 const SettingPage = async () => {
@@ -13,7 +14,9 @@ const SettingPage = async () => {
             {JSON.stringify(session)}
             <form action={async () => {
                 "use server"
-                await signOut()
+                await signOut({ 
+                    redirectTo: "/auth/signIn" 
+                })
             }}>
                 <button type="submit">
                     Sign Out

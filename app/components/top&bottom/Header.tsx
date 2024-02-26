@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import '../components/components.css';
+import '../components.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Image from "next/image";
@@ -52,8 +52,8 @@ export default function Header({ user, pagetype }: Props) {
           </div>
 
           <ul className="w-2/4 hidden lg:flex space-x-10 justify-center items-center font-md clr-gray">
-            <li><Link href="/signin">Sign In</Link></li>
-            <li><Link href="/api/auth/signout">Sign Out</Link></li>
+            <li><Link href="/auth/signIn">Sign In</Link></li>
+            <li><Link href="/auth/signout">Sign Out</Link></li>
             <li>Pachete</li>
             <li>Contact</li>
           </ul>

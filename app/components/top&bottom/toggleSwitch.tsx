@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import "../components/toggleSwitch.css";
+import "./toggleSwitch.css";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";

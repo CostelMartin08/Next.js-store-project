@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import authConfig from "./auth.config";
-
 import { DatabaseService } from "./app/db";
 
 
@@ -17,6 +16,15 @@ export const {
     signIn,
     signOut
 } = NextAuth({
+    pages: {
+        signIn: "/auth/signIn",
+        error: "/auth/error",
+    },
+    events: {
+        async linkAccount({ user }) {
+            await db.UpdateUser(user)
+        }
+    },
     callbacks: {
 
         async session({ token, session }) {

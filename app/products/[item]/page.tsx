@@ -1,6 +1,6 @@
 'use client'
 import React, {useEffect} from 'react';
-import Product from '@/app/components/product';
+import Product from '@/app/components/product/product';
 import { useSearchParams } from 'next/navigation';
 
 const ItemPage = () => {

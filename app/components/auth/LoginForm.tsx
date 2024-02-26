@@ -1,14 +1,13 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signIn } from "@/auth";
-import { SignInResponse } from "next-auth/react";
+import { signIn } from "next-auth/react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import Link from "next/link";
-import '../components/components.css';
-
+import "../components.css";
 export default function LoginForm() {
 
   const [email, setEmail] = useState("");
@@ -21,7 +20,7 @@ export default function LoginForm() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3000/api/login', {
+      const res = await fetch('http://localhost:3000/api/signIn', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,14 +41,12 @@ export default function LoginForm() {
   };
 
 
-  const handleGitHubSignIn = async () => {
-    const res: SignInResponse | undefined = await signIn('github', { callbackUrl: '/' });
-    if (!res) {
-      console.error('Error:', res);
-    } else {
-      router.push('/');
-    }
-  };
+  const onClick = (provider: "google" | "github") => {
+    signIn(provider, {
+      callbackUrl: DEFAULT_LOGIN_REDIRECT,
+    });
+
+  }
 
   return (
 
@@ -88,7 +85,7 @@ export default function LoginForm() {
             <button className="submit">Sign In</button>
           </form>
 
-          <button className="border-2 p-2 rounded-xl" onClick={handleGitHubSignIn}>
+          <button className="border-2 p-2 rounded-xl" onClick={() => onClick("github")}>
             Sign in with GitHub
             <span> <FontAwesomeIcon className="px-2 text-lg" icon={faGithub} /></span>
           </button>
@@ -97,7 +94,7 @@ export default function LoginForm() {
 
 
 
-        <p className="signin">Do not have an account yet? <Link href="/register">Sign up</Link> </p>
+        <p className="signin">Do not have an account yet? <Link href="/auth/register">Sign up</Link> </p>
       </div>
 
     </section >

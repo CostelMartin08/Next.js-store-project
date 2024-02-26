@@ -10,49 +10,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Account {
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
-  user_id            String   @db.ObjectId
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.String
-  session_state      String?
-
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-}
-
 enum UserRole {
   ADMIN
   USER
 }
 
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
 model User {
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
-  name  String?
-  email     String   @unique
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String    @unique
   emailVerified DateTime?
-  password  String?
-  image String?
-  role UserRole @default(USER)
-  acounts Account[]
+  password      String?
+  image         String?
+  role          UserRole  @default(USER)
+  accounts      Account[]
 }
 
 model Products {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  nameProduct    String
-  photoProduct   String
-  productStock Int
-  priceProduct Int
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  nameProduct     String
+  photoProduct    String
+  productStock    Int
+  priceProduct    Int
   productDiscount Boolean
-  discountPrice  Int
-
+  discountPrice   Int
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import ProductGrid from "../components/productGrid";
+import ProductGrid from "../components/product/productGrid";
 
 
 
