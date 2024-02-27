@@ -1,10 +1,10 @@
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Github from "next-auth/providers/github";
-import { DatabaseService } from "./app/db";
 import bcrypt from 'bcryptjs';
 
-const db = new DatabaseService();
+import { getUserByEmail} from "./app/data/user";
+
 
 export default {
 
@@ -21,7 +21,7 @@ export default {
                 try {
                     const { email, password } = credentials;
 
-                    const user = await db.getUserById(email as string);
+                    const user = await getUserByEmail(email as string);
 
                     if (!user || !user.password) {
 

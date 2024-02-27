@@ -1,12 +1,9 @@
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
+
 import authConfig from "./auth.config";
-import { DatabaseService } from "./app/db";
-
-
-const db = new DatabaseService();
-const prisma = new PrismaClient();
+import { getUserById, updateUser } from "./app/data/user";
+import { db } from "./app/lib/tokens";
 
 
 export const {
@@ -22,11 +19,24 @@ export const {
     },
     events: {
         async linkAccount({ user }) {
-            await db.UpdateUser(user)
+
+            await updateUser(user)
         }
     },
     callbacks: {
 
+        async signIn({ user, account }) {
+
+            console.log(user, account)
+
+            if (account?.provider !== "credentials") return true;
+
+            const existingUser = await getUserById(user.id as string);
+
+            if (!existingUser?.emailVerified) return false;
+
+            return true;
+        },
         async session({ token, session }) {
 
             if (token.sub && session.user) {
@@ -42,7 +52,7 @@ export const {
         async jwt({ token }) {
             if (!token.sub) return token;
 
-            const existingUser = await db.getUserByid(token.sub);
+            const existingUser = await getUserById(token.sub);
 
             if (!existingUser) return token;
 
@@ -51,7 +61,7 @@ export const {
             return token;
         }
     },
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(db),
     session: { strategy: "jwt" },
     ...authConfig,
 })

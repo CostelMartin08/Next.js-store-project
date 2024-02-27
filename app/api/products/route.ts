@@ -1,13 +1,10 @@
-import { DatabaseService } from "@/app/db";
+import { getAllProducts } from "@/app/data/products";
 import type { NextApiRequest, NextApiResponse } from 'next'
  
 
-const dbService = new DatabaseService();
-
-
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
 
-    const data = await dbService.getAllProducts();
+    const data = await getAllProducts();
 
     return new Response(JSON.stringify(data))
 

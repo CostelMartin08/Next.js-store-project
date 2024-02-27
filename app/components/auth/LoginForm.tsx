@@ -33,6 +33,7 @@ export default function LoginForm() {
       } else {
         const data = await res.json();
         setError(data.error);
+        console.log(data)
       }
     } catch (error) {
       console.error('Eroare în timpul autentificării:', error);

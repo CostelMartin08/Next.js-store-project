@@ -1,10 +1,12 @@
 'use server'
 
-import { DatabaseService } from "@/app/db";
 import { NextResponse } from "next/server";
+import { generateVerificationToken } from "@/app/lib/tokens";
+import { sendVerificationEmail } from "@/app/lib/mail";
 import bcrypt from 'bcrypt';
 
-const dbService = new DatabaseService();
+import { addUser } from "@/app/data/user";
+
 
 export async function POST(req: any) {
 
@@ -14,9 +16,15 @@ export async function POST(req: any) {
 
         password = await bcrypt.hash(password, 10);
 
-        const addUser = await dbService.addUser(name, email, password);
+        const addUsr = await addUser(name, email, password);
 
-        return NextResponse.json({ message: `Utilizator inregistrat cu succes: ${addUser}` }, {
+        const verificationToken = await generateVerificationToken(email);
+        await sendVerificationEmail(
+            verificationToken.email,
+            verificationToken.token
+        )
+
+        return NextResponse.json({ message: `Confirmare utilizator trimisa: ${verificationToken}` }, {
             status: 201
         });
 
