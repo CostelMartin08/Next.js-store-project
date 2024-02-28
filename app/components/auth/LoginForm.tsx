@@ -80,6 +80,9 @@ export default function LoginForm() {
                   onChange={(e) => setPassword(e.target.value)} />
                 <span>Password</span>
               </label>
+              <button>
+                <Link href="/auth/reset">Forgot password?</Link>
+              </button>
             </div>
             {error && (
               <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
