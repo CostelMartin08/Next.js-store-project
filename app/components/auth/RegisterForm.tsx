@@ -15,8 +15,9 @@ export default function RegisterForm() {
 
     const [rePassword, setRePassword] = useState('');
 
-
     const [error, setError] = useState('');
+    const [succes, setSucces] = useState('');
+
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,23 +34,23 @@ export default function RegisterForm() {
         }
 
         try {
-            const resUserExist = await fetch('http://localhost:3000/api/userExist', {
+            const res = await fetch('http://localhost:3000/api/userExist', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ email }),
             });
-        
-            const { user } = await resUserExist.json();
+
+            const { user } = await res.json();
 
             if (user) {
-                setError("Această adresă de email este deja folosită");
+                setError("This e-mail address is already used!");
                 return;
 
             } else {
 
-                const resRegister = await fetch('http://localhost:3000/api/register', {
+                const res = await fetch('http://localhost:3000/api/register', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json"
@@ -57,19 +58,25 @@ export default function RegisterForm() {
 
                     body: JSON.stringify({ name, email, password })
                 });
-             
-                if (resRegister.ok) {
+
+                const data = await res.json();
+
+                if (res.ok) {
+
+                    setSucces(data.succes);
                     const form = e.target as HTMLFormElement;
                     form.reset();
-                    router.push('/auth/signIn')
+                    //Probabil router.push dar cu ceva intarziere ps
+
                 } else {
-                    console.log('Înregistrarea a eșuat');
+
+                    setError(data.error);
                 }
             }
 
         } catch (error) {
-            console.error('Eroare la înregistrare:', error);
-            setError('Eroare la înregistrare. Vă rugăm să încercați din nou.');
+
+            setError('Registration error. Please try again later!');
         }
 
     }
@@ -126,6 +133,11 @@ export default function RegisterForm() {
                     {error && (
                         <div className="bg-red-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
                             {error}
+                        </div>
+                    )}
+                    {succes && (
+                        <div className="bg-green-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
+                            {succes}
                         </div>
                     )}
                     <button className="submit">Submit</button>

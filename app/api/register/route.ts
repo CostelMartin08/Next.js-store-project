@@ -7,29 +7,35 @@ import bcrypt from 'bcrypt';
 
 import { addUser } from "@/app/data/user";
 
+interface UserCredentials {
+    name: string;
+    email: string;
+    password: string;
+}
 
-export async function POST(req: any) {
+export async function POST(req: { json: () => Promise<UserCredentials> }) {
 
-    let { name, email, password } = await req.json() as { name: string, email: string, password: string };
+    const { name, email, password } = await req.json();
 
     try {
 
-        password = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        const addUsr = await addUser(name, email, password);
+        await addUser(name, email, hashedPassword);
 
         const verificationToken = await generateVerificationToken(email);
+
         await sendVerificationEmail(
             verificationToken.email,
-            verificationToken.token
+            verificationToken.token,
         )
 
-        return NextResponse.json({ message: `Confirmare utilizator trimisa: ${verificationToken}` }, {
+        return NextResponse.json({ succes: "Confirmation email sent!" }, {
             status: 201
         });
 
     } catch (error) {
-        return NextResponse.json({ message: 'Eroare' }, { status: 500 });
+        return NextResponse.json({ error: 'Something went wrong, try again later!' }, { status: 500 });
 
     }
 

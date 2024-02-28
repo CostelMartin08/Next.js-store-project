@@ -1,14 +1,17 @@
 'use client'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
-
 import { newVerification } from "@/app/actions/new-verification";
+
 
 export const NewVerificationForm = () => {
 
+
+    const [success, setSuccess] = useState('');
+    const [error, setError] = useState('');
     const searchParams = useSearchParams();
 
 
@@ -16,11 +19,23 @@ export const NewVerificationForm = () => {
 
     const onSubmit = useCallback(() => {
 
-        if (!token) return;
+        if (success || error) return;
 
-        newVerification(token);
+        if (!token) {
+            setError("Missing token!");
+            return;
+        }
 
-    }, [token]);
+        newVerification(token)
+            .then((data) => {
+                setSuccess(data.success as string);
+                setError(data.error as string);
+            })
+            .catch(() => {
+                setError("Something went wrong!");
+            })
+
+    }, [token, success, error]);
 
     useEffect(() => {
 
@@ -32,16 +47,28 @@ export const NewVerificationForm = () => {
 
         <div>
 
-            <div>
-                <h3>New verification!</h3>
+            <h3>New verification!</h3>
+
+            <div className="flex items-center w-full justify-center">
+
+                {!success && !error && (
+                    <>
+                        <BeatLoader />
+
+                        <div className="bg-red-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
+                            {success}
+                        </div>
+
+                        <div className="bg-green-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
+                            {error}
+                        </div>
+
+                    </>
+                )}
 
                 <a href="/auth/signIn">Click to login</a>
+
             </div>
-
-
-            <BeatLoader />
-
-
         </div>
     )
 }

@@ -1,5 +1,5 @@
 'use server'
-import { NextApiResponse } from "next";
+
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
@@ -7,16 +7,22 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { sendVerificationEmail } from "@/app/lib/mail";
 import { generateVerificationToken } from "@/app/lib/tokens";
 import { getUserByEmail } from "@/app/data/user";
+import { NextResponse } from "next/server";
 
+interface UserCredentials {
+    email: string;
+    password: string;
+}
 
-export async function POST(req: any, res: NextApiResponse) {
+export async function POST(req: { json: () => Promise<UserCredentials> }) {
 
-    const { email, password } = await req.json() as { email: string, password: string };
+    const { email, password } = await req.json();
 
     const existingUser = await getUserByEmail(email);
 
     if (!existingUser || !existingUser.email || !existingUser.password) {
-        return res.status(401).send({ error: "Credențiale invalide" });
+
+        return NextResponse.json({ error: 'Invalid credentials' }, { status: 404 })
 
     }
 
@@ -31,12 +37,9 @@ export async function POST(req: any, res: NextApiResponse) {
             verificationToken.token
         );
 
+        return NextResponse.json({ succes: 'Email send successfully' }, { status: 404 });
 
-        return {
-            succes: "Email de confirmare trimis!"
-        }
     }
-
 
     try {
         await signIn("credentials", {
@@ -50,9 +53,10 @@ export async function POST(req: any, res: NextApiResponse) {
             switch (error.type) {
 
                 case "CredentialsSignin":
-                    return res.status(401).send({ error: "Credențiale invalide" });
+
+                    return NextResponse.json({ error: 'Invalid credentials' }, { status: 404 })
                 default:
-                    return res.send({ message: 'Ceva nu amers bine' })
+                    return NextResponse.json({ error: 'Something went wrong!' }, { status: 500 })
             }
         }
 

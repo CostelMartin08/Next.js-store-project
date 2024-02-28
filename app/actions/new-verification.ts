@@ -1,4 +1,5 @@
 "use server"
+
 import { db } from "../lib/db";
 import { getUserByEmail } from "../data/user";
 import { getVerificationToken } from "../data/verification-token";
@@ -9,20 +10,21 @@ export const newVerification = async (token: string) => {
     const existingToken = await getVerificationToken(token);
 
     if (!existingToken) {
-        return { error: 'Nu exista token!' };
+        return { error: "Token does not exist!" };
+
     }
 
     const hasExpired = new Date(existingToken.expires) < new Date();
 
 
     if (hasExpired) {
-        return { error: 'Token-ul a expirat!' }
+        return { error: "Token has expired!" };
     }
 
     const existingUser = await getUserByEmail(existingToken.email);
 
     if (!existingUser) {
-        return { error: "Adresa de email nu exista!" }
+        return { error: "Email does not exist!" };
     }
 
     await db.user.update({
@@ -38,6 +40,6 @@ export const newVerification = async (token: string) => {
     });
 
 
-    return { succes: 'Email verificat!' };
+    return { success: "Email verified!" };
 
 }

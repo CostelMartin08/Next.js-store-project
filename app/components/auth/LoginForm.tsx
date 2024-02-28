@@ -13,6 +13,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string>('');
+  const [succes, setSucces] = useState<string>('');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,14 +31,16 @@ export default function LoginForm() {
 
       if (res.ok) {
         router.push(DEFAULT_LOGIN_REDIRECT);
+
       } else {
+
         const data = await res.json();
         setError(data.error);
-        console.log(data)
+        setSucces(data.succes);
+
       }
     } catch (error) {
-      console.error('Eroare în timpul autentificării:', error);
-      setError('Ceva nu a funcționat corect. Vă rugăm să încercați din nou mai târziu.');
+      setError('SignIn error. Please try again later!');
     }
   };
 
@@ -81,6 +84,11 @@ export default function LoginForm() {
             {error && (
               <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
                 {error}</div>
+
+            )}
+            {succes && (
+              <div className="bg-green-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+                {succes}</div>
 
             )}
             <button className="submit">Sign In</button>
