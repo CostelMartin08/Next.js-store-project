@@ -8,6 +8,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import Link from "next/link";
 import "../components.css";
+
 export default function LoginForm() {
 
   const [email, setEmail] = useState("");
@@ -15,6 +16,11 @@ export default function LoginForm() {
   const [error, setError] = useState<string>('');
   const [succes, setSucces] = useState<string>('');
   const router = useRouter();
+
+
+  const [showTwoFactor, setShowTwoFactor] = useState(false);
+  const [code, setCode] = useState("");
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
@@ -26,17 +32,27 @@ export default function LoginForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, code }),
       });
 
       if (res.ok) {
+
         router.push(DEFAULT_LOGIN_REDIRECT);
 
       } else {
 
         const data = await res.json();
-        setError(data.error);
-        setSucces(data.succes);
+
+        if (data?.error) {
+          setError(data.error);
+        }
+
+        if (data?.success) {
+          setSucces(data.success);
+        }
+        if (data?.twoFactor) {
+          setShowTwoFactor(true);
+        }
 
       }
     } catch (error) {
@@ -59,31 +75,54 @@ export default function LoginForm() {
       <div className="w-3/4 ">
 
         <div className="form-mod md:p-7 mx-auto" >
+
           <form className="form-mod" onSubmit={handleSubmit}>
             <p className="title">Sign In </p>
             <p className="message">connect now. </p>
-            <div className="flex-area">
-              <label>
-                <input
-                  className="input-form"
-                  type="text"
-                  placeholder=""
-                  onChange={(e) => setEmail(e.target.value)} />
-                <span>Email</span>
-              </label>
+            {showTwoFactor && (
+              <>
+                <div className="flex-area">
+                  <label>
+                    <input
+                      className="input-form"
+                      type="text"
+                      placeholder="123456"
+                      onChange={(e) => setCode(e.target.value)} />
 
-              <label>
-                <input
-                  className="input-form"
-                  type="password"
-                  placeholder=""
-                  onChange={(e) => setPassword(e.target.value)} />
-                <span>Password</span>
-              </label>
-              <button>
-                <Link href="/auth/reset">Forgot password?</Link>
-              </button>
-            </div>
+                    <span>2FA</span>
+                  </label>
+                  <button>
+                    <Link href="/auth/reset">Forgot password?</Link>
+                  </button>
+                </div>
+              </>
+            )}
+            {!showTwoFactor && (
+              <>
+                <div className="flex-area">
+                  <label>
+                    <input
+                      className="input-form"
+                      type="text"
+                      placeholder=""
+                      onChange={(e) => setEmail(e.target.value)} />
+                    <span>Email</span>
+                  </label>
+
+                  <label>
+                    <input
+                      className="input-form"
+                      type="password"
+                      placeholder=""
+                      onChange={(e) => setPassword(e.target.value)} />
+                    <span>Password</span>
+                  </label>
+                  <button>
+                    <Link href="/auth/reset">Forgot password?</Link>
+                  </button>
+                </div>
+              </>
+            )}
             {error && (
               <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
                 {error}</div>
@@ -94,7 +133,7 @@ export default function LoginForm() {
                 {succes}</div>
 
             )}
-            <button className="submit">Sign In</button>
+            <button className="submit">{showTwoFactor ? "Confirm" : "SignIn"}</button>
           </form>
 
           <button className="border-2 p-2 rounded-xl" onClick={() => onClick("github")}>
