@@ -5,7 +5,6 @@ import { userCurrentRole } from "@/hooks/use-current-role"
 import { UserRole } from "@prisma/client"
 
 
-
 const AdminPage = () => {
 
     const role = userCurrentRole()
@@ -13,7 +12,7 @@ const AdminPage = () => {
 
     return (
 
-        <div className="w-[600px] text-center">
+        <div className="w-100 text-center">
 
             <h3>Admin</h3>
 

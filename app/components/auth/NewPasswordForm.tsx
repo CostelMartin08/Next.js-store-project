@@ -18,7 +18,7 @@ export default function NewPassordForm() {
     const searchParams = useSearchParams();
     const token = searchParams.get("token");
 
-
+    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
@@ -26,6 +26,7 @@ export default function NewPassordForm() {
 
         newPassword(password, token as string)
             .then((data) => {
+                console.log(data)
                 setError(data?.error as string);
                 setSuccess(data?.success as string);
             });
@@ -65,7 +66,6 @@ export default function NewPassordForm() {
                     <button className="submit">Reset Password</button>
 
                 </form>
-
 
             </div>
 

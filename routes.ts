@@ -1,6 +1,7 @@
 export const publicRoutes = [
 
     "/",
+    "/products",
     "/products/",
     "/auth/new-verification"
     
@@ -17,4 +18,4 @@ export const authRoutes = [
 
 export const apiAuthPrefix = "/api/";
 
-export const DEFAULT_LOGIN_REDIRECT = "/settings";
+export const DEFAULT_LOGIN_REDIRECT = "/";

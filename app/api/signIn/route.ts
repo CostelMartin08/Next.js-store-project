@@ -92,7 +92,7 @@ export async function POST(req: { json: () => Promise<UserCredentials> }) {
             );
 
 
-            return NextResponse.json({ twoFactor: true }, { status: 404 })
+            return NextResponse.json({ twoFactor: true }, { status: 403 })
         }
     }
 

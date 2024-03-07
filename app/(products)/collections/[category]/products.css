@@ -1,0 +1,38 @@
+/* -------------------------------------------------------------------------- */
+/*                              Product Component                             */
+/* -------------------------------------------------------------------------- */
+
+.img {
+    object-fit: contain;
+}
+
+.card-height {
+    height: 300px;
+}
+
+.span {
+    display: none;
+    /*schimbi pe flex*/
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 20px;
+    width: 120px;
+    padding: 4px;
+    background-color: black;
+    color: white;
+}
+
+.discount-price {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 20px;
+    width: 55px;
+    padding: 2px;
+}

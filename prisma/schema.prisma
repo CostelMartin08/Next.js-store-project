@@ -84,12 +84,42 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-model Products {
-  id              String  @id @default(auto()) @map("_id") @db.ObjectId
-  nameProduct     String
-  photoProduct    String
-  productStock    Int
-  priceProduct    Int
-  productDiscount Boolean
-  discountPrice   Int
+model Laptops {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  photo         String
+  stock         Int
+  price         Int
+  discount      Boolean
+  discountPrice Int
+}
+
+model Tablets {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  photo         String
+  stock         Int
+  price         Int
+  discount      Boolean
+  discountPrice Int
+}
+
+model Smartphones {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  photo         String
+  stock         Int
+  price         Int
+  discount      Boolean
+  discountPrice Int
+}
+
+model TV {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  photo         String
+  stock         Int
+  price         Int
+  discount      Boolean
+  discountPrice Int
 }

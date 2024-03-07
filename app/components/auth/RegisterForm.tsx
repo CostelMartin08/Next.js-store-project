@@ -4,6 +4,8 @@ import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
 import '../components.css';
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export default function RegisterForm() {
@@ -90,24 +92,24 @@ export default function RegisterForm() {
                 <form className="form-register md:p-7 mx-auto" onSubmit={handleSubmit}>
                     <p className="title">Register </p>
                     <p className="message">Signup now and get full access to our app. </p>
-                    <div className="flex-register">
 
-                        <label>
-                            <input
-                                className="input-register"
-                                type="text"
-                                placeholder=""
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                            <span>Name</span>
-                        </label>
-                    </div>
+
+                    <label>
+                        <input
+                            className="input-register"
+                            type="text"
+                            placeholder="Enter you name"
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <span>Name</span>
+                    </label>
+
 
                     <label>
                         <input
                             className="input-register"
                             type="email"
-                            placeholder=""
+                            placeholder="Enter your email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <span>Email</span>
@@ -117,7 +119,7 @@ export default function RegisterForm() {
                         <input
                             className="input-register"
                             type="password"
-                            placeholder=""
+                            placeholder="********"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <span>Password</span>
@@ -126,7 +128,7 @@ export default function RegisterForm() {
                         <input
                             className="input-register"
                             type="password"
-                            placeholder=""
+                            placeholder="********"
                             onChange={(e) => setRePassword(e.target.value)} />
                         <span>Confirm password</span>
                     </label>
@@ -141,11 +143,12 @@ export default function RegisterForm() {
                         </div>
                     )}
                     <button className="submit">Submit</button>
-                    <Link href="/signIn" className="border-2 p-2 rounded-xl text-center">Continue with GitHub</Link>
-                    <p className="signin">Already have an acount ? <Link href="/auth/signIn"> Signin</Link> </p>
+                    <Link href="/signIn" className="border-2 p-2 rounded-xl text-[18px]  text-center">Continue with GitHub
+                        <FontAwesomeIcon className=" px-4 text-[14px] sm:text-[23px] md:text-[25px]" icon={faGithub} />
+                    </Link>
+                    <p className="signin">Already have an acount ? <Link href="/auth/signIn"> SignIn</Link> </p>
 
                 </form>
-
 
             </div>
 

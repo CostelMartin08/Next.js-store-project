@@ -104,7 +104,7 @@ export default function LoginForm() {
                     <input
                       className="input-form"
                       type="text"
-                      placeholder=""
+                      placeholder="Enter your email"
                       onChange={(e) => setEmail(e.target.value)} />
                     <span>Email</span>
                   </label>
@@ -113,11 +113,11 @@ export default function LoginForm() {
                     <input
                       className="input-form"
                       type="password"
-                      placeholder=""
+                      placeholder="********"
                       onChange={(e) => setPassword(e.target.value)} />
                     <span>Password</span>
                   </label>
-                  <button>
+                  <button className="ps-1 text-left text-gray-500 underline">
                     <Link href="/auth/reset">Forgot password?</Link>
                   </button>
                 </div>
@@ -136,15 +136,12 @@ export default function LoginForm() {
             <button className="submit">{showTwoFactor ? "Confirm" : "SignIn"}</button>
           </form>
 
-          <button className="border-2 p-2 rounded-xl" onClick={() => onClick("github")}>
-            Sign in with GitHub
-            <span> <FontAwesomeIcon className="px-2 text-lg" icon={faGithub} /></span>
+          <button className="border-2 p-2 rounded-xl text-[18px]  text-center" onClick={() => onClick("github")}
+          >Continue with GitHub
+            <FontAwesomeIcon className=" px-4 text-[14px] sm:text-[23px] md:text-[25px]" icon={faGithub} />
           </button>
 
         </div>
-
-
-
         <p className="signin">Do not have an account yet? <Link href="/auth/register">Sign up</Link> </p>
       </div>
 

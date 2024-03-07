@@ -1,7 +1,7 @@
 'use client'
 
 import Banner from "./components/Banner";
-import ProductGrid from "./components/product/productGrid";
+
 import Header from './components/top&bottom/Header';
 
 export default function Home() {
@@ -12,9 +12,9 @@ export default function Home() {
 
      
         <>
-          <Header  pagetype={"Client"} />
+          <Header  />
           <Banner />
-          <ProductGrid />
+      
         </>
      
 

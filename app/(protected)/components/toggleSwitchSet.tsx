@@ -1,19 +1,23 @@
 'use client'
-import { useState } from "react";
+import React, { useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
-import "./toggleSwitch.css";
+import Link from "next/link";
+
+import "@/app/components/top&bottom/toggleSwitch.css";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons/faFacebook";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons/faXTwitter";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons/faEnvelope";
 
 const ToggleSwitch = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
 
+    const user = useCurrentUser();
 
     const toggleMenu = () => {
 
@@ -31,7 +35,6 @@ const ToggleSwitch = () => {
             </div>
 
 
-
             {menuOpen && (
 
                 <div className="menu bg-gray-700  px-10 py-10">
@@ -43,14 +46,12 @@ const ToggleSwitch = () => {
 
                     </div>
 
-
                     <ul className="h-80 font-lg space-y-4">
-                        <li>Laptop</li>
-                        <li>Tablet</li>
-                        <li>Smartphone</li>
-                        <li>TV</li>
-                        <li>Contact</li>
-                        <li>Us Story</li>
+
+
+                        <li><Link href="/settings">Settings</Link></li>
+
+                        {user?.role === "ADMIN" && <li><Link href="/admin">Admin Mode</Link></li>}
                     </ul>
 
                     <div className="text-[25px] space-x-5">

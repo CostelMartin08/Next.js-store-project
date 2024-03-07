@@ -1,10 +1,10 @@
 import { getProductByName } from "@/app/data/products";
 
 
-export async function POST(req: Request, context: any) {
+export async function POST(context: { params: any; } ) {
     try {
         const { params } = context;
-        console.log(params.productsID);
+     //   console.log(params.productsID);
 
         const data = await getProductByName(params.productsID)
 

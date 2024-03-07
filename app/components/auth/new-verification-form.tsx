@@ -5,7 +5,10 @@ import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 import { newVerification } from "@/app/actions/new-verification";
-
+import '../components.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons/faCircleExclamation";
+import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 
 export const NewVerificationForm = () => {
 
@@ -28,6 +31,7 @@ export const NewVerificationForm = () => {
 
         newVerification(token)
             .then((data) => {
+                console.log(data)
                 setSuccess(data.success as string);
                 setError(data.error as string);
             })
@@ -37,6 +41,7 @@ export const NewVerificationForm = () => {
 
     }, [token, success, error]);
 
+    console.log(error)
     useEffect(() => {
 
         onSubmit();
@@ -45,31 +50,48 @@ export const NewVerificationForm = () => {
 
     return (
 
-        <div>
+        <div className="w-100 h-dvh flex items-center">
 
-            <h3>New verification!</h3>
+            <div className="w-96 h-2/4  container mx-auto p-20 border">
 
-            <div className="flex items-center w-full justify-center">
 
-                {!success && !error && (
-                    <>
-                        <BeatLoader />
+                <h3 className="text-center pb-5 text-[30px]">New verification!</h3>
 
-                        <div className="bg-red-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
-                            {success}
+                <div className="flex flex-col space-y-10 items-center w-full justify-center">
+
+                    {!success && !error && (
+                        <div className="py-5">
+                            <BeatLoader />
+
+                        </div>
+                    )}
+                    {success && (
+
+                        <div className="p-5 border text-center space-y-4 rounded  bg-green-500">
+                            <FontAwesomeIcon className="text-[50px] text-white" icon={faCheck} />
+                            <div className="bg-green-600 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
+                                {success}
+                            </div>
+                        </div>
+                    )}
+                    {error && (
+                        <div className="p-5 border text-center space-y-4 rounded  bg-red-500">
+                            <FontAwesomeIcon className="text-[50px] text-white" icon={faCircleExclamation} />
+                            <div className="bg-red-600 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
+                                {error}
+                            </div>
                         </div>
 
-                        <div className="bg-green-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
-                            {error}
-                        </div>
+                    )}
 
-                    </>
-                )}
 
-                <a href="/auth/signIn">Click to login</a>
 
+
+                    <a href="/auth/signIn"> <button className="submit w-80">Click to SignIn</button></a>
+
+                </div>
             </div>
-        </div>
+        </div >
     )
 }
 

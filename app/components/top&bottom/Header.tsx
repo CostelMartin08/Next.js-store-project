@@ -3,34 +3,29 @@ import React from "react";
 import '../components.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import Image from "next/image";
-
+import { useCurrentUser } from "@/hooks/use-current-user";
 import ToggleSwitch from "./toggleSwitch";
 import Link from "next/link";
 
+import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
 
-type User = {
-  name?: string | null | undefined;
-  email?: string | null | undefined;
-  image?: string | null | undefined;
-} | undefined
 
-type Props = {
-  user?: User,
-  pagetype?: string,
-}
 
-export default function Header({ user, pagetype }: Props) {
 
+
+export default function Header() {
+
+
+  const user = useCurrentUser();
 
 
 
   return (
     <>
 
-      <div className="bg-gray-700 text-center py-4 font-sm text-white">
+      <div className="bg-gray-700 text-center py-4 px-2 text-[12px] md:text-[20px] text-white">
 
-        <h4>Informează clienții de posibile reduceri sau sesizează probleme de logistică</h4>
+        <h4>Informează clienții de posibile reduceri sau sesizează probleme</h4>
 
       </div>
 
@@ -45,35 +40,35 @@ export default function Header({ user, pagetype }: Props) {
 
           </div>
 
-          <div className="w-2/4  lg:w-1/4 flex justify-center items-center lg:justify-start ">
+          <div className="w-2/4 lg:w-1/4 flex  items-center justify-center lg:justify-start ">
 
-            <h1 className="font-lg">LOGO</h1>
+            <Link href="/">
+              <h1 className="sm:text-[23px] md:text-[25px] font-bold">GandgetGrid</h1>
+            </Link>
 
           </div>
 
-          <ul className="w-2/4 hidden lg:flex space-x-10 justify-center items-center font-md clr-gray">
-            <li><Link href="/auth/signIn">Sign In</Link></li>
-            <li><Link href="/auth/signout">Sign Out</Link></li>
-            <li>Pachete</li>
-            <li>Contact</li>
+          <ul className="w-2/4 hidden lg:flex space-x-4 justify-center items-center  lg:text-[18px] xl:text-[20px] clr-gray">
+            <Link href='/collections/category?category=laptops'>Laptop</Link>
+            <Link href='/collections/category?category=tablets'>Tablet</Link>
+            <Link href='/collections/category?category=smartphones'>Smartphone</Link>
+            <Link href='/collections/category?category=tv'>TV</Link>
+            <Link href='/collections/category?category=contact'>Contact</Link>
+            <Link href='/collections/category?category=story'>Us Story</Link>
           </ul>
 
+          <div className="flex w-1/4 space-x-4  justify-end items-center">
 
-          <div className="flex w-1/4 space-x-6  justify-end items-center">
-
-            <FontAwesomeIcon className="text-lg" icon={faCartShopping} />
-
-            {user?.image ? <Image width={200} height={200} className="w-6 sm:w-8 lg:w-11 rounded-full " src={user?.image} alt={"userPhoto"} /> : null}
-
+            <Link href="/cart">
+              <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faCartShopping} />
+            </Link>
+            <Link href={"/settings"}>
+              {user?.image ? <img className="w-5 sm:w-6 md:w-8 rounded-full" src={user?.image}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
+            </Link>
           </div>
 
         </div>
 
-        <div className="p-5 md:p-8 lg:p-10 pb-0">
-
-          {user?.name ? <p>Bună {user?.name}</p> : null}
-
-        </div>
       </header>
 
 

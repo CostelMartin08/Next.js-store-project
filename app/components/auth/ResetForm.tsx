@@ -49,7 +49,7 @@ export default function ResetForm() {
                         <input
                             className="input-register"
                             type="email"
-                            placeholder=""
+                            placeholder="Enter you email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <span>Email</span>

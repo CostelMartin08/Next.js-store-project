@@ -1,58 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
-import { faMinus } from "@fortawesome/free-solid-svg-icons/faMinus";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons/faCartShopping";
-import Image from 'next/image';
-import img from '../../public/LateToWork.jpg';
-import '../components/components.css';
-import { useParams } from 'next/navigation'
+'use client'
+import { getProductsByName } from '@/app/actions/products';
+import { Product } from '@/app/data/products';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from 'react';
 
 
-export type ProductT = {
-    id: string;
-    nameProduct: string;
-    photoProduct: string;
-    productStock: number;
-    priceProduct: number;
-    productDiscount: boolean;
-    discountPrice: number;
-};
+
+const ProductPage = () => {
 
 
-export default function Product() {
+    const param = useSearchParams();
+    const name = param.get('q2');
+    const category = param.get('q1');
+    const decodedName = decodeURIComponent(name as string);
 
-    const params = useParams()
 
-    const item = params.item as string;
-    const decodedItem = decodeURIComponent(item);
-    const afterEqualSign = decodedItem.split('=')[1];
 
-    const [data, setData] = useState<ProductT | null>(null);
+    const [data, setData] = useState<Product | null>(null);
+
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`/api/products/${afterEqualSign}`, {
-                    method: 'POST',
 
+        if (category as string) {
+
+            getProductsByName(category as string, decodedName as string)
+                .then((data) => {
+                    setData(data as Product)
+                })
+                .catch((error) => {
+                    console.log(error)
                 });
-                if (!response.ok) {
-                    throw new Error('Eroare la interogare');
-                }
-                const data = await response.json();
-                setData(data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
 
-        fetchData();
+        }
     }, []);
 
 
-    return (
 
+    return (
         <section className="container mx-auto">
 
             {data && (
@@ -63,16 +51,16 @@ export default function Product() {
 
                         <div className="w-full lg:w-5/6 mx-auto my-auto">
 
-                            <Image className="w-full rounded-md " src={data.photoProduct} width={500} height={300} alt="work" />
+                            <img className="w-full rounded-md " src={data.photo} width={500} height={300} alt="work" />
 
                         </div>
 
                         <div className="w-5/6 flex gap-5 justify-center mx-auto">
 
-                            <div className="w-1/4 "><Image className="rounded" src={img} alt="work" /></div>
-                            <div className="w-1/4 "><Image className="rounded" src={img} alt="work" /></div>
-                            <div className="w-1/4 "><Image className="rounded" src={img} alt="work" /></div>
-                            <div className="w-1/4 "><Image className="rounded" src={img} alt="work" /></div>
+                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
+                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
+                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
+                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
 
                         </div>
 
@@ -84,7 +72,7 @@ export default function Product() {
 
                             <span className="font-sm clr-primary">SNEAKER COMPANY</span>
 
-                            <h2 className="font-lg ">{data.nameProduct}</h2>
+                            <h2 className="font-lg ">{data.name}</h2>
 
                             <p className="font-md pt-5 md:w-3/4 text-left clr-gray">
                                 These low-profile sneakers are you perfect casual wear companion.
@@ -97,7 +85,7 @@ export default function Product() {
                         <div className="space-y-5">
 
                             <div className="flex space-x-5 items-center">
-                                <span className="font-lg">${data.priceProduct}</span>
+                                <span className="font-lg">${data.price}</span>
                                 <span className="font-md discount">50%</span>
                             </div>
 
@@ -129,6 +117,9 @@ export default function Product() {
             )}
 
         </section>
-    )
 
+    )
 }
+
+
+export default ProductPage;
