@@ -1,33 +1,40 @@
 'use client'
-import { getProductsByName } from '@/app/actions/products';
+
+import { getProductsById, getProductsByName } from '@/app/actions/products';
 import { Product } from '@/app/data/products';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react';
 
+import PhotoProduct from '../../components/photoProduct';
 
+
+export interface CartProduct extends Product {
+    count: number;
+    category: string;
+}
 
 const ProductPage = () => {
 
-
     const param = useSearchParams();
-    const name = param.get('q2');
-    const category = param.get('q1');
-    const decodedName = decodeURIComponent(name as string);
-
-
-
+    const name = param.get('q2') as string;
+    const category = param.get('q1') as string;
+    const decodedName = decodeURIComponent(name) as string;
     const [data, setData] = useState<Product | null>(null);
+    const [count, setCount] = useState<number>(1);
+
 
 
     useEffect(() => {
 
-        if (category as string) {
+        if (category) {
 
-            getProductsByName(category as string, decodedName as string)
+            getProductsByName(category, decodedName)
                 .then((data) => {
                     setData(data as Product)
                 })
@@ -38,39 +45,78 @@ const ProductPage = () => {
         }
     }, []);
 
+    let stock = data?.stock as number;
 
+    const increment = (): void => {
+
+        if (stock >= 1) {
+
+            if (count <= stock - 1) {
+                setCount(prevCount => prevCount + 1);
+            }
+        }
+    };
+
+    const decrement = (): void => {
+
+        if (stock >= 1) {
+            if (count >= 2) {
+                setCount(prevCount => prevCount - 1);
+            } else {
+                setCount(1);
+            }
+        }
+
+    };
+
+    const addProduct = (id: string) => {
+
+        getProductsById(category, id)
+            .then((productData) => {
+
+                const product = productData as Product;
+
+                const cartProduct: CartProduct = {
+                    ...product,
+                    count: count,
+                    category: category
+                };
+
+                const cartItems: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+
+
+                const existingItemIndex = cartItems.findIndex(item => item.id === cartProduct.id);
+
+                if (existingItemIndex !== -1) {
+
+                    cartItems[existingItemIndex].count += count;
+
+                } else {
+
+                    cartItems.push(cartProduct);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+            })
+            .catch((error) => {
+                console.error(`Error: ${error}`)
+            })
+    };
 
     return (
-        <section className="container mx-auto">
+
+        <section className="container setappend mx-auto">
 
             {data && (
 
-                <div className="grid grid-cols-1 lg:grid-cols-2  p-5 md:mt-20">
+                <div className="grid grid-cols-1 lg:grid-cols-2  p-5">
 
-                    <div className="flex flex-col gap-8">
-
-                        <div className="w-full lg:w-5/6 mx-auto my-auto">
-
-                            <img className="w-full rounded-md " src={data.photo} width={500} height={300} alt="work" />
-
-                        </div>
-
-                        <div className="w-5/6 flex gap-5 justify-center mx-auto">
-
-                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
-                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
-                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
-                            <div className="w-1/4 "><img className="rounded" src={data.photo} alt="work" /></div>
-
-                        </div>
-
-                    </div>
+                    <PhotoProduct data={data} />
 
                     <div className="grid grid-row-5 gap-3 mt-10 lg:mt-0  content-between xl:content-evenly">
 
                         <div className="space-y-3 lg:w-3/4">
 
-                            <span className="font-sm clr-primary">SNEAKER COMPANY</span>
 
                             <h2 className="font-lg ">{data.name}</h2>
 
@@ -82,11 +128,16 @@ const ProductPage = () => {
 
                         </div>
 
-                        <div className="space-y-5">
+                        <div className="space-y-5 ms-3">
 
                             <div className="flex space-x-5 items-center">
                                 <span className="font-lg">${data.price}</span>
-                                <span className="font-md discount">50%</span>
+                                <div className='bg-black text-white px-4 p-2 rounded-lg'>
+                                    <span className='text-[11px] md:text-[13px] font-bold'>Sold out</span>
+                                </div>
+                                <div className='span bg-red-500 text-white p-2 rounded-lg'>
+                                    <span className='text-[11px] md:text-[13px] font-bold'>-26%</span>
+                                </div>
                             </div>
 
                             <div>
@@ -95,18 +146,20 @@ const ProductPage = () => {
 
                         </div>
 
-                        <div className="flex space-x-5">
+                        <div className="flex space-x-6">
 
-                            <div className="increment bg-slate-100 w-1/4">
-                                <FontAwesomeIcon className="w-1/3 my-auto clr-primary text-center" icon={faMinus} />
-                                <button className="w-1/3">0</button>
-                                <FontAwesomeIcon className="w-1/3 my-auto clr-primary text-center" icon={faPlus} />
+                            <div className="increment bg-slate-100 w-1/4 text-center flex items-center">
+                                <FontAwesomeIcon onClick={decrement} className="cursor-pointer w-1/3 clr-primary text-center" icon={faMinus} />
+                                <p className='w-1/3'>{count}</p>
+                                <FontAwesomeIcon onClick={increment} className=" cursor-pointer w-1/3 my-auto clr-primary text-center" icon={faPlus} />
                             </div>
 
-                            <div className=" order">
-                                <FontAwesomeIcon icon={faCartShopping} />
-                                <button>Add to cart</button>
-                            </div>
+                            <button
+                                onClick={() => addProduct(data?.id)}
+                                className=" w-3/4 md:w-2/4 bg-orange text-white rounded-md flex items-center justify-center">
+                                <FontAwesomeIcon className='px-3' icon={faCartShopping} />
+                                Add to cart
+                            </button>
 
                         </div>
 

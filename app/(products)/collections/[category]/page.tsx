@@ -5,14 +5,13 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import { Product } from '@/app/data/products';
 
-import Header from '@/app/components/top&bottom/Header';
-
 import './products.css';
 
+import OneProduct from '../../components/product';
 
-import Product0 from '../../components/product';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders } from '@fortawesome/free-solid-svg-icons/faSliders';
+
 
 const CategoryPage = () => {
 
@@ -45,8 +44,6 @@ const CategoryPage = () => {
     return (
 
         <>
-
-            <Header />
 
             <section className='container mx-auto px-6 lg:px-10'>
 
@@ -84,7 +81,7 @@ const CategoryPage = () => {
                             <p>{error}</p>
                         ) : data ? (
                             <div className='grid grid-cols-2 md:grid-cols-3  gap-4 my-16 mx-auto'>
-                                <Product0 category={category || ""} data={data} />
+                                <OneProduct category={category || ""} data={data} />
                             </div>
                         ) : (
                             <p>No products found</p>

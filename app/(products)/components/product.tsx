@@ -1,4 +1,4 @@
-
+'use client'
 
 import Link from 'next/link';
 import React from 'react';
@@ -14,7 +14,7 @@ interface ProductProps {
     category: string;
 }
 
-const Product0: React.FC<ProductProps> = (props) => {
+const OneProduct: React.FC<ProductProps> = (props) => {
 
     return (
         <>
@@ -26,10 +26,10 @@ const Product0: React.FC<ProductProps> = (props) => {
                             className="card-height flex flex-col items-left bg-white border border-gray-200 rounded-lg space-y-4"
                         >
                             <section className='h-3/5 lg:h-3/4 py-3 relative'>
-                                <div className='span'>
+                                <div className='span position'>
                                     <span className='text-[11px] md:text-[13px] font-bold'>Sold out</span>
                                 </div>
-                                <div className='discount-price bg-red-500 text-white'>
+                                <div className='discount-price position bg-red-500 text-white'>
                                     <span className='text-[11px] md:text-[13px] font-bold'>-26%</span>
                                 </div>
                                 <img className='img rounded-t-lg size-full' src={product.photo} alt={product.name}></img>
@@ -52,4 +52,4 @@ const Product0: React.FC<ProductProps> = (props) => {
     );
 };
 
-export default Product0;
+export default OneProduct;

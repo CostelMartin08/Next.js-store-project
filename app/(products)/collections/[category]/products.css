@@ -25,10 +25,13 @@
     color: white;
 }
 
-.discount-price {
+
+.position{
     position: absolute;
     left: 8px;
     top: 8px;
+}
+.discount-price {
     justify-content: center;
     text-align: center;
     border: 1px solid;

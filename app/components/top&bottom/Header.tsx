@@ -59,7 +59,7 @@ export default function Header() {
 
           <div className="flex w-1/4 space-x-4  justify-end items-center">
 
-            <Link href="/cart">
+            <Link href="/shoppingCart">
               <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faCartShopping} />
             </Link>
             <Link href={"/settings"}>

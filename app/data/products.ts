@@ -1,6 +1,7 @@
 import { db } from "@/app/lib//db";
 
 export interface Product {
+    id: string,
     name: string,
     photo: string,
     stock: number,
@@ -77,9 +78,49 @@ export const getProductByName = async (category: string, name: string) => {
         return null;
     }
 
-}
+};
+
+export const getProductById = async (category: string, id: string) => {
 
 
+    try {
+        let product;
+        switch (category) {
+            case 'laptops':
+                product = db.laptops.findFirst({
+                    where: { id },
+                });
+                break;
+            case 'tablets':
+                product = db.tablets.findFirst({
+                    where: { id },
+                });
+                break;
+            case 'smartphones':
+                product = db.smartphones.findFirst({
+                    where: { id },
+                });
+                break;
+            case 'tv':
+                product = db.tV.findFirst({
+                    where: { id },
+                });
+                break;
+            default:
+                throw new Error(`This ${id} name don't exist.`);
+        }
+        return product;
+
+    } catch (error) {
+        console.error("Error at interrogation", error);
+        return null;
+    }
+
+};
+
+export const getAllProductsCart = async () => {
+
+};
 
 export const addProduct = async (
 
