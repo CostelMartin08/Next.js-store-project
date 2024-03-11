@@ -10,13 +10,15 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react';
-
+import { useRouter } from 'next/navigation';
 import PhotoProduct from '../../components/photoProduct';
+import Link from 'next/link';
 
 
 export interface CartProduct extends Product {
     count: number;
     category: string;
+    countPrice: number;
 }
 
 const ProductPage = () => {
@@ -25,9 +27,14 @@ const ProductPage = () => {
     const name = param.get('q2') as string;
     const category = param.get('q1') as string;
     const decodedName = decodeURIComponent(name) as string;
-    const [data, setData] = useState<Product | null>(null);
-    const [count, setCount] = useState<number>(1);
 
+    const [data, setData] = useState<Product | null>(null);
+
+    const [error, setError] = useState<string | undefined>('');
+    const [success, setSuccess] = useState<string | undefined>('');
+    const [clicked, setClicked] = useState<boolean>(false);
+
+    const router = useRouter();
 
 
     useEffect(() => {
@@ -45,29 +52,8 @@ const ProductPage = () => {
         }
     }, []);
 
-    let stock = data?.stock as number;
 
-    const increment = (): void => {
 
-        if (stock >= 1) {
-
-            if (count <= stock - 1) {
-                setCount(prevCount => prevCount + 1);
-            }
-        }
-    };
-
-    const decrement = (): void => {
-
-        if (stock >= 1) {
-            if (count >= 2) {
-                setCount(prevCount => prevCount - 1);
-            } else {
-                setCount(1);
-            }
-        }
-
-    };
 
     const addProduct = (id: string) => {
 
@@ -78,28 +64,33 @@ const ProductPage = () => {
 
                 const cartProduct: CartProduct = {
                     ...product,
-                    count: count,
-                    category: category
+                    count: 1,
+                    category: category,
+                    countPrice: data?.price as number
                 };
 
                 const cartItems: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
-
 
                 const existingItemIndex = cartItems.findIndex(item => item.id === cartProduct.id);
 
                 if (existingItemIndex !== -1) {
 
-                    cartItems[existingItemIndex].count += count;
-
+                    //  router.push('/shoppingCart');
+                    setSuccess("You already have this product in your cart!");
                 } else {
 
                     cartItems.push(cartProduct);
-                }
 
-                localStorage.setItem('cart', JSON.stringify(cartItems));
+
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                    setSuccess('Your product added in your cart!');
+
+                }
+                setClicked(true);
             })
             .catch((error) => {
                 console.error(`Error: ${error}`)
+                setError(`Error: ${error}`)
             })
     };
 
@@ -111,9 +102,27 @@ const ProductPage = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2  p-5">
 
+
                     <PhotoProduct data={data} />
 
                     <div className="grid grid-row-5 gap-3 mt-10 lg:mt-0  content-between xl:content-evenly">
+
+                        {
+                            error &&
+                            <>
+                                <div className='bg-red-700 h-8 w-max rounded flex items-center text-center'>
+                                    <h2 className='text-white px-3'>Eroare: {error}</h2>
+                                </div>
+                            </>
+                        }
+                        {
+                            success &&
+                            <>
+                                <div className='bg-green-700 h-8 w-max rounded flex items-center text-center'>
+                                    <h2 className='text-white px-3'>{success}</h2>
+                                </div>
+                            </>
+                        }
 
                         <div className="space-y-3 lg:w-3/4">
 
@@ -146,19 +155,17 @@ const ProductPage = () => {
 
                         </div>
 
-                        <div className="flex space-x-6">
-
-                            <div className="increment bg-slate-100 w-1/4 text-center flex items-center">
-                                <FontAwesomeIcon onClick={decrement} className="cursor-pointer w-1/3 clr-primary text-center" icon={faMinus} />
-                                <p className='w-1/3'>{count}</p>
-                                <FontAwesomeIcon onClick={increment} className=" cursor-pointer w-1/3 my-auto clr-primary text-center" icon={faPlus} />
-                            </div>
-
+                        <div className="flex ">
                             <button
                                 onClick={() => addProduct(data?.id)}
-                                className=" w-3/4 md:w-2/4 bg-orange text-white rounded-md flex items-center justify-center">
+                                className={`w-3/4 md:w-2/4 text-white py-4 rounded-md flex items-center justify-center ${clicked ? 'bg-indigo-800' : 'bg-orange'
+                                    }`}>
+
                                 <FontAwesomeIcon className='px-3' icon={faCartShopping} />
-                                Add to cart
+                                {success ?
+
+                                    <Link href="/shoppingCart">View Cart Now</Link> : 'Add to cart'}
+
                             </button>
 
                         </div>

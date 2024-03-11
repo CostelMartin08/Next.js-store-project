@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../components.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import ToggleSwitch from "./toggleSwitch";
 import Link from "next/link";
 
 import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
+import { CartProduct } from "@/app/(products)/products/[name]/page";
 
 
 
@@ -17,7 +18,15 @@ export default function Header() {
 
 
   const user = useCurrentUser();
+  //actulizeaza in timp real nr produe din cos
+  const [data, setData] = useState<CartProduct[]>([]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+      setData(cart);
+    }
+  }, []);
 
 
   return (
@@ -59,9 +68,26 @@ export default function Header() {
 
           <div className="flex w-1/4 space-x-4  justify-end items-center">
 
-            <Link href="/shoppingCart">
-              <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faCartShopping} />
-            </Link>
+            <div className="relative">
+
+              <div
+                style={{ top: '-10px', right: '-10px' }}
+                className="absolute w-5 h-5 text-center flex justify-center rounded-xl bg-red-500">
+                <p
+                  className="m-0 text-[13px] text-white">
+                  {data?.length}
+                </p>
+              </div>
+
+              <Link href="/shoppingCart">
+                <FontAwesomeIcon
+                  className="text-[14px] sm:text-[23px] md:text-[25px]"
+                  icon={faCartShopping}
+                />
+              </Link>
+
+            </div>
+
             <Link href={"/settings"}>
               {user?.image ? <img className="w-5 sm:w-6 md:w-8 rounded-full" src={user?.image}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
             </Link>
