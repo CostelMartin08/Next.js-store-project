@@ -1,33 +1,4 @@
-/* -------------------------------------------------------------------------- */
-/*                                   PRODUCT                                  */
-/* -------------------------------------------------------------------------- */
 
-
-.discount {
-  padding: 4px 8px 4px 8px;
-  border-radius: 6px;
-  color: theme('colors.orange');
-  background-color: theme('colors.orangeBg');
-}
-
-.increment {
-  height: 50px;
-  display: flex;
-  border-radius: 8px;
-
-}
-
-.order {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-width: 280px;
-  background-color: theme('colors.orange');
-  color: theme('colors.textColor');
-  border-radius: 10px;
-
-}
 
 /* -------------------------------------------------------------------------- */
 /*                                   Banner                                   */

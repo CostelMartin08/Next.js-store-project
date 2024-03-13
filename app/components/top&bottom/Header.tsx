@@ -40,7 +40,7 @@ export default function Header() {
 
       <header className='container mx-auto lg:py-8'>
 
-        <div className="flex w-full p-5 md:p-8 lg:p-10">
+        <div className="flex w-full p-5 p-8">
 
           <div className="w-1/4 lg:hidden flex justify-start ">
 

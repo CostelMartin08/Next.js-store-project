@@ -43,6 +43,7 @@ model User {
   image                 String?
   role                  UserRole               @default(USER)
   accounts              Account[]
+  order                 Orders[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 }
@@ -122,4 +123,32 @@ model TV {
   price         Int
   discount      Boolean
   discountPrice Int
+}
+
+model Orders {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String    @db.ObjectId
+  contact    String
+  country    String
+  name       String
+  address    String
+  postalCode String
+  city       String
+  state      String
+  products   Product[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  ordersId      String? @db.ObjectId
+  name          String
+  photo         String
+  count         Int
+  price         Int
+  discount      Boolean
+  discountPrice Int
+
+  Orders Orders? @relation(fields: [ordersId], references: [id])
 }

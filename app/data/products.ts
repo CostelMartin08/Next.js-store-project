@@ -85,6 +85,7 @@ export const getProductById = async (category: string, id: string) => {
 
     try {
         let product;
+
         switch (category) {
             case 'laptops':
                 product = db.laptops.findFirst({
@@ -118,9 +119,73 @@ export const getProductById = async (category: string, id: string) => {
 
 };
 
-export const getAllProductsCart = async () => {
+export const decrementStockById = async (category: string, id: string, count: number, stock: number) => {
 
+    try {
+        let product;
+        switch (category) {
+            case 'laptops':
+                product = await db.laptops.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    let currentStock = stock;
+                    let newStock = currentStock - count;
+                    await db.laptops.update({
+                        where: { id },
+                        data: { stock: newStock },
+                    });
+                }
+                break;
+            case 'tablets':
+                product = await db.tablets.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    let currentStock = stock;
+                    let newStock = currentStock - count;
+                    await db.tablets.update({
+                        where: { id },
+                        data: { stock: newStock },
+                    });
+                }
+                break;
+            case 'smartphones':
+                product = await db.smartphones.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    let currentStock = stock;
+                    let newStock = currentStock - count;
+                    await db.smartphones.update({
+                        where: { id },
+                        data: { stock: newStock },
+                    });
+                }
+                break;
+            case 'tv':
+                product = await db.tV.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    let currentStock = stock;
+                    let newStock = currentStock - count;
+                    await db.tV.update({
+                        where: { id },
+                        data: { stock: newStock },
+                    });
+                }
+                break;
+            default:
+                throw new Error(`The category ${category} doesn't exist.`);
+        }
+        return product;
+    } catch (error) {
+        console.error("Error during interrogation", error);
+        return null;
+    }
 };
+
 
 export const addProduct = async (
 
