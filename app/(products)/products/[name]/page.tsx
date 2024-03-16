@@ -96,12 +96,11 @@ const ProductPage = () => {
 
     return (
 
-        <section className="container setappend mx-auto">
+        <section className="container setappend mx-auto text-md text-white">
 
             {data && (
 
-                <div className="grid grid-cols-1 lg:grid-cols-2  p-5">
-
+                <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
 
                     <PhotoProduct data={data} />
 
@@ -111,7 +110,7 @@ const ProductPage = () => {
                             error &&
                             <>
                                 <div className='bg-red-700 h-8 w-max rounded flex items-center text-center'>
-                                    <h2 className='text-white px-3'>Eroare: {error}</h2>
+                                    <h2 className=' px-3'>Eroare: {error}</h2>
                                 </div>
                             </>
                         }
@@ -119,17 +118,17 @@ const ProductPage = () => {
                             success &&
                             <>
                                 <div className='bg-green-700 h-8 w-max rounded flex items-center text-center'>
-                                    <h2 className='text-white px-3'>{success}</h2>
+                                    <h2 className=' px-3'>{success}</h2>
                                 </div>
                             </>
                         }
 
-                        <div className="space-y-3 lg:w-3/4">
+                        <div className="space-y-4 lg:w-3/4">
 
 
-                            <h2 className="font-lg ">{data.name}</h2>
+                            <h2 className="font-lg text-black font-black text-2xl ">{data.name}</h2>
 
-                            <p className="font-md pt-5 md:w-3/4 text-left clr-gray">
+                            <p className="pt-2 text-left clr-gray">
                                 These low-profile sneakers are you perfect casual wear companion.
                                 Featuring a durable rubber sole, they`ll withstand everything the
                                 weather can offer.
@@ -139,14 +138,17 @@ const ProductPage = () => {
 
                         <div className="space-y-5 ms-3">
 
-                            <div className="flex space-x-5 items-center">
-                                <span className="font-lg">${data.price}</span>
-                                <div className='bg-black text-white px-4 p-2 rounded-lg'>
-                                    <span className='text-[11px] md:text-[13px] font-bold'>Sold out</span>
-                                </div>
-                                <div className='span bg-red-500 text-white p-2 rounded-lg'>
-                                    <span className='text-[11px] md:text-[13px] font-bold'>-26%</span>
-                                </div>
+                            <div className="flex space-x-5 items-center relative">
+
+                                <span className="text-black">${data.price}</span>
+                                {data?.stock == 0 &&
+                                    <div className='bg-black px-4 p-2 rounded-lg'>
+                                        <span className=''>Sold out</span>
+                                    </div>}
+                                {data.discount &&
+                                    <div className='bg-red-500  p-2 rounded-lg'>
+                                        <span className=' '>-26%</span>
+                                    </div>}
                             </div>
 
                             <div>
@@ -155,18 +157,24 @@ const ProductPage = () => {
 
                         </div>
 
-                        <div className="flex ">
-                            <button
-                                onClick={() => addProduct(data?.id)}
-                                className={`w-3/4 md:w-2/4 text-white py-4 rounded-md flex items-center justify-center ${clicked ? 'bg-indigo-800' : 'bg-orange'
-                                    }`}>
+                        <div className="flex">
 
-                                <FontAwesomeIcon className='px-3' icon={faCartShopping} />
-                                {success ?
+                            {data?.stock !== 0 ?
+                                <button
+                                    onClick={() => addProduct(data?.id)}
+                                    className={`w-3/4 md:w-2/4 py-4 rounded-md flex items-center justify-center ${clicked ? 'bg-indigo-800' : 'bg-orange'
+                                        }`}>
 
-                                    <Link href="/shoppingCart">View Cart Now</Link> : 'Add to cart'}
+                                    <FontAwesomeIcon className='px-3' icon={faCartShopping} />
+                                    {success ?
 
-                            </button>
+                                        <Link href="/shoppingCart">View Cart Now</Link> : 'Add to cart'}
+
+                                </button>
+                                :
+                                <button className='w-3/4 md:w-2/4 bg-indigo-800  py-4 rounded-md flex items-center justify-center'>Sold Out</button>
+
+                            }
 
                         </div>
 

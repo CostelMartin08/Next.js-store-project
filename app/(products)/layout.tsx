@@ -8,7 +8,9 @@ const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
     <div>
       <Header />
-      {children}
+      <section className="bg-slate-50 h-dvh">
+        {children}
+      </section>
     </div>
   );
 }

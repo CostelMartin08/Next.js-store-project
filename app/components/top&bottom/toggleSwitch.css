@@ -1,12 +1,12 @@
 .menu {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    height: 99vh;
+    justify-content: space-between;
+    height: 100dvh;
     width: 40dvw;
-    top: 0px;
-    left: -0.1px;
     position: fixed;
+    top: 0.1px;
+    left: 0px;
     color: white;
     z-index: 10;
 }

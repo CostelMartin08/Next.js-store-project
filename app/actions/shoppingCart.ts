@@ -26,11 +26,13 @@ export const identifyProductsCart = async (formData: FormData, data: CartProduct
         const decrementAllStocks = async () => {
             try {
                 for (let i = 0; i < data.length; i++) {
-
                     await decrementStockById(data[i].category, data[i].id, data[i].count, data[i].stock);
-                    formData.products = data;
-                    await addOrder(formData, user.id as string)
                 }
+
+                formData.products = data;
+
+                await addOrder(formData, user.id as string)
+
                 return { success: 'The stock has been successfully updated!' };
 
             } catch (error) {
@@ -46,7 +48,7 @@ export const identifyProductsCart = async (formData: FormData, data: CartProduct
 
     }
     catch (error) {
-        return { error: `Error: ${error}` }; 
+        return { error: `Error: ${error}` };
     }
 
 }

@@ -11,6 +11,7 @@ import OneProduct from '../../components/product';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders } from '@fortawesome/free-solid-svg-icons/faSliders';
+import Loader from '@/app/components/Loader';
 
 
 const CategoryPage = () => {
@@ -30,7 +31,7 @@ const CategoryPage = () => {
 
             getProducts(category)
                 .then((data) => {
-                    setData(data as any);
+                    setData(data as Product[]);
                     setLoading(false);
                 })
                 .catch((error) => {
@@ -43,56 +44,61 @@ const CategoryPage = () => {
 
     return (
 
-        <>
+        <section className='container mx-auto px-6 lg:px-10'>
 
-            <section className='container mx-auto px-6 lg:px-10'>
+            <div className='text-center py-6'>
 
-                <div className='text-center'>
+                <h4 className='text-5xl font-black'>{letterCapitalized}</h4>
 
-                    <h4 className='text-[50px]'>{letterCapitalized}</h4>
+            </div>
+
+            <div className='grid grid-cols-1 lg:grid-cols-[250px_minmax(650px,_1fr)] gap-4 pt-10'>
+
+
+                <div className='hidden lg:block text-md'>
+
+                    <div className='flex items-center font-bold mx-4 py-3 border-b-2'>
+                        <FontAwesomeIcon className='px-3' icon={faSliders} />
+                        <p className=' text-bolt '>Filter</p>
+
+
+                    </div>
+
+                    <ul className='px-5 pt-5 flex flex-col justify-left space-y-7 cursor-pointer font-black'>
+                        <li>Price</li>
+                        <li>Product Type</li>
+                        <li>Mark</li>
+                        <li>Model</li>
+                        <li>Compatibility</li>
+                    </ul>
 
                 </div>
 
-                <div className='grid grid-cols-1 lg:grid-cols-[250px_minmax(650px,_1fr)]'>
+                <div>
+                    {loading ? (
 
+                        <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-5 mx-auto'>
 
-                    <div className='my-16 hidden lg:block'>
-
-                        <div className='inline-flex items-center text-[24px]'>
-                            <FontAwesomeIcon className='px-3' icon={faSliders} />
-                            <p className=' text-bolt'>Filter</p>
+                            <Loader />
 
                         </div>
 
-                        <ul className='px-3 flex justify-left flex-col  space-y-7 pt-5 text-[24px]'>
-                            <li>Price</li>
-                            <li>Product Type</li>
-                            <li>Mark</li>
-                            <li>Model</li>
-                            <li>Compatibility</li>
-                        </ul>
-
-                    </div>
-
-                    <div>
-                        {loading ? (
-                            <p>Loading...</p>
-                        ) : error ? (
-                            <p>{error}</p>
-                        ) : data ? (
-                            <div className='grid grid-cols-2 md:grid-cols-3  gap-4 my-16 mx-auto'>
-                                <OneProduct category={category || ""} data={data} />
-                            </div>
-                        ) : (
-                            <p>No products found</p>
-                        )}
-
-                    </div>
+                    ) : error ? (
+                        <p>{error}</p>
+                    ) : data ? (
+                        <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-5 mx-auto'>
+                            <OneProduct category={category || ""} data={data} />
+                        </div>
+                    ) : (
+                        <p className='text-lg'>There are no products listed in this category</p>
+                    )}
 
                 </div>
 
-            </section>
-        </>
+            </div>
+
+        </section>
+
     )
 }
 
