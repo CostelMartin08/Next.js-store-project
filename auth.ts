@@ -73,8 +73,9 @@ export const {
                 session.user.name = token.name as string;
                 session.user.email = token.email as string;
                 session.user.isOAuth = token.isOAuth as boolean
+                session.user.image = token.picture as string;
             }
-
+        
             return session;
         },
         async jwt({ token }) {
@@ -94,7 +95,7 @@ export const {
             token.email = existingUser.email;
             token.role = existingUser.role;
             token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
-
+            token.picture = existingUser.image;
 
             return token;
         }

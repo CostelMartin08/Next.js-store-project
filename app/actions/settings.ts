@@ -1,6 +1,7 @@
 
 "use server"
 
+
 import { addProduct } from "../data/products";
 import { getUserByEmail, getUserById } from "../data/user"
 import { currentUser } from "../lib/auth"
@@ -8,8 +9,6 @@ import { db } from "../lib/db";
 import { sendVerificationEmail } from "../lib/mail";
 import { generateVerificationToken } from "../lib/tokens";
 import bcrypt from 'bcryptjs';
-
-
 
 export const settings = async (
     value: {
@@ -40,6 +39,7 @@ export const settings = async (
 
     }
 
+  
     //TEST
     //  addProduct("Laptop Apple MacBook Air 13-inch, True Tone", "https://s13emagst.akamaized.net/products/33874/33873200/images/res_c3edc28a05d20fdb779f9f1c21dc4b2f.jpg?width=450&height=450&hash=011C063AD6A9E0F0D6D2EBD35380B057", 10, 4000, false, 12, 'laptops',)
     //  addProduct('Iphone 15', "https://p1.akcdn.net/full/1191449698.apple-iphone-15-128gb.jpg", 10, 2000, false, 0, 'smartphones',)

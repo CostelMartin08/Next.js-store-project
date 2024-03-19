@@ -8,18 +8,16 @@ import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons/faArr
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-
-
 import "./components.css";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons/faCirclePlus";
+
 
 export const Navbar = () => {
+
 
     const user = useCurrentUser();
     const handleSubmit = () => {
         signOut();
     }
-
 
     return (
 
@@ -57,22 +55,20 @@ export const Navbar = () => {
                         <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faArrowRightFromBracket} />
                     </button>
 
-                    <div className="hover-element cursor-pointer w-8">
-                        <div id='id1'>
-                            {user?.image ? <img className="w-5 sm:w-6 md:w-8 rounded-full" src={user?.image}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
-                        </div>
-                        <div className="cursor-pointer" id='id2'>
-                            <input className="input-add-photo"  type="file"></input>
-                            <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faCirclePlus} />
-                        </div>
+                    <div
+
+                        className="hover-element cursor-pointer size-6 sm:size-9">
+
+                        {user?.image ? <img className="object-contain size-full  rounded-full" src={`photo/${user?.image}`}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
+
                     </div>
+
                 </div>
 
             </div>
 
 
-
-        </header>
+        </header >
 
 
     )

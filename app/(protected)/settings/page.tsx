@@ -8,8 +8,13 @@ import * as Switch from '@radix-ui/react-switch';
 import '@/app/(protected)/settings/style.css';
 import { faGear } from "@fortawesome/free-solid-svg-icons/faGear";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PhotoMenu } from "../components/photoMenu";
 
-
+export interface FileData {
+    name: string;
+    size: number;
+    arrayBuffer: any;
+}
 const SettingPage = () => {
 
     const { update } = useSession();
@@ -31,6 +36,7 @@ const SettingPage = () => {
         e.preventDefault();
 
         startTransition(() => {
+
             const dataToUpdate: Record<string, string | boolean> = {};
 
             if (name) {
@@ -67,17 +73,20 @@ const SettingPage = () => {
     }
 
     return (
-        <div className="w-screen container ">
+        <div className="w-screen pb-10 container flex flex-col items-center">
 
             <div className="flex items-center justify-center space-x-3">
                 <h3 className=" text-center  text-[25px] ">Settings</h3>
                 <FontAwesomeIcon className="text-[25px]" icon={faGear} />
             </div>
 
+
+            <PhotoMenu />
+
             <div className="w-3/4 md:w-2/4 mx-auto">
 
                 <form
-                    className="mt-10"
+                    className="mt-2"
                     onSubmit={handleSubmit}>
                     <div className="space-y-4 text-md">
                         <div className="flex flex-col">
@@ -165,12 +174,12 @@ const SettingPage = () => {
 
                         )}
                     </div>
-                    <div className="mt-6 w-[150px] h-[50px]">
+                    <div className="mt-6">
                         <button
                             disabled={isPending}
-                            className="submit w-52"
+                            className="submit w-full md:w-52 p-3 rounded-lg bg-emerald-950 text-white"
                             type="submit">
-                            Submit
+                            Save Changes
                         </button>
                     </div>
 

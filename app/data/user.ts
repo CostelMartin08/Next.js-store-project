@@ -58,3 +58,21 @@ export const updateUser = async (param: any): Promise<User> => {
   }
 
 };
+
+export const updateUserImage = async (id: string, image: string): Promise<User> => {
+
+  try {
+    return await db.user.update({
+      where: { id: id },
+
+      data: {
+        image: image
+
+      }
+    });
+  } catch (error) {
+    console.error('Error', error);
+    throw error;
+  }
+
+};

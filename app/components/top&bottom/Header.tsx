@@ -28,6 +28,7 @@ export default function Header() {
     }
   }, []);
 
+  console.log(user?.image)
 
   return (
     <section className="text-sm md:text-md">
@@ -89,7 +90,7 @@ export default function Header() {
 
             <Link href="/settings">
 
-              {user?.image ? <img className="size-7 rounded-full" src={user?.image}></img>
+              {user?.image ? <img className="size-7 rounded-full" src={`/photo/${user?.image}`}></img>
                 :
                 <FontAwesomeIcon className="text-md sm:text-lg px-1" icon={faUser}
                 />

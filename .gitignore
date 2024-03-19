@@ -15,7 +15,7 @@
 schema.txt
 # production
 /build
-
+/public/photo
 # misc
 .DS_Store
 *.pem

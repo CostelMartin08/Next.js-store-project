@@ -8,9 +8,9 @@ import { auth } from '@/auth';
 
 import "./globals.css";
 
-const lato = Lato({ 
+const lato = Lato({
   subsets: ['latin'],
-  weight: ['400', '700', '900'] 
+  weight: ['400', '700', '900']
 })
 
 export const metadata = {
@@ -28,7 +28,7 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="en">
-        <body className={`bg-slate-50 ${lato.className}`}>
+        <body className={`bg-slate-50  ${lato.className}`}>
           {children}
 
         </body>
