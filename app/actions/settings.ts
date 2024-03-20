@@ -40,9 +40,10 @@ export const settings = async (
     }
 
   
-    //TEST
-    //  addProduct("Laptop Apple MacBook Air 13-inch, True Tone", "https://s13emagst.akamaized.net/products/33874/33873200/images/res_c3edc28a05d20fdb779f9f1c21dc4b2f.jpg?width=450&height=450&hash=011C063AD6A9E0F0D6D2EBD35380B057", 10, 4000, false, 12, 'laptops',)
-    //  addProduct('Iphone 15', "https://p1.akcdn.net/full/1191449698.apple-iphone-15-128gb.jpg", 10, 2000, false, 0, 'smartphones',)
+    //TEST"
+      addProduct("Televizor LG LED 75UR81003LJ, 189 cm, Smart, 4K Ultra HD, Clasa F (Model 2023)",
+       "https://s13emagst.akamaized.net/products/55734/55733759/images/res_fc2ce4c93213527189468da6a9f8b021.jpg?width=720&height=720&hash=69A7EAF2AD5427758FE6DD5E45DD023A",
+        50, 470, false, 480, 'tv',)
     //addProduct('Samsung Tablet S8', "https://s13emagst.akamaized.net/products/43178/43177453/images/res_a245367a52ae9e5d6f448d0513c91542.jpg?width=450&height=450&hash=9462D3452E16AA933C512905579280A9", 20, 5000, false, 0, 'tablets',)
     //  addProduct('TV Samsung OLED 80inch', "https://s13emagst.akamaized.net/products/54089/54088254/images/res_5700e7aad050c7a7dcaac19523c9464f.jpg?width=450&height=450&hash=4B7F61FF25A6AA6E359EE5429AB8FBB8", 5, 8000, false, 0, 'tv',)
 

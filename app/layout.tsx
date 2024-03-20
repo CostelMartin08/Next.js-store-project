@@ -7,6 +7,7 @@ import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/auth';
 
 import "./globals.css";
+import Header from './components/top&bottom/Header';
 
 const lato = Lato({
   subsets: ['latin'],
@@ -29,6 +30,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang="en">
         <body className={`bg-slate-50  ${lato.className}`}>
+      
           {children}
 
         </body>

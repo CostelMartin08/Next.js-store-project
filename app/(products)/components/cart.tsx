@@ -74,9 +74,9 @@ const Cart = (props: Props) => {
         <>
             {props.data && props.data.length > 0 ?
                 <>
-                    <h6 className="text-[38px] w-max mx-auto py-6 font-bold">Your Cart</h6>
+                    <h6 className="text-[38px]  py-6 font-bold">Your Cart</h6>
 
-                    <section className="flex flex-col lg:flex-row mx-5 md:mx-8 lg:space-x-4">
+                    <section className="flex flex-col lg:flex-row px-2 sm:px-6 lg:space-x-4">
 
 
                         <table className="table-fixed lg:basis-4/6">

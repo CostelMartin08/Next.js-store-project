@@ -1,3 +1,4 @@
+import HeaderBanner from "../components/top&bottom/headerBanner";
 import { Navbar } from "./components/navbar";
 
 interface ProtectedLayoutProps {
@@ -6,10 +7,11 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
-    <div className="h-full w-full flex flex-col gap-y-10 items-center justify-center ">
+    <>
+      <HeaderBanner />
       <Navbar />
       {children}
-    </div>
+    </>
   );
 }
 

@@ -43,12 +43,12 @@ export const PhotoMenu = () => {
     }
 
     return (
-        <div className=" space-y-4 w-3/4 md:w-2/4 mt-5 mx-auto">
+        <div className=" space-y-4 w-3/4 md:w-2/4 mt-5 ">
 
 
             <h3>Change your profile photo:</h3>
 
-            <form onSubmit={onSubmit} className="grid w-full max-w-full items-center gap-3 relative">
+            <form onSubmit={onSubmit} className="grid  items-center gap-3 relative">
 
                 <input
                     ref={fileInputRef}

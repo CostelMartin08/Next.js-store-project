@@ -21,26 +21,26 @@ export const Navbar = () => {
 
     return (
 
-        <header className='container mx-auto lg:py-8'>
+        <header className='container'>
 
-            <div className="flex w-full p-5 md:p-3 lg:p-6">
+            <section className="text-sm md:text-md flex py-6 w-full  sm:px-6 px-2">
 
-                <div className="w-1/4 lg:hidden flex justify-start ">
+                <div className="w-1/4 lg:hidden flex justify-start">
 
 
                     <ToggleSwitch />
 
                 </div>
 
-                <div className="w-2/4  lg:w-1/4 flex justify-center items-center lg:justify-start ">
+                <div className="w-2/4 lg:w-1/4 flex  items-center justify-center lg:justify-start ">
 
                     <Link href="/">
-                        <h1 className="sm:text-[23px] md:text-[25px] font-bold">GandgetGrid</h1>
+                        <h1 className="text-xl xl:text-2xl font-black">GandgetGrid</h1>
                     </Link>
 
                 </div>
 
-                <ul className="w-2/4 hidden lg:flex space-x-10 justify-center items-center lg:text-[18px] xl:text-[20px] clr-gray">
+                <ul className="text-lg w-2/4 hidden lg:flex space-x-4 justify-center items-center clr-gray text-lg xl:text-xl">
 
 
                     <li><Link href="/settings">Settings</Link></li>
@@ -49,7 +49,7 @@ export const Navbar = () => {
                 </ul>
 
 
-                <div className="flex w-1/4 space-x-6  justify-end items-center">
+                <div className="flex w-1/4 space-x-4 justify-end items-center">
 
                     <button className="cursor-pointer" onClick={handleSubmit}>
                         <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faArrowRightFromBracket} />
@@ -57,15 +57,15 @@ export const Navbar = () => {
 
                     <div
 
-                        className="hover-element cursor-pointer size-6 sm:size-9">
+                        className="hover-element cursor-pointer">
 
-                        {user?.image ? <img className="object-contain size-full  rounded-full" src={`photo/${user?.image}`}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
+                        {user?.image ? <img className="size-7 rounded-full" src={`photo/${user?.image}`}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
 
                     </div>
 
                 </div>
 
-            </div>
+            </section>
 
 
         </header >

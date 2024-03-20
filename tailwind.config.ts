@@ -7,6 +7,15 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '0.8rem',
+        sm: '0rem',
+        xl: '2.4rem',
+        '2xl': '3.4rem'
+      }
+    },
     extend: {
       fontFamily: {
         custom: ["Lato", 'sans-serif'],

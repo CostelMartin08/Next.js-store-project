@@ -6,9 +6,10 @@ import { decrementStockById } from "../data/products";
 import { CartProduct } from "../(products)/products/[name]/page";
 import { FormData } from "../(products)/shoppingCart/page";
 import { addOrder } from "../data/orders";
+import { sendOrderConfirmation } from "../lib/mail";
 
 
-export const identifyProductsCart = async (formData: FormData, data: CartProduct[]) => {
+export const orderProcessing = async (formData: FormData, data: CartProduct[]) => {
 
     try {
         const user = await currentUser();
@@ -23,7 +24,7 @@ export const identifyProductsCart = async (formData: FormData, data: CartProduct
             return { error: "Unauthorized!" };
         }
 
-        const decrementAllStocks = async () => {
+        const decrementAllStocksAndAddOrder = async () => {
             try {
                 for (let i = 0; i < data.length; i++) {
                     await decrementStockById(data[i].category, data[i].id, data[i].count, data[i].stock);
@@ -33,6 +34,8 @@ export const identifyProductsCart = async (formData: FormData, data: CartProduct
 
                 await addOrder(formData, user.id as string)
 
+                await sendOrderConfirmation(data, formData.contact as string, formData.name as string)
+
                 return { success: 'The stock has been successfully updated!' };
 
             } catch (error) {
@@ -41,14 +44,18 @@ export const identifyProductsCart = async (formData: FormData, data: CartProduct
             }
         };
 
-        const result = await decrementAllStocks();
+        const result = await decrementAllStocksAndAddOrder();
+
+        if (result.error) {
+            return { error: 'All fields are mandatory!' }
+        }
 
         return result;
 
 
     }
     catch (error) {
-        return { error: `Error: ${error}` };
+        return { error: `All fields are mandatory!` };
     }
 
 }

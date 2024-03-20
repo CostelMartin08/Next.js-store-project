@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { CartProduct } from "../(products)/products/[name]/page";
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -41,5 +42,73 @@ export const sendVerificationEmail = async (
         to: email,
         subject: "Confirma email-ul",
         html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`
+    });
+}
+
+
+export const sendOrderConfirmation = async (
+    data: CartProduct[],
+    email: string,
+    name: string,
+) => {
+
+    let htmlContent =
+        `
+    <section>
+    <h2>Buna ${name},</h2>
+
+    <p>Comanda dumneavoastra a fost comfirmata. </p>
+
+    </section>   
+    
+    `
+
+
+    Object.entries(data).forEach(([key, value]) => {
+        htmlContent +=
+            `
+            <table>
+  <caption>
+    Produsele Comandate:
+  </caption>
+  <thead>
+    <tr>
+    <th scope="col">Number</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">${key}</th>
+      <td>
+      <img src=${value.photo} width=80px height=80px alt=${value.name}>
+      <h3>${value.name}</h3>
+      
+      </td>
+      <td><h2>${value.price}</h2>$</td>
+      
+    </tr>
+   
+  </tbody>
+
+</table>
+
+
+
+
+
+
+        `;
+    });
+
+
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Confirm Order",
+        html: htmlContent
+
     });
 }

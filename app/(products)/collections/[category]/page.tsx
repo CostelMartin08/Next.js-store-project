@@ -44,9 +44,10 @@ const CategoryPage = () => {
 
     return (
 
-        <section className='container mx-auto px-6 lg:px-10'>
+    
+        <section className='container'>
 
-            <div className='text-center py-6'>
+            <div className='text-center  py-6'>
 
                 <h4 className='text-5xl font-black'>{letterCapitalized}</h4>
 
@@ -77,7 +78,7 @@ const CategoryPage = () => {
                 <div>
                     {loading ? (
 
-                        <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-5 mx-auto'>
+                        <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-2 sm:gap-4'>
 
                             <Loader />
 
@@ -86,7 +87,7 @@ const CategoryPage = () => {
                     ) : error ? (
                         <p>{error}</p>
                     ) : data ? (
-                        <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-5 mx-auto'>
+                        <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-2 sm:gap-4'>
                             <OneProduct category={category || ""} data={data} />
                         </div>
                     ) : (

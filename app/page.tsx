@@ -1,8 +1,9 @@
 'use client'
 
 import Banner from "./components/Banner";
+import Header from "./components/top&bottom/Header";
+import HeaderBanner from "./components/top&bottom/headerBanner";
 
-import Header from './components/top&bottom/Header';
 
 export default function Home() {
 
@@ -10,14 +11,17 @@ export default function Home() {
   return (
 
 
-     
-        <>
-          <Header  />
-          <Banner />
-      
-        </>
-     
 
- 
+    <>
+      <HeaderBanner />
+      <Header />
+
+      <section className="container">
+        <Banner />
+      </section>
+    </>
+
+
+
   );
 }

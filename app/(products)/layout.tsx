@@ -1,4 +1,6 @@
 import Header from "../components/top&bottom/Header";
+import HeaderBanner from "../components/top&bottom/headerBanner";
+
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
@@ -6,12 +8,11 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
-    <div>
+    <>
+      <HeaderBanner />
       <Header />
-      <section className="bg-slate-50 h-dvh">
-        {children}
-      </section>
-    </div>
+      {children}
+    </>
   );
 }
 

@@ -3,6 +3,8 @@ export const publicRoutes = [
     "/",
     "/products",
     "/products/",
+    "/collections",
+   "/collections/[category]" ,
     "/auth/new-verification"
     
 ];

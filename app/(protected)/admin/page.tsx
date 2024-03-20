@@ -12,7 +12,7 @@ const AdminPage = () => {
 
     return (
 
-        <div className="w-100 text-center">
+        <section className="container w-100 text-center">
 
             <h3>Admin</h3>
 
@@ -23,7 +23,7 @@ const AdminPage = () => {
             </RoleGate>
 
 
-        </div>
+        </section>
     )
 }
 

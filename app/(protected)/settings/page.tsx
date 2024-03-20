@@ -73,7 +73,7 @@ const SettingPage = () => {
     }
 
     return (
-        <div className="w-screen pb-10 container flex flex-col items-center">
+        <section className="container pb-10  flex flex-col items-center">
 
             <div className="flex items-center justify-center space-x-3">
                 <h3 className=" text-center  text-[25px] ">Settings</h3>
@@ -83,7 +83,7 @@ const SettingPage = () => {
 
             <PhotoMenu />
 
-            <div className="w-3/4 md:w-2/4 mx-auto">
+            <div className="w-3/4 md:w-2/4">
 
                 <form
                     className="mt-2"
@@ -177,7 +177,7 @@ const SettingPage = () => {
                     <div className="mt-6">
                         <button
                             disabled={isPending}
-                            className="submit w-full md:w-52 p-3 rounded-lg bg-emerald-950 text-white"
+                            className=" w-full md:w-52 p-3 rounded-lg bg-emerald-950 text-white"
                             type="submit">
                             Save Changes
                         </button>
@@ -188,7 +188,7 @@ const SettingPage = () => {
 
             </div>
 
-        </div>
+        </section>
     )
 }
 
