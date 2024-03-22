@@ -1,7 +1,7 @@
 'use client'
 
 import { getProductsById, getProductsByName } from '@/app/actions/products';
-import { Product } from '@/app/data/products';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
@@ -15,11 +15,8 @@ import PhotoProduct from '../../components/photoProduct';
 import Link from 'next/link';
 
 
-export interface CartProduct extends Product {
-    count: number;
-    category: string;
-    countPrice: number;
-}
+import { CartProduct } from '@/app/types';
+import { Product } from '@/app/types';
 
 const ProductPage = () => {
 

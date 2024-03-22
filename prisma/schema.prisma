@@ -135,6 +135,7 @@ model Orders {
   postalCode String
   city       String
   state      String
+  date       DateTime
   products   Product[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -145,10 +146,11 @@ model Product {
   ordersId      String? @db.ObjectId
   name          String
   photo         String
+  category      String
   count         Int
   price         Int
   discount      Boolean
   discountPrice Int
 
-  Orders Orders? @relation(fields: [ordersId], references: [id])
+  Orders Orders? @relation(fields: [ordersId], references: [id], onDelete: Cascade)
 }

@@ -41,15 +41,15 @@ export const settings = async (
 
   
     //TEST"
-      addProduct("Televizor LG LED 75UR81003LJ, 189 cm, Smart, 4K Ultra HD, Clasa F (Model 2023)",
-       "https://s13emagst.akamaized.net/products/55734/55733759/images/res_fc2ce4c93213527189468da6a9f8b021.jpg?width=720&height=720&hash=69A7EAF2AD5427758FE6DD5E45DD023A",
-        50, 470, false, 480, 'tv',)
+     // addProduct("Televizor LG LED 75UR81003LJ, 189 cm, Smart, 4K Ultra HD, Clasa F (Model 2023)",
+      // "https://s13emagst.akamaized.net/products/55734/55733759/images/res_fc2ce4c93213527189468da6a9f8b021.jpg?width=720&height=720&hash=69A7EAF2AD5427758FE6DD5E45DD023A",
+     //   50, 470, false, 480, 'tv',)
     //addProduct('Samsung Tablet S8', "https://s13emagst.akamaized.net/products/43178/43177453/images/res_a245367a52ae9e5d6f448d0513c91542.jpg?width=450&height=450&hash=9462D3452E16AA933C512905579280A9", 20, 5000, false, 0, 'tablets',)
     //  addProduct('TV Samsung OLED 80inch', "https://s13emagst.akamaized.net/products/54089/54088254/images/res_5700e7aad050c7a7dcaac19523c9464f.jpg?width=450&height=450&hash=4B7F61FF25A6AA6E359EE5429AB8FBB8", 5, 8000, false, 0, 'tv',)
 
 
-    //Verification email
-    if (value.email && value.email !== user.email) {
+    //Verification email/ Trimiterea email-ului de verificare!!!!!!
+  {/*  if (value.email && value.email !== user.email) {
 
         const existingUser = await getUserByEmail(value.email);
 
@@ -69,7 +69,7 @@ export const settings = async (
         return { success: 'Verification email sent!' };
 
 
-    }
+    }*/}
 
     //Verification password
     if (value.password && value.newPassword && dbUser.password) {

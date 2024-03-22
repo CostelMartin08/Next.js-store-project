@@ -1,15 +1,6 @@
 import { db } from "@/app/lib//db";
+import { Product } from "../types";
 
-export interface Product {
-    id: string,
-    name: string,
-    photo: string,
-    stock: number,
-    price: number,
-    discount: boolean,
-    discountPrice: number,
-
-}
 
 export const getAllProducts = async (category: string): Promise<Product[]> => {
 

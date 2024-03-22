@@ -3,8 +3,8 @@
 import { currentUser } from "../lib/auth";
 import { getUserById } from "../data/user";
 import { decrementStockById } from "../data/products";
-import { CartProduct } from "../(products)/products/[name]/page";
-import { FormData } from "../(products)/shoppingCart/page";
+import { CartProduct } from "../types";
+import { FormData } from "../types";
 import { addOrder } from "../data/orders";
 import { sendOrderConfirmation } from "../lib/mail";
 

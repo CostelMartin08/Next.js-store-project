@@ -1,7 +1,7 @@
 'use client'
 
 
-import { CartProduct } from "../products/[name]/page";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cart from "../components/cart";
@@ -12,17 +12,8 @@ import { faForward } from "@fortawesome/free-solid-svg-icons/faForward";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import {  orderProcessing } from "@/app/actions/shoppingCart";
 
-export interface FormData {
-    products?: CartProduct[];
-    contact?: string;
-    country?: string;
-    name?: string;
-    address?: string;
-    postalCode?: string;
-    city?: string;
-    state?: string;
-}
-
+import { FormData } from "@/app/types";
+import { CartProduct } from "@/app/types";
 const ShoppingCart = () => {
 
     const user = useCurrentUser();
@@ -45,7 +36,7 @@ const ShoppingCart = () => {
         state: undefined
     });
 
-    console.log(formData.country)
+   
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');

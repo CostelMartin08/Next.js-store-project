@@ -3,7 +3,7 @@
 import { getProducts } from '@/app/actions/products';
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
-import { Product } from '@/app/data/products';
+import { Product } from '@/app/types';
 
 import './products.css';
 

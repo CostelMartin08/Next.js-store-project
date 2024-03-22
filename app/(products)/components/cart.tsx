@@ -2,7 +2,7 @@ import { faBoxOpen } from "@fortawesome/free-solid-svg-icons/faBoxOpen";
 import { faMinus } from "@fortawesome/free-solid-svg-icons/faMinus";
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CartProduct } from "../products/[name]/page";
+import { CartProduct } from "@/app/types";
 import { faCartShopping, faForward } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {

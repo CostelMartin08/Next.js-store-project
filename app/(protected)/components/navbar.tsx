@@ -42,7 +42,7 @@ export const Navbar = () => {
 
                 <ul className="text-lg w-2/4 hidden lg:flex space-x-4 justify-center items-center clr-gray text-lg xl:text-xl">
 
-
+                    <li><Link href="/myOrders">My Orders</Link></li>
                     <li><Link href="/settings">Settings</Link></li>
 
                     {user?.role === "ADMIN" && <li><Link href="/admin">Admin Mode</Link></li>}

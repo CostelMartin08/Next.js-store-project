@@ -1,12 +1,51 @@
-import { CartProduct } from "../(products)/products/[name]/page"
-
-import { FormData } from "../(products)/shoppingCart/page";
+import { CartProduct } from "../types";
+import { FormData } from "../types";
+import { UserOrder } from "../types";
 import { db } from "../lib/db";
 
 export interface Order extends FormData {
     products?: CartProduct[];
 
 }
+
+
+export const getOrders = async (id: string): Promise<UserOrder[] | null> => {
+    try {
+
+        let orders: UserOrder[] | null = null;
+
+        orders = await db.orders.findMany({
+            where: {
+                userId: id,
+            },
+        });
+
+        return orders;
+    } catch {
+        return null;
+    }
+};
+
+export const getOrdersProduct = async (orderId: string) => {
+
+    try {
+
+        let orders;
+
+        orders = await db.product.findMany({
+            where: {
+                ordersId: orderId,
+            },
+        });
+
+        return orders;
+    } catch {
+        return null;
+    }
+
+}
+
+
 export const addOrder = async (order: Order, user: string) => {
 
 
@@ -23,11 +62,13 @@ export const addOrder = async (order: Order, user: string) => {
                 postalCode: order.postalCode as string,
                 city: order.city as string,
                 state: order.state as string,
+                date: new Date(),
                 products: {
                     create: order.products?.map((product) => {
                         return {
                             name: product.name,
-                            photo:product.photo,
+                            photo: product.photo,
+                            category: product.category,
                             price: product.price,
                             count: product.count,
                             discount: product.discount,
