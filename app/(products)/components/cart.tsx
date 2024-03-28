@@ -4,6 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartProduct } from "@/app/types";
 import { faCartShopping, faForward } from "@fortawesome/free-solid-svg-icons";
+import { useAppContext } from "@/app/context";
 
 interface Props {
     data: CartProduct[];
@@ -12,6 +13,8 @@ interface Props {
 }
 
 const Cart = (props: Props) => {
+
+    const { setState } = useAppContext();
 
     const increment = (stock: number, id: string): void => {
         props.setData(prevData => {
@@ -26,7 +29,7 @@ const Cart = (props: Props) => {
                 return item;
             });
 
-            localStorage.setItem('cart', JSON.stringify(updatedData));
+            sessionStorage.setItem('cart', JSON.stringify(updatedData));
 
             return updatedData;
         });
@@ -45,7 +48,7 @@ const Cart = (props: Props) => {
                 return item;
             });
 
-            localStorage.setItem('cart', JSON.stringify(updatedData));
+            sessionStorage.setItem('cart', JSON.stringify(updatedData));
 
             return updatedData;
         });
@@ -64,7 +67,8 @@ const Cart = (props: Props) => {
     const deleteItem = (id: string) => {
         props.setData(prevData => {
             const updatedData = prevData.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(updatedData));
+            sessionStorage.setItem('cart', JSON.stringify(updatedData));
+            setState(updatedData);
             return updatedData;
         });
     };

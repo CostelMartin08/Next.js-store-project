@@ -5,8 +5,6 @@ import { getProductsById, getProductsByName } from '@/app/actions/products';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
-import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react';
@@ -17,9 +15,12 @@ import Link from 'next/link';
 
 import { CartProduct } from '@/app/types';
 import { Product } from '@/app/types';
+import { useAppContext } from '@/app/context';
+import { useCurrentUser } from '@/hooks/use-current-user';
 
 const ProductPage = () => {
 
+    const { setState } = useAppContext();
     const param = useSearchParams();
     const name = param.get('q2') as string;
     const category = param.get('q1') as string;
@@ -33,6 +34,8 @@ const ProductPage = () => {
 
     const router = useRouter();
 
+    const user = useCurrentUser()
+
 
     useEffect(() => {
 
@@ -41,6 +44,7 @@ const ProductPage = () => {
             getProductsByName(category, decodedName)
                 .then((data) => {
                     setData(data as Product)
+
                 })
                 .catch((error) => {
                     console.log(error)
@@ -54,6 +58,11 @@ const ProductPage = () => {
 
     const addProduct = (id: string) => {
 
+        if (!user) {
+
+            return router.push('/auth/signIn');
+        }
+
         getProductsById(category, id)
             .then((productData) => {
 
@@ -66,20 +75,19 @@ const ProductPage = () => {
                     countPrice: data?.price as number
                 };
 
-                const cartItems: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+                const cartItems: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
 
                 const existingItemIndex = cartItems.findIndex(item => item.id === cartProduct.id);
 
                 if (existingItemIndex !== -1) {
 
-                    //  router.push('/shoppingCart');
                     setSuccess("You already have this product in your cart!");
                 } else {
 
                     cartItems.push(cartProduct);
+                    setState(cartItems)
 
-
-                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                    sessionStorage.setItem('cart', JSON.stringify(cartItems));
                     setSuccess('Your product added in your cart!');
 
                 }
@@ -89,6 +97,8 @@ const ProductPage = () => {
                 console.error(`Error: ${error}`)
                 setError(`Error: ${error}`)
             })
+
+
     };
 
     return (

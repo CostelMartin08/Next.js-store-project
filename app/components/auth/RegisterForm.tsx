@@ -85,23 +85,20 @@ export default function RegisterForm() {
 
     return (
 
-        <section className="grid h-screen place-items-center ">
+        <section style={{ height: '90dvh' }} className="grid place-items-center ">
 
-            <div className="w-3/4">
+            <div className="md:w-3/4 container ">
 
-                <form className="form-register md:p-7 mx-auto" onSubmit={handleSubmit}>
-                    <p className="title">Register </p>
-                    <p className="message">Signup now and get full access to our app. </p>
-
+                <form className="form-register p-3 rounded-lg md:p-7 mx-auto" onSubmit={handleSubmit}>
+                    <p className="title text-2xl">register </p>
 
                     <label>
                         <input
                             className="input-register"
                             type="text"
-                            placeholder="Enter you name"
                             onChange={(e) => setName(e.target.value)}
                         />
-                        <span>Name</span>
+                        <span className="mt-1">Name</span>
                     </label>
 
 
@@ -109,28 +106,25 @@ export default function RegisterForm() {
                         <input
                             className="input-register"
                             type="email"
-                            placeholder="Enter your email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <span>Email</span>
+                        <span className="mt-1">Email</span>
                     </label>
 
                     <label>
                         <input
                             className="input-register"
                             type="password"
-                            placeholder="********"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <span>Password</span>
+                        <span className="mt-1">Password</span>
                     </label>
                     <label>
                         <input
                             className="input-register"
                             type="password"
-                            placeholder="********"
                             onChange={(e) => setRePassword(e.target.value)} />
-                        <span>Confirm password</span>
+                        <span className="mt-1">Confirm password</span>
                     </label>
                     {error && (
                         <div className="bg-red-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
@@ -142,14 +136,15 @@ export default function RegisterForm() {
                             {succes}
                         </div>
                     )}
-                    <button className="submit">Submit</button>
+                    <button className="submit bg-emerald-950 font-black">Submit</button>
                     <Link href="/signIn" className="border-2 p-2 rounded-xl text-[18px]  text-center">Continue with GitHub
                         <FontAwesomeIcon className=" px-4 text-[14px] sm:text-[23px] md:text-[25px]" icon={faGithub} />
                     </Link>
-                    <p className="signin">Already have an acount ? <Link href="/auth/signIn"> SignIn</Link> </p>
+
 
                 </form>
 
+                <p className="signin py-3">Already have an acount ? <Link href="/auth/signIn"> SignIn</Link> </p>
             </div>
 
         </section>

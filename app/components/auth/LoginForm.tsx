@@ -70,15 +70,17 @@ export default function LoginForm() {
 
   return (
 
-    <section className="grid h-screen place-items-center ">
+    <section 
+    style={{height: '90dvh'}}
+    className="grid place-items-center ">
 
-      <div className="w-3/4 ">
+      <div className="md:w-3/4 container ">
 
-        <div className="form-mod md:p-7 mx-auto" >
+        <div className="form-mod p-3 rounded-lg md:p-7 mx-auto" >
 
           <form className="form-mod" onSubmit={handleSubmit}>
-            <p className="title">Sign In </p>
-            <p className="message">connect now. </p>
+            <p className="title text-2xl">enter the account </p>
+        
             {showTwoFactor && (
               <>
                 <div className="flex-area">
@@ -104,18 +106,16 @@ export default function LoginForm() {
                     <input
                       className="input-form"
                       type="text"
-                      placeholder="Enter your email"
                       onChange={(e) => setEmail(e.target.value)} />
-                    <span>Email</span>
+                    <span className="my-1">Email</span>
                   </label>
 
                   <label>
                     <input
                       className="input-form"
                       type="password"
-                      placeholder="********"
                       onChange={(e) => setPassword(e.target.value)} />
-                    <span>Password</span>
+                    <span className="mt-1">Password</span>
                   </label>
                   <button className="ps-1 text-left text-gray-500 underline">
                     <Link href="/auth/reset">Forgot password?</Link>
@@ -133,7 +133,7 @@ export default function LoginForm() {
                 {succes}</div>
 
             )}
-            <button className="submit">{showTwoFactor ? "Confirm" : "SignIn"}</button>
+            <button className="submit bg-emerald-950 font-black">{showTwoFactor ? "Confirm" : "SignIn"}</button>
           </form>
 
           <button className="border-2 p-2 rounded-xl text-[18px]  text-center" onClick={() => onClick("github")}
@@ -142,7 +142,7 @@ export default function LoginForm() {
           </button>
 
         </div>
-        <p className="signin">Do not have an account yet? <Link href="/auth/register">Sign up</Link> </p>
+        <p className="signin py-3">Do not have an account yet? <Link href="/auth/register">Sign up</Link> </p>
       </div>
 
     </section >

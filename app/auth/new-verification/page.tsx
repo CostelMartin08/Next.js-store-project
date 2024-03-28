@@ -1,4 +1,5 @@
 import { NewVerificationForm } from "@/app/components/auth/new-verification-form";
+import Header from "@/app/components/top&bottom/Header";
 
 
 const NewVerificationPage = () => {
@@ -6,8 +7,9 @@ const NewVerificationPage = () => {
 
     return (
         <>
+            <Header />
             <NewVerificationForm />
-            
+
 
         </>
     )

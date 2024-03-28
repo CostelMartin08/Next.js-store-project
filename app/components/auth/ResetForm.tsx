@@ -37,22 +37,21 @@ export default function ResetForm() {
 
     return (
 
-        <section className="grid h-screen place-items-center ">
+        <section style={{height: '90dvh'}} className="grid place-items-center ">
 
-            <div className="w-3/4">
+            <div className="md:w-3/4 container ">
 
                 <form className="form-register md:p-7 mx-auto" onSubmit={handleSubmit}>
-                    <p className="title">Reset </p>
-                    <p className="message">Forgot your password?</p>
+                    <p className="title text-2xl">reset password </p>
+                    <p className="message">Enter your e-mail</p>
 
                     <label>
                         <input
                             className="input-register"
                             type="email"
-                            placeholder="Enter you email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <span>Email</span>
+                        <span className="mt-1">Email</span>
                     </label>
 
                     {error && (
@@ -65,7 +64,7 @@ export default function ResetForm() {
                             {success}
                         </div>
                     )}
-                    <button className="submit">Send reset Email</button>
+                    <button className="submit bg-emerald-950 font-black">Send reset Email</button>
 
                 </form>
 

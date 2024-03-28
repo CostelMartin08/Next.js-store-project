@@ -1,4 +1,5 @@
 import ResetForm from "@/app/components/auth/ResetForm";
+import Header from "@/app/components/top&bottom/Header";
 
 
 const ResetPage = () => {
@@ -6,7 +7,8 @@ const ResetPage = () => {
 
     return (
         <>
-           < ResetForm/>
+            <Header />
+            < ResetForm />
         </>
     )
 }

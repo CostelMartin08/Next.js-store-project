@@ -37,20 +37,18 @@ export default function NewPassordForm() {
 
         <section className="grid h-screen place-items-center ">
 
-            <div className="w-3/4">
+            <div className="md:w-3/4 container">
 
-                <form className="form-register md:p-7 mx-auto" onSubmit={handleSubmit}>
-                    <p className="title">Reset </p>
-                    <p className="message">Enter a new password</p>
+                <form className="form-register md:p-7 rounded-lg mx-auto space-y-3" onSubmit={handleSubmit}>
+                    <p className="title text-2xl">enter a new password</p>
 
                     <label>
                         <input
                             className="input-register"
                             type="password"
-                            placeholder="******"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <span>Password</span>
+                        <span className="mt-1">Password</span>
                     </label>
 
                     {error && (
@@ -63,7 +61,7 @@ export default function NewPassordForm() {
                             {success}
                         </div>
                     )}
-                    <button className="submit">Reset Password</button>
+                    <button className="submit bg-emerald-950 font-black">Reset Password</button>
 
                 </form>
 

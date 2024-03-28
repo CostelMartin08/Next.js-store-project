@@ -52,8 +52,8 @@
 
 
 .title {
-  font-size: 28px;
-  color: royalblue;
+
+  color: black;
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
@@ -70,13 +70,13 @@
   width: 16px;
   border-radius: 50%;
   left: 0px;
-  background-color: royalblue;
+  background-color: black;
 }
 
 .title::before {
   width: 18px;
   height: 18px;
-  background-color: royalblue;
+  background-color: black;
 }
 
 .title::after {
@@ -96,11 +96,11 @@
 }
 
 .signin a {
-  color: royalblue;
+  color: black;
 }
 
 .signin a:hover {
-  text-decoration: underline royalblue;
+  text-decoration: underline black;
 }
 
 .flex-area {
@@ -133,8 +133,8 @@
 }
 
 .form-mod label .input-form:placeholder-shown+span {
-  top: 15px;
-  font-size: 0.9em;
+  top: 30px;
+  font-size: 1.9em;
 }
 
 .form-mod label .input-form:focus+span,
@@ -145,15 +145,15 @@
 }
 
 .form-mod label .input-form:valid+span {
-  color: green;
+  color: grey;
 }
 
 .submit {
   border: none;
   outline: none;
-  background-color: royalblue;
   padding: 10px;
   border-radius: 10px;
+  border: 1px;
   color: #fff;
   font-size: 16px;
   transform: .3s ease;
@@ -162,8 +162,10 @@
 
 
 .submit:hover {
-  background-color: rgb(56, 90, 194);
+  background-color: white;
+  border: 1px solid rgb(2 44 34);
   cursor: pointer;
+  color: rgb(2 44 34)
 }
 
 @keyframes pulse {
@@ -186,6 +188,7 @@
 
 .form-register {
   display: flex;
+  background-color: white;
   flex-direction: column;
   gap: 10px;
   max-width: 450px;
@@ -234,5 +237,5 @@
 }
 
 .form-register label .input-register:valid+span {
-  color: green;
+  color: grey;
 }

@@ -39,7 +39,7 @@ const ShoppingCart = () => {
    
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+            const cart: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
             setData(cart);
         }
     }, []);
@@ -53,7 +53,7 @@ const ShoppingCart = () => {
 
             .then((res) => {
                 if ('success' in res) {
-                    localStorage.clear();
+                    sessionStorage.clear();
                     router.push('/shoppingCart/orderPlaced')
                 } else {
                     setError(res.error);

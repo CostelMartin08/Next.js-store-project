@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { CartProduct } from "@/app/(products)/products/[name]/page";
+import { CartProduct } from "@/app/types";
 import ToggleSwitch from "./toggleSwitch";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,21 +11,23 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
 
 import '../components.css';
+import { useAppContext } from "@/app/context";
 
 export default function Header() {
 
-
   const user = useCurrentUser();
-
   const [data, setData] = useState<CartProduct[]>([]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
-      setData(cart);
-    }
-  }, []);
+  const { state } = useAppContext();
 
+  useEffect(() => {
+
+    if (typeof window !== 'undefined') {
+      const cart: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
+      setData(cart);
+
+    }
+  }, [state]);
 
   return (
 
@@ -60,14 +62,16 @@ export default function Header() {
 
           <div className="relative">
 
-            <div
-              style={{ top: '-10px', right: '-10px' }}
-              className="absolute size-4 sm:size-5 text-center flex justify-center rounded-xl bg-red-500">
-              <p
-                className="m-0 text-xs sm:text-sm text-white">
-                {data?.length}
-              </p>
-            </div>
+            {data?.length === 0 ? null :
+              <div
+                style={{ top: '-10px', right: '-10px' }}
+                className="absolute size-4 sm:size-5 text-center flex justify-center rounded-xl bg-red-500">
+                <p
+                  className="m-0 text-xs sm:text-sm text-white">
+                  {data?.length}
+                </p>
+              </div>
+            }
 
             <Link href="/shoppingCart">
               <FontAwesomeIcon
