@@ -71,7 +71,6 @@ export const addOrder = async (order: Order, user: string) => {
                             category: product.category,
                             price: product.price,
                             count: product.count,
-                            discount: product.discount,
                             discountPrice: product.discountPrice,
                         };
                     })

@@ -12,10 +12,12 @@
 # next.js
 /.next/
 /out/
-schema.txt
+
 # production
 /build
+/public/products
 /public/photo
+schema.txt
 # misc
 .DS_Store
 *.pem

@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import React from 'react';
-
+import Image from 'next/image';
 
 interface ProductData {
     name: string;
     price: number;
-    photo: string;
-    discount: boolean;
+    photo: string[];
+    description: string | null;
     discountPrice: number;
     stock: number;
 
@@ -21,6 +21,7 @@ interface ProductProps {
 
 const OneProduct: React.FC<ProductProps> = (props) => {
 
+    console.log(props.category)
     
     return (
         <>
@@ -37,11 +38,19 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     <div className='span bg-black'>
                                         <span className='text-xs p-1 font-bold'>Sold out</span>
                                     </div>}
-                                {product.discount &&
+                                {product.discountPrice > 0 &&
                                     <div className='discount-price position flex  bg-red-500 text-white'>
                                         <span className='text-xs p-1 font-bold'>26%</span>
                                     </div>}
-                                <img className='object-contain size-full p-1' src={product.photo} alt={product.name}></img>
+                                    <Image 
+                                    width={400}
+                                    height={400}
+                                    className='object-contain size-full p-1' 
+                                    src={`/products/${props.category}/${product.name}/${product.photo[0]}`} 
+                                    alt={product.name}>
+
+                                    </Image>
+                               
                             </section>
 
                             <section className="h-2/4 sm:h-2/5 flex flex-col justify-between text-left text-[0.9rem] m-1">
@@ -53,7 +62,7 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                 </Link>
                                 <div className='inline-flex space-x-4 m-2'>
                                     <p className="text-slate-800 font-black">{product.price}$</p>
-                                    {product.discount &&
+                                    {product.discountPrice > 0  &&
                                         <p className="text-slate-400 line-through ">{product.discountPrice}</p>}
 
                                 </div>

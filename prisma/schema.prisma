@@ -86,42 +86,42 @@ model TwoFactorConfirmation {
 }
 
 model Laptops {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  photo         String
+  photo         String[]
+  description   String?
   stock         Int
   price         Int
-  discount      Boolean
   discountPrice Int
 }
 
 model Tablets {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  photo         String
+  photo         String[]
+  description   String?
   stock         Int
   price         Int
-  discount      Boolean
   discountPrice Int
 }
 
 model Smartphones {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  photo         String
+  photo         String[]
+  description   String?
   stock         Int
   price         Int
-  discount      Boolean
   discountPrice Int
 }
 
 model TV {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  photo         String
+  photo         String[]
+  description   String?
   stock         Int
   price         Int
-  discount      Boolean
   discountPrice Int
 }
 
@@ -142,14 +142,13 @@ model Orders {
 }
 
 model Product {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
-  ordersId      String? @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  ordersId      String?  @db.ObjectId
   name          String
-  photo         String
+  photo         String[]
   category      String
   count         Int
   price         Int
-  discount      Boolean
   discountPrice Int
 
   Orders Orders? @relation(fields: [ordersId], references: [id], onDelete: Cascade)

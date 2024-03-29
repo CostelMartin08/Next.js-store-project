@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'You must upload a photo to continue!' })
     }
 
-
     const userImage = await updateUserImage(user?.id as string, file.name);
 
     if (!userImage) {

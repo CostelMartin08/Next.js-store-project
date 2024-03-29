@@ -1,5 +1,5 @@
 import { db } from "@/app/lib//db";
-import { Product } from "../types";
+import { Product, addProductsStock } from "../types";
 
 
 export const getAllProducts = async (category: string): Promise<Product[]> => {
@@ -178,72 +178,68 @@ export const decrementStockById = async (category: string, id: string, count: nu
 };
 
 
-export const addProduct = async (
+export const addProduct = async (props: addProductsStock) => {
 
-    name: string,
-    photo: string,
-    stock: number,
-    price: number,
-    discount: boolean,
-    discountPrice: number,
-    category: string,
-):
-    Promise<Product> => {
-
+    console.log(props.collection)
+    
     try {
         let add;
 
-        switch (category) {
+        switch (props.collection) {
             case 'laptops':
                 add = db.laptops.create({
                     data: {
-                        name,
-                        photo,
-                        stock,
-                        price,
-                        discount,
-                        discountPrice
+                        name: props.productName,
+                        stock: props.stock as number,
+                        price: props.price as number,
+                        discountPrice: props.discountPrice as number,
+                        description: props.description as string,
+                        photo: props?.files.map((element: File)=> element.name)
+
                     }
                 })
                 break;
             case 'tablets':
                 add = db.tablets.create({
                     data: {
-                        name,
-                        photo,
-                        stock,
-                        price,
-                        discount,
-                        discountPrice
+                        name: props.productName,
+                        stock: props.stock as number,
+                        price: props.price as number,
+                        discountPrice: props.discountPrice as number,
+                        description: props.description as string,
+                        photo: props?.files.map((element: File)=> element.name)
+
                     }
                 })
                 break;
             case 'smartphones':
                 add = db.smartphones.create({
                     data: {
-                        name,
-                        photo,
-                        stock,
-                        price,
-                        discount,
-                        discountPrice
+                        name: props.productName,
+                        stock: props.stock as number,
+                        price: props.price as number,
+                        discountPrice: props.discountPrice as number,
+                        description: props.description as string,
+                        photo: props?.files.map((element: File)=> element.name)
+
                     }
                 })
                 break;
             case 'tv':
                 add = db.tV.create({
                     data: {
-                        name,
-                        photo,
-                        stock,
-                        price,
-                        discount,
-                        discountPrice
+                        name: props.productName,
+                        stock: props.stock as number,
+                        price: props.price as number,
+                        discountPrice: props.discountPrice as number,
+                        description: props.description as string,
+                        photo: props?.files.map((element: File)=> element.name)
+
                     }
                 })
                 break;
             default:
-                throw new Error(`This ${category} category don't exist.`);
+                throw new Error(`This category don't exist.`);
 
         }
 
@@ -253,4 +249,5 @@ export const addProduct = async (
         console.error('Error adding product:', error);
         throw error;
     }
+
 }

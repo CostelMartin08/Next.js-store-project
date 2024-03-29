@@ -19,10 +19,10 @@ export interface CartProduct extends Product {
 export interface Product {
     id: string,
     name: string,
-    photo: string,
+    photo: string[],
+    description: string | null,
     stock: number,
     price: number,
-    discount: boolean,
     discountPrice: number,
 
 }
@@ -36,7 +36,6 @@ export interface OrderProduct {
     photo: string;
     count: number;
     price: number;
-    discount: boolean;
     discountPrice: number;
 
 }
@@ -67,4 +66,14 @@ export interface UserOrder {
     state: string;
 
 
+}
+
+export interface addProductsStock {
+    collection: string;
+    files: File[];
+    productName: string;
+    price: number | undefined;
+    stock: number | undefined;
+    description: string;
+    discountPrice: number | undefined;
 }
