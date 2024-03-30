@@ -4,14 +4,15 @@ import { RoleGate } from "@/app/components/auth/role-gate"
 import { addProductsStock } from "@/app/types";
 import { userCurrentRole } from "@/hooks/use-current-role"
 import { UserRole } from "@prisma/client"
-
-import * as Switch from '@radix-ui/react-switch';
 import { ChangeEvent, useState } from "react";
 
 
 const AdminPage = () => {
 
     const role = userCurrentRole();
+
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const [formData, setFormData] = useState<addProductsStock>({
         collection: '',
@@ -23,15 +24,15 @@ const AdminPage = () => {
         discountPrice: undefined,
     });
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>) => {
+    const handleChange = (event:
+
+        ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement>
+
+    ) => {
 
         const { name, value, type } = event.target;
-        if (type === 'checkbox') {
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: (event.target as HTMLInputElement).checked
-            }));
-        } else if (type === 'file') {
+
+        if (type === 'file') {
             setFormData(prevState => ({
                 ...prevState,
                 [name]: Array.from((event.target as HTMLInputElement).files || [])
@@ -68,35 +69,27 @@ const AdminPage = () => {
                 body: formDataToSend,
             });
 
-            if (res.ok) {
+            const data = await res.json();
 
-                console.log('ok')
+            if (data?.error) {
 
-            } else {
-
-                const data = await res.json();
-
-                if (data?.error) {
-                    console.log(data.error)
-                    // setError(data.error);
-                }
-
-                if (data?.success) {
-                    console.log(data.succes)
-                    //  setSucces(data.success);
-                }
-                if (data?.twoFactor) {
-                    //   setShowTwoFactor(true);
-                }
-
+                setError(data.error);
             }
+            else if (data?.success) {
+
+                setSuccess(data.success);
+            }
+
         } catch (error) {
-            console.log('error')
-            // setError('SignIn error. Please try again later!');
+            console.log(error);
+            setError('Error! Try again later!');
         }
 
     }
 
+    console.log(error);
+    
+    console.log(success);
 
     return (
 
@@ -164,15 +157,15 @@ const AdminPage = () => {
                         placeholder="Descrie produsul"
 
                     />
-                
-                   
-                        <input
-                            name="discountPrice"
-                            placeholder="pret discount"
-                            type="number"
-                            value={formData.discountPrice}
-                            onChange={handleChange}
-                        />
+
+
+                    <input
+                        name="discountPrice"
+                        placeholder="pret discount"
+                        type="number"
+                        value={formData.discountPrice}
+                        onChange={handleChange}
+                    />
 
                     <button className="submit bg-emerald-950 font-black" type="submit">add</button>
 

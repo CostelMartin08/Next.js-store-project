@@ -66,6 +66,7 @@ export const addOrder = async (order: Order, user: string) => {
                 products: {
                     create: order.products?.map((product) => {
                         return {
+                            idProduct:product.id,
                             name: product.name,
                             photo: product.photo,
                             category: product.category,

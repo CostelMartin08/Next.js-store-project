@@ -1,4 +1,5 @@
-import { faBoxOpen } from "@fortawesome/free-solid-svg-icons/faBoxOpen";
+
+import Image from "next/image";
 import { faMinus } from "@fortawesome/free-solid-svg-icons/faMinus";
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -100,7 +101,16 @@ const Cart = (props: Props) => {
                                         key={index} >
 
                                         <td className="basis-2/4 sm:basis-1/3 my-auto flex items-center">
-                                            <img className="img w-20" src={element.photo} alt={element.name}></img>
+
+                                            <Image
+                                                width={400}
+                                                height={400}
+                                                className="img w-20"
+                                                src={`/products/${element.category}/${element.id}/${element.photo[0]}`}
+                                                alt={element.name}>
+
+                                            </Image>
+
                                             <h3 className="mx-3 overflow-hidden">{element.name}</h3>
                                         </td>
 

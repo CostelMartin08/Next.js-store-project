@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { join } from 'path';
 import { writeFile } from 'fs/promises'
 import { currentRole } from '@/app/lib/auth';
-import { addProduct } from '@/app/data/products';
+import { addProduct, getProductById } from '@/app/data/products';
 import { addProductsStock } from '@/app/types';
 import fs from 'fs';
 
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const userADMIN = await currentRole();
 
     if (!userADMIN) {
-        return NextResponse.json({ error: "Unauthorized!" });
+        return NextResponse.json({ error: "Access allowed only to the administrator!" });
     }
 
     const formData = await req.formData();
@@ -26,32 +26,33 @@ export async function POST(req: NextRequest) {
         stock: parseInt(formData.get('stock') as string),
         description: formData.get('description') as string,
         discountPrice: parseInt(formData.get('discountPrice') as string),
-        files: Array.from(formData.getAll('file') as unknown as FileList)
+        files: Array.from(formData.getAll('file') as unknown as FileList),
+
     }
 
     if (!productFormData.collection || !productFormData.productName || !productFormData.price || !productFormData.stock || !productFormData.description) {
-        throw new Error('Incomplete product information');
+
+        return NextResponse.json({ error: 'All fields must be filled in!' })
+
     }
 
     const products = await addProduct(productFormData);
 
-
     if (!products) {
-        return NextResponse.json({ error: 'Process failed!' })
+        return NextResponse.json({ error: 'Adding products to the database failed!' });
     }
 
+    const addedProduct = await getProductById(productFormData.collection, products.id)
 
-    await saveImage(productFormData);
+    await saveImage(productFormData, addedProduct?.id as string);
 
-
-    return NextResponse.json({ succes: "Succes!" });
+    return NextResponse.json({ success: "The product has been added to the database!!" });
 }
 
-async function saveImage(productFormData: addProductsStock) {
+async function saveImage(productFormData: addProductsStock, idProduct: string) {
 
-    const productName = productFormData.productName;
 
-    const path = join(process.cwd(), 'public', 'products', productFormData.collection, productName);
+    const path = join(process.cwd(), 'public', 'products', productFormData.collection, idProduct);
 
 
     if (!fs.existsSync(path)) {
@@ -60,7 +61,7 @@ async function saveImage(productFormData: addProductsStock) {
 
     } else {
 
-        return NextResponse.json({ errorr: "This product exists in the database" });
+        return NextResponse.json({ error: "Process failed!" });
     }
 
 
@@ -81,6 +82,5 @@ async function saveImage(productFormData: addProductsStock) {
             return error;
         }
     }
-
 
 }

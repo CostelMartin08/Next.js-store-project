@@ -152,7 +152,7 @@ const ProductPage = () => {
                                     <div className='bg-black px-4 p-2 rounded-lg'>
                                         <span className=''>Sold out</span>
                                     </div>}
-                                {data.discount &&
+                                {data.discountPrice > 0 &&
                                     <div className='bg-red-500  p-2 rounded-lg'>
                                         <span className=' '>-26%</span>
                                     </div>}

@@ -29,7 +29,7 @@ export interface Product {
 
 export interface OrderProduct {
     category: any;
-
+    idProduct: string;
     id: string;
     ordersId: string | null;
     name: string;

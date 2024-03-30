@@ -5,13 +5,13 @@ import React from 'react';
 import Image from 'next/image';
 
 interface ProductData {
+    id:string;
     name: string;
     price: number;
     photo: string[];
     description: string | null;
     discountPrice: number;
     stock: number;
-
 }
 
 interface ProductProps {
@@ -21,16 +21,16 @@ interface ProductProps {
 
 const OneProduct: React.FC<ProductProps> = (props) => {
 
-    console.log(props.category)
-    
+    console.log()
+
     return (
         <>
             {props.data && (
-               <>
+                <>
                     {props.data.map((product, index) => (
                         <div
                             key={index}
-                            style={{height: '25rem'}}
+                            style={{ height: '25rem' }}
                             className="flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg">
 
                             <section className='h-2/4 sm:h-3/5 m-1 relative'>
@@ -42,15 +42,15 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     <div className='discount-price position flex  bg-red-500 text-white'>
                                         <span className='text-xs p-1 font-bold'>26%</span>
                                     </div>}
-                                    <Image 
+                                <Image
                                     width={400}
                                     height={400}
-                                    className='object-contain size-full p-1' 
-                                    src={`/products/${props.category}/${product.name}/${product.photo[0]}`} 
+                                    className='object-contain size-full p-1'
+                                    src={`/products/${props.category}/${product.id}/${product.photo[0]}`}
                                     alt={product.name}>
 
-                                    </Image>
-                               
+                                </Image>
+
                             </section>
 
                             <section className="h-2/4 sm:h-2/5 flex flex-col justify-between text-left text-[0.9rem] m-1">
@@ -62,7 +62,7 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                 </Link>
                                 <div className='inline-flex space-x-4 m-2'>
                                     <p className="text-slate-800 font-black">{product.price}$</p>
-                                    {product.discountPrice > 0  &&
+                                    {product.discountPrice > 0 &&
                                         <p className="text-slate-400 line-through ">{product.discountPrice}</p>}
 
                                 </div>

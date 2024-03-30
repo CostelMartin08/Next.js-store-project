@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { getOrder } from "@/app/types";
 
 interface OrderTableProps {
@@ -81,7 +82,13 @@ const OrderData: React.FC<OrderRowProps> = ({ order }) => (
         <th className=" w-2/12">
             {order.products.map((element, index) => (
                 <div className="h-24 p-2" key={index}>
-                    <img src={element.photo} alt={element.name} className="size-full object-contain " />
+                    <Image
+                        width={400}
+                        height={400}
+                        src={`/products/${element.category}/${element.idProduct}/${element.photo[0]}`}
+                        alt={element.name} className="size-full object-contain " >
+
+                    </Image>
                 </div>
             ))}
         </th>

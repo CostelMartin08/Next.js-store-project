@@ -5,12 +5,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cart from "../components/cart";
-
+import Image from "next/image";
 import "@/app/(products)/collections/[category]/products.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faForward } from "@fortawesome/free-solid-svg-icons/faForward";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import {  orderProcessing } from "@/app/actions/shoppingCart";
+import { orderProcessing } from "@/app/actions/shoppingCart";
 
 import { FormData } from "@/app/types";
 import { CartProduct } from "@/app/types";
@@ -36,7 +36,7 @@ const ShoppingCart = () => {
         state: undefined
     });
 
-   
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const cart: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
@@ -206,7 +206,13 @@ const ShoppingCart = () => {
                                         key={index}>
 
                                         <div className="flex items-center space-x-3">
-                                            <img className="w-8 sm:w-12" src={element.photo} alt={element.name}></img>
+                                            <Image
+                                                width={400}
+                                                height={400}
+                                                className="w-8 sm:w-12"
+                                                src={`/products/${element.category}/${element.id}/${element.photo[0]}`}
+                                                alt={element.name}>
+                                            </Image>
                                             <h3 className="text-[13px] md:text-[15px] w-26 text-wrap ">{element.name}</h3>
                                         </div>
                                         <span className="text-[14px]">{element.price} $</span>

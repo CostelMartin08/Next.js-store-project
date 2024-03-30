@@ -180,9 +180,8 @@ export const decrementStockById = async (category: string, id: string, count: nu
 
 export const addProduct = async (props: addProductsStock) => {
 
-    console.log(props.collection)
-    
     try {
+
         let add;
 
         switch (props.collection) {
@@ -194,8 +193,8 @@ export const addProduct = async (props: addProductsStock) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File)=> element.name)
-
+                        photo: props?.files.map((element: File) => element.name),
+                    
                     }
                 })
                 break;
@@ -207,8 +206,8 @@ export const addProduct = async (props: addProductsStock) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File)=> element.name)
-
+                        photo: props?.files.map((element: File) => element.name),
+                
                     }
                 })
                 break;
@@ -220,8 +219,8 @@ export const addProduct = async (props: addProductsStock) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File)=> element.name)
-
+                        photo: props?.files.map((element: File) => element.name),
+                      
                     }
                 })
                 break;
@@ -233,8 +232,8 @@ export const addProduct = async (props: addProductsStock) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File)=> element.name)
-
+                        photo: props?.files.map((element: File) => element.name),
+                        
                     }
                 })
                 break;

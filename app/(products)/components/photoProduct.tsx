@@ -1,15 +1,22 @@
+'use client'
 
+import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 //import PhotoViewer from 'photoviewer';
 
 
 
 const PhotoProduct: React.FC<any> = (props) => {
 
+    const searchParams = useSearchParams()
 
+    const param = searchParams.get('q1')
 
     const items = [
         {
-            src: props.data?.photo,
+            src: props.data?.photo[0],
+            category: param,
+            id: props.data?.id,
             title: props.data?.title
         }
     ];
@@ -20,33 +27,27 @@ const PhotoProduct: React.FC<any> = (props) => {
             positionFixed: true,
         }
 
-
         //new PhotoViewer(items, options);
 
-
     }
+
+
     return (
 
-
-        <div
-
-            className="flex flex-col justify-center items-center gap-8">
-
+        <section className="flex flex-col justify-center items-center gap-8">
 
             <div className="w-3/5">
                 {items.map((item, index) => (
-                    <img
+                    <Image
+                        width={900}
+                        height={900}
+                        style={{ cursor: 'pointer', maxWidth: '100%' }}
                         key={index}
-                        src={item.src}
+                        src={`/products/${item.category}/${item.id}/${item.src}`}
                         alt={item.title}
-                        data-title={item.title}
-                        //  onClick={() => openPhotoViewer(index)}
-                        style={{ cursor: 'pointer',  maxWidth: '100%' }}
-                    />
+                    ></Image>
                 ))}
             </div>
-
-
 
             <div className="w-3/5 flex gap-5 justify-center mx-auto">
 
@@ -57,8 +58,7 @@ const PhotoProduct: React.FC<any> = (props) => {
 
             </div>
 
-        </div>
-
+        </section>
 
     )
 

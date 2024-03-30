@@ -143,6 +143,7 @@ model Orders {
 
 model Product {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  idProduct     String
   ordersId      String?  @db.ObjectId
   name          String
   photo         String[]
