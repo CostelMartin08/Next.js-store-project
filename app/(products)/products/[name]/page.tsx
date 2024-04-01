@@ -18,6 +18,7 @@ import { Product } from '@/app/types';
 import { useAppContext } from '@/app/context';
 import { useCurrentUser } from '@/hooks/use-current-user';
 
+
 const ProductPage = () => {
 
     const { setState } = useAppContext();
@@ -112,7 +113,7 @@ const ProductPage = () => {
                     <PhotoProduct data={data} />
 
                     <div className="grid grid-row-5 gap-3 mt-10 lg:mt-0  content-between xl:content-evenly">
-
+                     
                         {
                             error &&
                             <>
