@@ -178,3 +178,15 @@
       background-color: transparent;
     }
   }
+
+
+  /* -------------------------------------------------------------------------- */
+  /*                              priceAndDiscount                              */
+  /* -------------------------------------------------------------------------- */
+
+  #input-dicount[type=number]::-webkit-inner-spin-button,
+  #input-dicount[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Elimină aspectul implicit al săgeților */
+    appearance: none; /* Elimină aspectul implicit al săgeților */
+    margin: 0; /* Elimină spațiul lăsat pentru săgeți */
+}

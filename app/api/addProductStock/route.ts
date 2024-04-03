@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         price: parseInt(formData.get('price') as string),
         stock: parseInt(formData.get('stock') as string),
         description: formData.get('description') as string,
-        discount: false,
+        discount: 0,
         discountPrice: parseInt(formData.get('discountPrice') as string),
         files: Array.from(formData.getAll('file') as unknown as FileList),
         unitsSold: 0,

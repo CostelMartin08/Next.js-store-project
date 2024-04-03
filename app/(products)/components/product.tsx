@@ -10,6 +10,7 @@ interface ProductData {
     price: number;
     photo: string[];
     description: string | null;
+    discount: number;
     discountPrice: number;
     stock: number;
 }
@@ -21,7 +22,7 @@ interface ProductProps {
 
 const OneProduct: React.FC<ProductProps> = (props) => {
 
-    console.log()
+  
 
     return (
         <>
@@ -38,9 +39,9 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     <div className='span bg-black'>
                                         <span className='text-xs p-1 font-bold'>Sold out</span>
                                     </div>}
-                                {product.discountPrice > 0 &&
+                                {product.discount > 0 &&
                                     <div className='discount-price position flex  bg-red-500 text-white'>
-                                        <span className='text-xs p-1 font-bold'>26%</span>
+                                        <span className='text-xs p-1 font-bold'>{product.discount}%</span>
                                     </div>}
                                 <Image
                                     width={400}
@@ -61,9 +62,9 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     {product.name}
                                 </Link>
                                 <div className='inline-flex space-x-4 m-2'>
-                                    <p className="text-slate-800 font-black">{product.price}$</p>
+                                    <p className="text-slate-800 font-black">{product.discountPrice}$</p>
                                     {product.discountPrice > 0 &&
-                                        <p className="text-slate-400 line-through ">{product.discountPrice}</p>}
+                                        <p className="text-slate-400 line-through ">{product.price}$</p>}
 
                                 </div>
 

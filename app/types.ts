@@ -25,6 +25,7 @@ export interface Product {
     description: string | null,
     stock: number,
     price: number,
+    discount: number;
     discountPrice: number,
     status: boolean,
 
@@ -82,7 +83,7 @@ export interface addProductsStock {
 }
 
 export interface allValues extends addProductsStock {
-    discount: boolean;
+    discount: number;
     unitsSold: number;
     status: boolean;
     date: Date;
@@ -98,7 +99,7 @@ export interface ProductsStock {
     stock: number;
     price: number;
     discountPrice: number;
-    discount: boolean;
+    discount: number;
     unitsSold: number;
     status: boolean;
     date: Date;

@@ -207,6 +207,131 @@ export const getProductsByIdAndChangeStatus = async (category: string, id: strin
 
 }
 
+export const getProductsByIdAndChangeStock = async (category: string, id: string, stock: number) => {
+
+    try {
+        let product;
+        switch (category) {
+            case 'laptops':
+                product = await db.laptops.findFirst({
+                    where: { id },
+                });
+                if (product) {
+
+                    await db.laptops.update({
+                        where: { id },
+                        data: { stock: stock },
+                    });
+                }
+                break;
+            case 'tablets':
+                product = await db.tablets.findFirst({
+                    where: { id },
+                });
+                if (product) {
+
+                    await db.tablets.update({
+                        where: { id },
+                        data: { stock: stock },
+                    });
+                }
+                break;
+            case 'smartphones':
+                product = await db.smartphones.findFirst({
+                    where: { id },
+                });
+                if (product) {
+
+                    await db.smartphones.update({
+                        where: { id },
+                        data: { stock: stock },
+                    });
+                }
+                break;
+            case 'tV':
+                product = await db.tV.findFirst({
+                    where: { id },
+                });
+                if (product) {
+
+                    await db.tV.update({
+                        where: { id },
+                        data: { stock: stock },
+                    });
+                }
+                break;
+            default:
+                throw new Error(`The category ${category} doesn't exist.`);
+        }
+
+        return product;
+
+    } catch (error) {
+        console.error("Error during interrogation", error);
+        return null;
+    }
+
+}
+
+export const createDiscountById = async (category: string, id: string, discountPrice: number, discount: number) => {
+
+    try {
+        let product;
+        switch (category) {
+            case 'laptops':
+                product = await db.laptops.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    await db.laptops.update({
+                        where: { id },
+                        data: { discountPrice: discountPrice, discount: discount },
+                    });
+                }
+                break;
+            case 'tablets':
+                product = await db.tablets.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    await db.tablets.update({
+                        where: { id },
+                        data: { discountPrice: discountPrice, discount: discount },
+                    });
+                }
+                break;
+            case 'smartphones':
+                product = await db.smartphones.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    await db.smartphones.update({
+                        where: { id },
+                        data: { discountPrice: discountPrice, discount: discount },
+                    });
+                }
+                break;
+            case 'tV':
+                product = await db.tV.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    await db.tV.update({
+                        where: { id },
+                        data: { discountPrice: discountPrice, discount: discount },
+                    });
+                }
+                break;
+            default:
+                throw new Error(`The category ${category} doesn't exist.`);
+        }
+        return product;
+    } catch (error) {
+        console.error("Error during interrogation", error);
+        return null;
+    }
+}
+
 export const decrementStockById = async (category: string, id: string, count: number, stock: number, unitsSold: number) => {
 
 

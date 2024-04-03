@@ -3,11 +3,11 @@
 import Image from "next/image";
 
 import { getAllProductsInAllCategories } from "@/app/actions/products";
-import { ProductsStock, allValues } from "@/app/types";
+import { ProductsStock} from "@/app/types";
 import { useEffect, useState } from "react";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StatusProduct } from "./statusProduct";
+import { StockProduct } from "./stockProduct";
+import { PriceAndDiscount } from "./priceAndDiscountProduct";
 
 export const ProductsTable = () => {
 
@@ -115,22 +115,13 @@ const ProductData: React.FC<ProductRowProps> = ({ product, index }) => (
                 <p className="">{product.unitsSold}</p>
             </div>
         </th>
-        <th className="w-1/12">
-            <div className="flex h-24 items-center gap-1 justify-center">
-                <p className="">{product.stock}</p>
-                <FontAwesomeIcon className="text-xs p-1" icon={faPenToSquare} />
-            </div>
+        <th className="w-1/12 relative">
+
+            <StockProduct data={{ product, index }} />
+
         </th>
-        <th className="w-1/12">
-            <div className="flex h-24 items-center justify-center">
-                <p className="">{product.price}$</p>
-            </div>
-        </th>
-        <th className="w-1/12">
-            <div className="flex h-24 items-center justify-center">
-                <p className="">{product.discountPrice}</p>
-            </div>
-        </th>
+
+        <PriceAndDiscount data={{ product, index }} />
     </tr>
 
 );
