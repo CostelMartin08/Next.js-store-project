@@ -1,6 +1,26 @@
 'use server'
 
-import { getAllProducts, getProductById, getProductByName } from "../data/products"
+import { getAllProducts, getAllProductsInAllCategoriesFn, getProductById, getProductByName } from "../data/products"
+
+
+
+export const getAllProductsInAllCategories = async () => {
+   try {
+      const all = await getAllProductsInAllCategoriesFn();
+
+      if (!all) {
+         return { error: "Query error!" };
+      }
+
+      return {success: all};
+
+   } catch (error) {
+
+      console.error("Error fetching all products:", error);
+      return { error: "Error fetching all products" };
+   }
+}
+
 
 
 export const getProducts = async (category: string) => {
@@ -41,3 +61,4 @@ export const getProductsById = async (category: string, id: string) => {
 
    return product;
 }
+

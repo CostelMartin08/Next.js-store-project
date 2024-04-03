@@ -5,7 +5,7 @@ import { join } from 'path';
 import { writeFile } from 'fs/promises'
 import { currentRole } from '@/app/lib/auth';
 import { addProduct, getProductById } from '@/app/data/products';
-import { addProductsStock } from '@/app/types';
+import { addProductsStock, allValues } from '@/app/types';
 import fs from 'fs';
 
 export async function POST(req: NextRequest) {
@@ -18,15 +18,19 @@ export async function POST(req: NextRequest) {
 
     const formData = await req.formData();
 
-    const productFormData: addProductsStock = {
+    const productFormData: allValues = {
 
         collection: formData.get('collection') as string,
         productName: formData.get('productName') as string,
         price: parseInt(formData.get('price') as string),
         stock: parseInt(formData.get('stock') as string),
         description: formData.get('description') as string,
+        discount: false,
         discountPrice: parseInt(formData.get('discountPrice') as string),
         files: Array.from(formData.getAll('file') as unknown as FileList),
+        unitsSold: 0,
+        status: true,
+        date: new Date(),
 
     }
 

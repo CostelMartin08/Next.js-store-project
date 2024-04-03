@@ -45,7 +45,7 @@ export const Navbar = () => {
                     <li><Link href="/myOrders">My Orders</Link></li>
                     <li><Link href="/settings">Settings</Link></li>
 
-                    {user?.role === "ADMIN" && <li><Link href="/admin">Admin Mode</Link></li>}
+                    {user?.role === "ADMIN" && <li><Link href="/admin">Store Management</Link></li>}
                 </ul>
 
 

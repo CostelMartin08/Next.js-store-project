@@ -14,6 +14,8 @@ export interface CartProduct extends Product {
     count: number;
     category: string;
     countPrice: number;
+    unitsSold: number;
+
 }
 
 export interface Product {
@@ -24,6 +26,7 @@ export interface Product {
     stock: number,
     price: number,
     discountPrice: number,
+    status: boolean,
 
 }
 
@@ -77,3 +80,28 @@ export interface addProductsStock {
     description: string;
     discountPrice: number | undefined;
 }
+
+export interface allValues extends addProductsStock {
+    discount: boolean;
+    unitsSold: number;
+    status: boolean;
+    date: Date;
+
+}
+
+export interface ProductsStock {
+    id: string;
+    name: string;
+    category: string;
+    photo: string[];
+    description: string | null;
+    stock: number;
+    price: number;
+    discountPrice: number;
+    discount: boolean;
+    unitsSold: number;
+    status: boolean;
+    date: Date;
+
+}
+

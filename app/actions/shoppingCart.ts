@@ -27,7 +27,10 @@ export const orderProcessing = async (formData: FormData, data: CartProduct[]) =
         const decrementAllStocksAndAddOrder = async () => {
             try {
                 for (let i = 0; i < data.length; i++) {
-                    await decrementStockById(data[i].category, data[i].id, data[i].count, data[i].stock);
+
+                    await decrementStockById(data[i].category, data[i].id, data[i].count, data[i].stock, data[i].unitsSold);
+
+                    //Verifica daca procesul esueaza si gestioneaza asta in consecinta(decrementStockById)
                 }
 
                 formData.products = data;

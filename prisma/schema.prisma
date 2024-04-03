@@ -93,6 +93,10 @@ model Laptops {
   stock         Int
   price         Int
   discountPrice Int
+  discount      Boolean
+  unitsSold     Int
+  status        Boolean
+  date          DateTime
 }
 
 model Tablets {
@@ -103,6 +107,10 @@ model Tablets {
   stock         Int
   price         Int
   discountPrice Int
+  discount      Boolean
+  unitsSold     Int
+  status        Boolean
+  date          DateTime
 }
 
 model Smartphones {
@@ -113,6 +121,10 @@ model Smartphones {
   stock         Int
   price         Int
   discountPrice Int
+  discount      Boolean
+  unitsSold     Int
+  status        Boolean
+  date          DateTime
 }
 
 model TV {
@@ -123,6 +135,10 @@ model TV {
   stock         Int
   price         Int
   discountPrice Int
+  discount      Boolean
+  unitsSold     Int
+  status        Boolean
+  date          DateTime
 }
 
 model Orders {
