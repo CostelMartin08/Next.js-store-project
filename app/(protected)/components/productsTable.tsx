@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { StatusProduct } from "./statusProduct";
 import { StockProduct } from "./stockProduct";
 import { PriceAndDiscount } from "./priceAndDiscountProduct";
+import { NameAndPhoto } from "./nameAndPhotoProduct";
 
 export const ProductsTable = () => {
 
@@ -35,7 +36,7 @@ export const ProductsTable = () => {
     ));
 
     return (
-        <table style={{ tableLayout: 'fixed', width: '100%' }} className="table-auto mx-auto text-sm mb-20">
+        <table style={{ tableLayout: 'fixed', width: '100%' }} className="table-auto mx-auto relative text-sm mb-20">
 
             <caption className="text-3xl text-center font-black pb-20">
                 Product List
@@ -80,22 +81,11 @@ const ProductData: React.FC<ProductRowProps> = ({ product, index }) => (
     <tr className="flex border-b-2 w-full">
 
         <th className="w-4/12">
-            <div className="flex justify-left gap-3 items-center h-full">
+           
 
-                <span>{index}.</span>
+                <NameAndPhoto data={{product, index}}/>
 
-                <Image
-                    className="p-1 border-2 rounded"
-                    src={`/products/${product.category}/${product.id}/${product.photo[0]}`}
-                    alt={product.name}
-                    height={40}
-                    width={40}>
-
-                </Image>
-
-                <p className="text-left">{product.name}</p>
-
-            </div>
+           
         </th>
 
         <th className="w-2/12">

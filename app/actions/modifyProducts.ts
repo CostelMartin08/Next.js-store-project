@@ -1,6 +1,6 @@
 'use server'
 
-import { getProductsByIdAndChangeStatus, getProductsByIdAndChangeStock, createDiscountById } from "../data/products"
+import { getProductsByIdAndChangeStatus, getProductsByIdAndChangeStock, createDiscountById, modifyNameAndPhotoById } from "../data/products"
 import { ProductsStock } from "../types"
 
 
@@ -50,5 +50,18 @@ export const createDiscount = async (products: ProductsStock, price: number, dis
     }
 
     return { success: true };
+
+}
+
+export const modifyNameAndPhotos = async (data: object[], category: string, id: string) => {
+
+
+    console.log(category)
+
+      // const newNameAndPhoto = await modifyNameAndPhotoById();
+
+
+    return { success: true }
+
 
 }

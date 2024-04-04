@@ -141,6 +141,10 @@ export const getProductById = async (category: string, id: string) => {
 
 };
 
+/* -------------------------------------------------------------------------- */
+/*                                   //ADMIN                                  */
+/* -------------------------------------------------------------------------- */
+
 export const getProductsByIdAndChangeStatus = async (category: string, id: string, status: boolean) => {
 
     try {
@@ -391,6 +395,97 @@ export const decrementStockById = async (category: string, id: string, count: nu
                     await db.tV.update({
                         where: { id },
                         data: { stock: newStock, unitsSold: sold },
+                    });
+                }
+                break;
+            default:
+                throw new Error(`The category ${category} doesn't exist.`);
+        }
+        return product;
+    } catch (error) {
+        console.error("Error during interrogation", error);
+        return null;
+    }
+};
+
+export const modifyNameAndPhotoById= async (category: string, id: string, photo: string, name:string, index:number) => {
+
+
+
+    try {
+        let product;
+        switch (category) {
+            case 'laptops':
+                product = await db.tablets.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    await db.tablets.update({
+                        where: {
+                            id: id,
+                          },
+                          data: {
+                           
+                            photo: {
+                                set: [id] 
+                            }
+                        }
+                    });
+                }
+                break;
+            case 'tablets':
+                product = await db.tablets.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                    await db.tablets.update({
+                        where: {
+                            id: id,
+                          },
+                          data: {
+                           
+                            photo: {
+                                set: [id] 
+                            }
+                        }
+                    });
+                }
+                break;
+            case 'smartphones':
+                product = await db.smartphones.findFirst({
+                    where: { id },
+                });
+                if (product) {
+            
+                    await db.smartphones.update({
+                        where: {
+                            id: id,
+                          },
+                          data: {
+                           
+                            photo: {
+                                set: [id] 
+                            }
+                        }
+                    });
+                }
+                break;
+            case 'tv':
+                product = await db.tV.findFirst({
+                    where: { id },
+                });
+                if (product) {
+                
+                    await db.tV.update({
+                        where: {
+                            id: id,
+                          },
+                          data: {
+                           
+                            photo: {
+                                set: [id] 
+                            }
+                        }
                     });
                 }
                 break;

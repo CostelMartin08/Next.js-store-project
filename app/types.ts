@@ -19,6 +19,7 @@ export interface CartProduct extends Product {
 }
 
 export interface Product {
+    date: string | number | Date;
     id: string,
     name: string,
     photo: string[],
