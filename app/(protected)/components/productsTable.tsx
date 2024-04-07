@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { StatusProduct } from "./statusProduct";
 import { StockProduct } from "./stockProduct";
 import { PriceAndDiscount } from "./priceAndDiscountProduct";
-import { NameAndPhoto } from "./nameAndPhotoProduct";
+import NameAndPhoto from "./nameAndPhotoProduct";
 
 export const ProductsTable = () => {
 

@@ -408,93 +408,98 @@ export const decrementStockById = async (category: string, id: string, count: nu
     }
 };
 
-export const modifyNameAndPhotoById= async (category: string, id: string, photo: string, name:string, index:number) => {
+export const modifyNameAndPhotoById = async (
+    category: string,
+    id: string,
+    photo: (File | string)[],
+    name: string,
 
-
+) => {
 
     try {
-        let product;
+
+        let photos: string[] = [];
+
+        for (const element of photo) {
+            if (typeof element === 'string') {
+                photos.push(element);
+            } else {
+                photos.push(element.name);
+            }
+        }
+
         switch (category) {
             case 'laptops':
-                product = await db.tablets.findFirst({
-                    where: { id },
+
+                await db.laptops.update({
+                    where: {
+                        id: id,
+                    },
+                    data: {
+                        photo: {
+                            set: photos,
+                        },
+                        name: name,
+                    },
                 });
-                if (product) {
-                    await db.tablets.update({
-                        where: {
-                            id: id,
-                          },
-                          data: {
-                           
-                            photo: {
-                                set: [id] 
-                            }
-                        }
-                    });
-                }
+
                 break;
             case 'tablets':
-                product = await db.tablets.findFirst({
-                    where: { id },
+
+                await db.tablets.update({
+                    where: {
+                        id: id,
+                    },
+                    data: {
+                        photo: {
+                            set: photos,
+                        },
+                        name: name,
+                    },
                 });
-                if (product) {
-                    await db.tablets.update({
-                        where: {
-                            id: id,
-                          },
-                          data: {
-                           
-                            photo: {
-                                set: [id] 
-                            }
-                        }
-                    });
-                }
+
                 break;
             case 'smartphones':
-                product = await db.smartphones.findFirst({
-                    where: { id },
+
+                await db.smartphones.update({
+                    where: {
+                        id: id,
+                    },
+                    data: {
+
+                        photo: {
+                            set: photos,
+                        },
+                        name: name,
+                    }
                 });
-                if (product) {
-            
-                    await db.smartphones.update({
-                        where: {
-                            id: id,
-                          },
-                          data: {
-                           
-                            photo: {
-                                set: [id] 
-                            }
-                        }
-                    });
-                }
+
                 break;
-            case 'tv':
-                product = await db.tV.findFirst({
-                    where: { id },
+            case 'tV':
+
+                await db.tV.update({
+                    where: {
+                        id: id,
+                    },
+                    data: {
+                        photo: {
+                            set: photos,
+                        },
+                        name: name,
+                    },
                 });
-                if (product) {
-                
-                    await db.tV.update({
-                        where: {
-                            id: id,
-                          },
-                          data: {
-                           
-                            photo: {
-                                set: [id] 
-                            }
-                        }
-                    });
-                }
+
                 break;
             default:
                 throw new Error(`The category ${category} doesn't exist.`);
         }
-        return product;
+
+        return true;
+
     } catch (error) {
+
         console.error("Error during interrogation", error);
+
         return null;
     }
 };

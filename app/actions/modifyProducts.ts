@@ -52,16 +52,3 @@ export const createDiscount = async (products: ProductsStock, price: number, dis
     return { success: true };
 
 }
-
-export const modifyNameAndPhotos = async (data: object[], category: string, id: string) => {
-
-
-    console.log(category)
-
-      // const newNameAndPhoto = await modifyNameAndPhotoById();
-
-
-    return { success: true }
-
-
-}
