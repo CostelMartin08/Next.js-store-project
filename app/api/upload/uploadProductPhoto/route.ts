@@ -10,9 +10,9 @@ export async function POST(req: NextRequest) {
 
     const formData = await req.formData();
 
-    const id = formData.get('id') as string;
-    const category = formData.get('category') as string;
-    const name = formData.get('name') as string;
+    let id = formData.get('id') as string;
+    let category = formData.get('category') as string;
+    let name = formData.get('name') as string;
 
     let files = [];
 
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     }));
 
 
-    return NextResponse.json({ success: 'photo successfully changed!' });
+    return NextResponse.json({ success: 'The changes were successful!' });
 
 
 }

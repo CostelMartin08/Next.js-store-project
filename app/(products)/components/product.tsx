@@ -5,7 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 
 interface ProductData {
-    id:string;
+    id: string;
     name: string;
     price: number;
     photo: string[];
@@ -22,7 +22,7 @@ interface ProductProps {
 
 const OneProduct: React.FC<ProductProps> = (props) => {
 
-  
+
 
     return (
         <>
@@ -62,9 +62,14 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     {product.name}
                                 </Link>
                                 <div className='inline-flex space-x-4 m-2'>
-                                    <p className="text-slate-800 font-black">{product.discountPrice}$</p>
-                                    {product.discountPrice > 0 &&
-                                        <p className="text-slate-400 line-through ">{product.price}$</p>}
+
+                                    {product.discountPrice > 0 ? <>
+                                        <p className="text-slate-800 font-black">{product.discountPrice}$</p>
+                                        <p className="text-slate-400 line-through ">{product.price}$</p>
+                                    </>
+                                        :
+                                        <p className="text-slate-800 font-black">{product.price}$</p>
+                                    }
 
                                 </div>
 

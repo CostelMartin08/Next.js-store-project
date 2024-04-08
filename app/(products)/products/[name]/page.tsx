@@ -73,7 +73,8 @@ const ProductPage = () => {
                     ...product,
                     count: 1,
                     category: category,
-                    countPrice: data?.price as number
+                    countPrice: data?.price as number,
+                    unitsSold: 0
                 };
 
                 const cartItems: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');

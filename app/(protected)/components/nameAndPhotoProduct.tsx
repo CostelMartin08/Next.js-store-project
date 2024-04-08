@@ -1,12 +1,16 @@
-import React, { useState, ChangeEvent, MouseEventHandler } from "react";
-import Image from "next/image";
+import React, { useState, ChangeEvent, MouseEventHandler, useEffect } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { fork } from "child_process";
+import { faFileImage, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 interface StatusProductProps {
+
     data: {
+        reload: boolean;
+        setReload: (reload: boolean) => void;
         product: {
+
             id: string;
             category: string;
             name: string;
@@ -22,10 +26,16 @@ interface FileObject {
 }
 
 const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
-    const { product, index } = data;
+
+    const { product, index, setReload, reload } = data;
 
     const [state, setState] = useState(false);
     const [nameProduct, setNameProduct] = useState('');
+
+    const [success, setSuccess] = useState<string>('');
+    const [error, setError] = useState<string>('');
+
+
     const [fileObjects, setFileObjects] = useState<FileObject[]>([
         { file: product.photo[0] },
         { file: product.photo[1] },
@@ -33,6 +43,10 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
         { file: product.photo[3] },
         { file: product.photo[4] },
     ]);
+
+    useEffect(() => {
+        setFileObjects(product.photo.map((photo: string) => ({ file: photo })));
+    }, [product]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -81,8 +95,14 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
             throw new Error(await res.text());
         }
 
-        const value = await res.json();
-        console.log(value);
+        const data = await res.json();
+        if (data.success) {
+            setReload(!reload);
+            return setSuccess(data.success);
+        }
+
+        return setError(data.error);
+
     };
 
     return (
@@ -100,14 +120,20 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
             </div>
 
             {state && (
-                <div style={{ bottom: '5px', left: '50%', top: '20%', transform: 'translateX(-50%)' }} className="bg-gray-100 absolute w-full sm:w-3/4 h-3/4 border-2 rounded z-20" key={index}>
+                <div
+                    style={{ bottom: '5px', left: '50%', top: '10%', transform: 'translateX(-50%)' }}
+                    className="bg-gray-100 absolute w-full sm:w-3/4 lg:w-2/4 h-max border-2 rounded z-20"
+                    key={index}>
+
                     <div className="flex justify-end">
                         <button className="flex justify-center items-center size-8 p-4" onClick={() => setState(false)}>
-                            <FontAwesomeIcon className="text-xl" icon={faTimes} />
+                            <FontAwesomeIcon className=" text-sm sm:text-xl" icon={faTimes} />
                         </button>
+
                     </div>
-                    <form onSubmit={onSubmit} className="p-10 flex flex-col gap-4">
-                        <p className="text-xl  text-left">Product details</p>
+
+                    <form onSubmit={onSubmit} className="p-3 sm:p-6 flex flex-col gap-4">
+                        <p className="text-xl text-left">Product details</p>
                         <div className="flex flex-col items-start  gap-2">
                             <label htmlFor="nameProduct">Change product name:</label>
                             <input
@@ -120,29 +146,54 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
                         </div>
                         <div className="flex flex-col items-start gap-2">
                             <label className="">Change photos:</label>
-                            <div className="flex gap-3">
+                            <div className="flex gap-3 w-full">
                                 {fileObjects.map((fileObj, index) => (
-                                    <div className="relative" key={index}>
+                                    <div className="relative w-1/5 mx-auto" key={index}>
                                         <input
                                             onChange={(event) => handleFileChange(index, event)}
                                             style={{ bottom: '5px', left: '50%', top: '0%', transform: 'translateX(-50%)' }}
                                             className="cursor-pointer absolute size-full opacity-0"
                                             type="file"
                                         />
+
                                         {fileObj.file ?
-                                            <Image
-                                                className="cursor-pointer"
-                                                src={`/products/${product.category}/${product.id}/${fileObj.file}`}
-                                                alt={product.name}
-                                                width={90}
-                                                height={90}
-                                            />
-                                            : <div>+</div>}
+
+                                            (typeof fileObj.file === 'string' ? (
+                                                <Image
+                                                    className="cursor-pointer w-full"
+                                                    src={`/products/${product.category}/${product.id}/${fileObj.file}`}
+                                                    alt={product.photo[index]}
+                                                    width={80}
+                                                    height={80}
+                                                />) : (
+                                                <div className="border-2 h-full flex flex-col gap-2 justify-center items-center">
+
+                                                    <FontAwesomeIcon icon={faFileImage} />
+                                                    <span>{fileObj.file.name}</span>
+
+                                                </div>
+                                            ))
+                                            : <div className="border-2 h-full flex justify-center items-center"><FontAwesomeIcon icon={faPlus} /></div>
+                                        }
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <button type="submit">Submit</button>
+                        {error && (
+                            <div className="bg-red-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
+                                {error}
+                            </div>
+                        )}
+                        {success && (
+                            <div className="bg-green-500 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
+                                {success}
+                            </div>
+                        )}
+
+                        <div className="text-right text-xs sm:text-base">
+                            <button className="w-1/4 text-white p-2 sm:p-3 bg-emerald-950 font-black rounded" type="submit">Change</button>
+                        </div>
+
                     </form>
                 </div>
             )}

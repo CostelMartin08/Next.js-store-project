@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import { getAllProductsInAllCategories } from "@/app/actions/products";
-import { ProductsStock} from "@/app/types";
+import { ProductsStock } from "@/app/types";
 import { useEffect, useState } from "react";
 import { StatusProduct } from "./statusProduct";
 import { StockProduct } from "./stockProduct";
@@ -14,6 +14,8 @@ export const ProductsTable = () => {
 
     const [allProducts, setAllProducts] = useState<ProductsStock[]>([]);
     const [error, setError] = useState<string | unknown>(null);
+
+    const [reload, setReload] = useState<boolean>(false);
 
     useEffect(() => {
 
@@ -29,18 +31,16 @@ export const ProductsTable = () => {
 
             });
 
-    }, []);
+    }, [reload]);
 
     const productContent = allProducts?.map((product, index) => (
-        <ProductData key={index} product={product} index={index} />
+        <ProductData key={index} reload={reload} setReload={setReload} product={product} index={index} />
     ));
 
     return (
-        <table style={{ tableLayout: 'fixed', width: '100%' }} className="table-auto mx-auto relative text-sm mb-20">
+        <table style={{ tableLayout: 'fixed', width: '100%' }} className="table-auto mt-8 mx-auto relative  text-sm mb-20">
 
-            <caption className="text-3xl text-center font-black pb-20">
-                Product List
-            </caption>
+      
 
             <thead className="border-b-2">
 
@@ -72,20 +72,22 @@ export const ProductsTable = () => {
 
 
 interface ProductRowProps {
+    reload: boolean;
+    setReload: (reload: boolean) => void;
     product: ProductsStock;
     index: number;
 }
 
-const ProductData: React.FC<ProductRowProps> = ({ product, index }) => (
+const ProductData: React.FC<ProductRowProps> = ({reload, setReload, product, index }) => (
 
     <tr className="flex border-b-2 w-full">
 
         <th className="w-4/12">
-           
 
-                <NameAndPhoto data={{product, index}}/>
 
-           
+            <NameAndPhoto data={{reload, setReload, product, index }} />
+
+
         </th>
 
         <th className="w-2/12">

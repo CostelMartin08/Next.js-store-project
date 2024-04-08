@@ -99,14 +99,14 @@ export const AddProduct = () => {
 
         <>
             {error && (
-                <div className="text-left w-fit bg-red-500 text-white text-md ms-6 p-2 rounded-md">
+                <div className="text-left w-fit bg-red-500 text-white text-md m-2 p-2 rounded-md">
                     <FontAwesomeIcon className="me-3 text-lg" icon={faCircleExclamation} />
                     {error}
                 </div>
 
             )}
             {success && (
-                <div className="text-left w-fit bg-green-500 text-white text-md ms-6 p-2 rounded-md">
+                <div className="text-left w-fit bg-green-500 text-white text-md m-2 p-2 rounded-md">
                     <FontAwesomeIcon className="me-3 text-lg" icon={faCircleCheck} />
                     {success}
                 </div>
@@ -116,7 +116,7 @@ export const AddProduct = () => {
 
                 <form
                     onSubmit={handleSubmit}
-                    className="sm:p-6 basis-4/4 sm:basis-3/4">
+                    className=" basis-4/4 sm:basis-3/4">
 
                     <div className="flex flex-col md:flex-row lg:gap-3">
 
