@@ -17,7 +17,7 @@ const nextConfig = {
   },
   serverRuntimeConfig: {
    
-    myHostname: '164.90.167.98', 
+    myHostname: ['164.90.167.98', 'http://gadgetgrid.ro'], 
   },
 };
 export default nextConfig;
