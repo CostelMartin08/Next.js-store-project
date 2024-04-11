@@ -10,6 +10,7 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import "./components.css";
 
+import Image from "next/image";
 
 export const Navbar = () => {
 
@@ -59,7 +60,7 @@ export const Navbar = () => {
 
                         className="hover-element cursor-pointer">
 
-                        {user?.image ? <img className="size-7 rounded-full" src={`photo/${user?.image}`}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
+                        {user?.image ? <Image width={80} height={80} className="size-7 rounded-full" alt={`${user.id}`} src={`/photo/${user?.image}`}></Image> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
 
                     </div>
 

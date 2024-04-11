@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getOrder } from "@/app/types";
 import OrderTable from "../components/orderTable";
 
-export const myOrders = () => {
+export const MyOrders = () => {
 
     const user = useCurrentUser();
     const [orders, setOrders] = useState<getOrder[]>([]);
@@ -23,7 +23,7 @@ export const myOrders = () => {
                 setOrders(data.success as any);
             })
             .catch(() => console.log("Something went wrong!"));
-    }, []);
+    }, [user]);
 
 
     return (

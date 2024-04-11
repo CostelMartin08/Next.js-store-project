@@ -29,19 +29,21 @@ interface OrderRowProps {
     index: number;
 }
 
-const OrderRow: React.FC<OrderRowProps> = ({ order, index }) => (
-    <>
 
+
+const OrderRow: React.FC<OrderRowProps> = ({ order, index }) => (
+
+    <>
 
         <thead className="border-b-2">
 
             <tr className="flex flex-col py-6">
 
-                <th className='font-normal text-sm flex md:flex-row flex-col text-left space-x-4 mt-5 py-6'>
+                <th className='font-normal sm:text-base text-sm flex md:flex-row flex-col text-left sm:space-x-4 mt-5 py-6'>
 
-                    <span>{index + 1}.<span >Order Id: <span className='font-black'>{order.id}</span></span></span>
+                    <span>{index + 1}.<span >Order Id: <span>{order.id}</span></span></span>
 
-                    <span >Ordered on: <span className='font-black'>{order.date.toLocaleString()}</span></span>
+                    <span >Ordered on: <span>{order.date.toLocaleString()}</span></span>
 
                 </th>
 
@@ -108,7 +110,8 @@ const OrderData: React.FC<OrderRowProps> = ({ order }) => (
         </th>
         <th className="w-2/12 md:w-1/12 flex items-end justify-end">
             <div className="flex justify-end  content-end">
-                <p className="">Total: {order.products.reduce((acc, curr) => acc + curr.price, 0)}$</p>
+         
+                <p className="">Total: {order.products.reduce((acc, curr) => acc + (curr.price * curr.count), 0)}$</p>
             </div>
         </th>
 

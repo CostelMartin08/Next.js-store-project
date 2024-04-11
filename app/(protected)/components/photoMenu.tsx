@@ -43,7 +43,7 @@ export const PhotoMenu = () => {
     }
 
     return (
-        <div className=" space-y-4 w-3/4 md:w-2/4 mt-5 ">
+        <div className="space-y-4 mt-5">
 
 
             <h3>Change your profile photo:</h3>

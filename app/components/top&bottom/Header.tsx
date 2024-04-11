@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { CartProduct } from "@/app/types";
 import ToggleSwitch from "./toggleSwitch";
-
+import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useCurrentUser } from "@/hooks/use-current-user";
@@ -84,7 +84,7 @@ export default function Header() {
 
           <Link href="/settings">
 
-            {user?.image ? <img className="size-7 rounded-full" src={`/photo/${user?.image}`}></img>
+            {user?.image ? <Image className="size-7 rounded-full" height={80} width={80} alt={`${user?.id}`} src={`/photo/${user?.image}`}></Image>
               :
               <FontAwesomeIcon className="text-md sm:text-lg px-1" icon={faUser}
               />

@@ -8,6 +8,7 @@ import { auth } from '@/auth';
 import { AppWrapper } from './context';
 import "./globals.css";
 import Head from 'next/head';
+import Link from 'next/link';
 
 
 export const metadata = {
@@ -31,7 +32,7 @@ export default async function RootLayout({
 
       <html lang="en">
         <Head>
-          <link
+          <Link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
             rel="stylesheet"
           />

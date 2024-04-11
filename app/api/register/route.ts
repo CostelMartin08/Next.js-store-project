@@ -1,6 +1,6 @@
 'use server'
 
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { generateVerificationToken } from "@/app/lib/tokens";
 import { sendVerificationEmail } from "@/app/lib/mail";
 import bcrypt from 'bcrypt';
@@ -13,9 +13,9 @@ interface UserCredentials {
     password: string;
 }
 
-export async function POST(req: { json: () => Promise<UserCredentials> }) {
-
-    const { name, email, password } = await req.json();
+export async function POST(req: NextRequest) {
+    
+    const { name, email, password } = req.body as unknown as UserCredentials;
 
     try {
 

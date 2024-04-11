@@ -44,11 +44,11 @@ export default function LoginForm() {
         const data = await res.json();
 
         if (data?.error) {
-          setError(data.error);
+          setError(data.error as string);
         }
 
         if (data?.success) {
-          setSucces(data.success);
+          setSucces(data.success as string);
         }
         if (data?.twoFactor) {
           setShowTwoFactor(true);

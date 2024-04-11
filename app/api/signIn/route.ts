@@ -7,7 +7,7 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { sendVerificationEmail, sendTwoFactorEmail } from "@/app/lib/mail";
 import { generateVerificationToken, generateTwoFactorToken } from "@/app/lib/tokens";
 import { getUserByEmail } from "@/app/data/user";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getTwoFactorTokenByEmail } from "@/app/data/two-factor-token";
 import { db } from "@/app/lib/db";
 import { getTwoFactorConfirmationByUserId } from "@/app/data/two-factor-confirmation";
@@ -18,7 +18,7 @@ interface UserCredentials {
     code: string;
 }
 
-export async function POST(req: { json: () => Promise<UserCredentials> }) {
+export async function POST(req: NextRequest, res: NextResponse) {
 
     const { email, password, code } = await req.json();
 

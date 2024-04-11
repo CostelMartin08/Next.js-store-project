@@ -232,7 +232,7 @@ export const AddProduct = () => {
 
                 </form>
 
-                <div className="lg:basis-1/4 h-[28rem] lg:h-screen pb-20">
+                <div className="lg:basis-1/4 p-2 h-[30rem] mb-4">
 
                     <div className="p-3 text-slate-600 border bg-white flex justify-center flex-col h-full  rounded relative">
 

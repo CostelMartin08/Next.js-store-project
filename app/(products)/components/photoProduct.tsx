@@ -51,10 +51,10 @@ const PhotoProduct: React.FC<any> = (props) => {
 
             <div className="w-3/5 flex gap-5 justify-center mx-auto">
       
-                <div className="w-1/4 "><img className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[1]}`} alt="work" /></div>
-                <div className="w-1/4 "><img className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[2]}`} alt="work" /></div>
-                <div className="w-1/4 "><img className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[3]}`} alt="work" /></div>
-                <div className="w-1/4 "><img className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[4]}`} alt="work" /></div>
+                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[1]}`} alt="work" /></div>
+                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[2]}`} alt="work" /></div>
+                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[3]}`} alt="work" /></div>
+                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[4]}`} alt="work" /></div>
             </div>
 
         </section>

@@ -52,7 +52,7 @@ const ProductPage = () => {
                 });
 
         }
-    }, []);
+    }, [param]);
 
 
 

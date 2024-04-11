@@ -1,5 +1,5 @@
-import { myOrders } from "./myOrders";
+import { MyOrders } from "./myOrders";
 
 
 
-export default myOrders;
+export default MyOrders;
