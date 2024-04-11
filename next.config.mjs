@@ -15,5 +15,9 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  serverRuntimeConfig: {
+   
+    myHostname: '164.90.167.98', 
+  },
 };
 export default nextConfig;
