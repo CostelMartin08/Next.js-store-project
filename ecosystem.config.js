@@ -3,7 +3,7 @@ module.exports = {
       {
         name: "GadgetGrid",
         script: "npm",
-        args: "start",
+        args: "start --port 5000",
         env: {
           NODE_ENV: "production",
         },
