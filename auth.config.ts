@@ -7,12 +7,13 @@ import { getUserByEmail} from "./app/data/user";
 
 
 export default {
-
+    
     providers: [
         Github({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
             allowDangerousEmailAccountLinking: true,
+            
         }),
         Credentials({
             name: "Credentials",

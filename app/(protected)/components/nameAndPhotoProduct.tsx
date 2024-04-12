@@ -86,7 +86,7 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
         formData.append('id', product.id);
         formData.append('name', nameProduct);
 
-        const res = await fetch('http://localhost:3000/api/upload/uploadProductPhoto', {
+        const res = await fetch('https://gadgetgrid.ro/api/upload/uploadProductPhoto', {
             method: 'POST',
             body: formData,
         });

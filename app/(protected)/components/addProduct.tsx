@@ -71,7 +71,7 @@ export const AddProduct = () => {
                 formDataToSend.append('file', file);
             });
 
-            const res = await fetch('http://localhost:3000/api/addProductStock', {
+            const res = await fetch('https://gadgetgrid.ro/api/addProductStock', {
                 method: 'POST',
                 body: formDataToSend,
             });

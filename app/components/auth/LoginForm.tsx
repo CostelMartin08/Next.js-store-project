@@ -27,7 +27,7 @@ export default function LoginForm() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3000/api/signIn', {
+      const res = await fetch('https://gadgetgrid.ro/api/signIn', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

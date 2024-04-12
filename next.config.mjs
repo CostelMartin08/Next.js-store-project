@@ -17,7 +17,7 @@ const nextConfig = {
   },
   serverRuntimeConfig: {
    
-    myHostname: ['164.90.167.98', 'http://gadgetgrid.ro'], 
+    myHostname: ['164.90.167.98', 'https://gadgetgrid.ro'], 
   },
   async headers() {
     return [
