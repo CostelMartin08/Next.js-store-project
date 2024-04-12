@@ -7,7 +7,7 @@ module.exports = {
       cwd: "/home/node/GadgetGrid/Next.js-store-project",
       env: {
         NODE_ENV: "production",
-        PORT: 8080,
+        PORT: 3000,
       },
     },
   ],
