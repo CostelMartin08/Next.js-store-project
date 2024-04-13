@@ -47,7 +47,7 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     width={400}
                                     height={400}
                                     className='object-contain size-full p-1'
-                                    src={`https://gadgetgrid.ro/images/${props.category}/${product.id}/${product.photo[0]}`}
+                                    src={`/products/${props.category}/${product.id}/${product.photo[0]}`}
                                     alt={product.name}>
 
                                 </Image>
