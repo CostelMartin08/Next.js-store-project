@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        domains: ['gadgetgrid.ro'],
+        hostname: 'https://gadgetgrid.ro',
 
       },
     ],
