@@ -43,7 +43,7 @@ const PhotoProduct: React.FC<any> = (props) => {
                         height={900}
                         style={{ cursor: 'pointer', maxWidth: '100%' }}
                         key={index}
-                        src={`/products/${item.category}/${item.id}/${item.src}`}
+                        src={`/${item.category}/${item.id}/${item.src}`}
                         alt={item.title}
                     ></Image>
                 ))}
