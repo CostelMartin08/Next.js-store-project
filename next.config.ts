@@ -1,23 +1,28 @@
 /** @type {import('next').NextConfig} */
+
+import localhostUrl from "./nodeEnv";
+
 const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'https://gadgetgrid.ro',
+        hostname: `${localhostUrl}`,
 
       },
     ],
   },
   typescript: {
+
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
     // !! WARN !!
+
     ignoreBuildErrors: true,
   },
   serverRuntimeConfig: {
-   
-    myHostname: ['164.90.167.98', 'https://gadgetgrid.ro'], 
+
+    myHostname: ['164.90.167.98', `${localhostUrl}`],
   },
   async headers() {
     return [
@@ -26,9 +31,9 @@ const nextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'https://gadgetgrid.ro', 
+            value: `${localhostUrl}`,
           },
-          
+
         ],
       },
     ];

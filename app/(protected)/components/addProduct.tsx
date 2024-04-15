@@ -2,6 +2,7 @@
 
 import InputFile from "@/app/(products)/components/inputFile";
 import { addProductsStock } from "@/app/types";
+import localhostUrl from "@/nodeEnv";
 import { faCircleCheck, faCircleExclamation, faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useState } from "react";
@@ -71,7 +72,7 @@ export const AddProduct = () => {
                 formDataToSend.append('file', file);
             });
 
-            const res = await fetch('https://gadgetgrid.ro/api/addProductStock', {
+            const res = await fetch(`${localhostUrl}/api/addProductStock`, {
                 method: 'POST',
                 body: formDataToSend,
             });

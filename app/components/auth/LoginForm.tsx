@@ -8,6 +8,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import Link from "next/link";
 import "../components.css";
+import localhostUrl from "@/nodeEnv";
 
 export default function LoginForm() {
 
@@ -27,7 +28,7 @@ export default function LoginForm() {
     e.preventDefault();
 
     try {
-      const res = await fetch('https://gadgetgrid.ro/api/signIn', {
+      const res = await fetch(`${localhostUrl}/api/signIn`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

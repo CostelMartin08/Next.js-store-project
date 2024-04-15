@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import '../components.css';
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import localhostUrl from "@/nodeEnv";
 
 export default function RegisterForm() {
 
@@ -36,7 +36,7 @@ export default function RegisterForm() {
         }
 
         try {
-            const res = await fetch('https://gadgetgrid.ro/api/userExist', {
+            const res = await fetch(`${localhostUrl}/api/userExist`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -52,7 +52,7 @@ export default function RegisterForm() {
 
             } else {
 
-                const res = await fetch('https://gadgetgrid.ro/api/register', {
+                const res = await fetch(`${localhostUrl}/api/register`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json"

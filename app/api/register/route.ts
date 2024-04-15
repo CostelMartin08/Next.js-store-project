@@ -13,9 +13,10 @@ interface UserCredentials {
     password: string;
 }
 
-export async function POST(req: NextRequest) {
-    
-    const { name, email, password } = req.body as unknown as UserCredentials;
+export async function POST(req: any) {
+
+    let { name, email, password } = await req.json() as { name: string, email: string, password: string };
+
 
     try {
 

@@ -3,6 +3,7 @@ import React, { useState, ChangeEvent, MouseEventHandler, useEffect } from "reac
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileImage, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import localhostUrl from "@/nodeEnv";
 
 interface StatusProductProps {
 
@@ -86,7 +87,7 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
         formData.append('id', product.id);
         formData.append('name', nameProduct);
 
-        const res = await fetch('https://gadgetgrid.ro/api/upload/uploadProductPhoto', {
+        const res = await fetch(`${localhostUrl}/api/upload/uploadProductPhoto`, {
             method: 'POST',
             body: formData,
         });
