@@ -1,3 +1,5 @@
+import localhostUrl from "./nodeEnv";
+
 export const publicRoutes = [
 
     "/",
@@ -19,4 +21,4 @@ export const authRoutes = [
 
 export const apiAuthPrefix = "/api/";
 
-export const DEFAULT_LOGIN_REDIRECT = "/";
+export const DEFAULT_LOGIN_REDIRECT = `${localhostUrl}`;
