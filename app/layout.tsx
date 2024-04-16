@@ -9,6 +9,7 @@ import { AppWrapper } from './context';
 import "./globals.css";
 import Head from 'next/head';
 import Link from 'next/link';
+import Footer from './components/top&bottom/Footer';
 
 
 const lato = Lato({
@@ -49,6 +50,7 @@ export default async function RootLayout({
           <AppWrapper>
 
             {children}
+            <Footer/>
 
           </AppWrapper>
         </body>

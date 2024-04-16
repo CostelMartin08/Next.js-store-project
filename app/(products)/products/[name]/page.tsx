@@ -104,6 +104,7 @@ const ProductPage = () => {
     };
 
     return (
+        
 
         <section className="container setappend mx-auto text-md text-white">
 

@@ -27,7 +27,7 @@ export const MyOrders = () => {
 
 
     return (
-        <section className="container flex items-center flex-col">
+        <section className="container flex items-center flex-col pb-10">
 
             <OrderTable orders={orders} />
 

@@ -1,42 +1,6 @@
 
 
 /* -------------------------------------------------------------------------- */
-/*                                   Banner                                   */
-/* -------------------------------------------------------------------------- */
-
-
-.banner-section {
-
-  height: 65dvh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.product-banner {
-  padding: 50px;
-  color: white;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  gap: 28px;
-  height: 50dvh;
-  width: 100dvw;
-  background: linear-gradient(to bottom, theme('colors.orange') 20%, theme('colors.grayishBlue') 60%);
-}
-
-.banner-button {
-  border-radius: 25px;
-  background-color: white;
-  color: black;
-  height: 50px;
-  width: 220px;
-}
-
-
-
-/* -------------------------------------------------------------------------- */
 /*                                 LOGIN FORM                                 */
 /* -------------------------------------------------------------------------- */
 
