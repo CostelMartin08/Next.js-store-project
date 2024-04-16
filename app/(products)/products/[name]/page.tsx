@@ -104,7 +104,7 @@ const ProductPage = () => {
     };
 
     return (
-        
+
 
         <section className="container setappend mx-auto text-md text-white">
 
@@ -115,7 +115,7 @@ const ProductPage = () => {
                     <PhotoProduct data={data} />
 
                     <div className="grid grid-row-5 gap-3 mt-10 lg:mt-0  content-between xl:content-evenly">
-                     
+
                         {
                             error &&
                             <>
@@ -139,9 +139,8 @@ const ProductPage = () => {
                             <h2 className="font-lg text-black font-black text-2xl ">{data.name}</h2>
 
                             <p className="pt-2 text-left clr-gray">
-                                These low-profile sneakers are you perfect casual wear companion.
-                                Featuring a durable rubber sole, they`ll withstand everything the
-                                weather can offer.
+                                {data.description}
+
                             </p>
 
                         </div>
@@ -149,22 +148,27 @@ const ProductPage = () => {
                         <div className="space-y-5 ms-3">
 
                             <div className="flex space-x-5 items-center relative">
+                                {data.discount > 0 ?
+                                    <span className="text-black font-black">${data.discountPrice}</span>
+                                    :
+                                    <span className="text-black font-black">${data.price}</span>
+                                }
 
-                                <span className="text-black">${data.price}</span>
                                 {data?.stock == 0 &&
                                     <div className='bg-black px-4 p-2 rounded-lg'>
                                         <span className=''>Sold out</span>
                                     </div>}
-                                {data.discountPrice > 0 &&
+
+                                {data.discountPrice > 0 && data.stock > 0 &&
                                     <div className='bg-red-500  p-2 rounded-lg'>
-                                        <span className=' '>-26%</span>
+                                        <span className=' '>{data.discount}%</span>
                                     </div>}
                             </div>
-
-                            <div>
-                                <span className="font-md clr-gray line-through">$250.00</span>
-                            </div>
-
+                            {data.discount > 0 ?
+                                <div>
+                                    <span className="clr-gray line-through">${data.price}</span>
+                                </div>
+                                : null}
                         </div>
 
                         <div className="flex">

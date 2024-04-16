@@ -69,7 +69,11 @@ const ShoppingCart = () => {
         let total = 0;
 
         for (let i = 0; i < data.length; i++) {
-            total += data[i].price;
+            if (data[i].discount > 0) {
+                total += data[i].discountPrice * data[i].count;
+            } else {
+                total += data[i].price * data[i].count;
+            }
         }
 
         return total;
@@ -202,7 +206,7 @@ const ShoppingCart = () => {
                                 data.map((element, index,) => (
 
                                     <div
-                                        className="w-3/4 mx-auto  py-5 flex items-center justify-between"
+                                        className="w-4/4 md:w-3/4 mx-auto  py-5 flex items-center justify-between"
                                         key={index}>
 
                                         <div className="flex items-center space-x-3">
@@ -213,16 +217,19 @@ const ShoppingCart = () => {
                                                 src={`/products/${element.category}/${element.id}/${element.photo[0]}`}
                                                 alt={element.name}>
                                             </Image>
-                                            <h3 className="text-[13px] md:text-[15px] w-26 text-wrap ">{element.name}</h3>
+                                            <h3 className="mx-3 text-sm truncate w-40 md:w-44">{element.name}</h3>
                                         </div>
-                                        <span className="text-[14px]">{element.price} $</span>
-
+                                        {element.discount > 0 ?
+                                            <span className="text-sm w-12 font-bold">{element.discountPrice} $</span>
+                                            :
+                                            <span className="text-sm w-12 font-bold">{element.price} $</span>
+                                        }
                                     </div>
                                 ))
 
                             }
 
-                            <div className="w-3/4 mx-auto  flex flex-col justify-start space-y-3">
+                            <div className="w-4/4 md:w-3/4 mx-auto  flex flex-col justify-start space-y-3">
                                 <span>
                                     Transport: 10$
                                 </span>

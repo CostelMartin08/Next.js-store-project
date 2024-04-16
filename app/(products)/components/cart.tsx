@@ -18,11 +18,19 @@ const Cart = (props: Props) => {
     const { setState } = useAppContext();
 
     const increment = (stock: number, id: string): void => {
+
         props.setData(prevData => {
+
             const updatedData = prevData.map(item => {
                 if (item.id === id) {
                     if (item.count < stock) {
-                        return { ...item, count: item.count + 1, price: item.countPrice + item.price };
+                        if (item.discount > 0) {
+
+                            return { ...item, count: item.count + 1, price: item.price + item.discountPrice };
+                        } else {
+
+                            return { ...item, count: item.count + 1, price: item.price };
+                        }
                     } else {
                         return item;
                     }
@@ -36,12 +44,21 @@ const Cart = (props: Props) => {
         });
     };
 
+
     const decrement = (id: string): void => {
+
         props.setData(prevData => {
+
             const updatedData = prevData.map(item => {
                 if (item.id === id) {
                     if (item.count > 1) {
-                        return { ...item, count: item.count - 1, price: item.price - item.countPrice };
+                        if (item.discount > 0) {
+
+                            return { ...item, count: item.count - 1, price: item.price - item.discountPrice };
+                        } else {
+
+                            return { ...item, count: item.count - 1, price: item.price };
+                        }
                     } else {
                         return item;
                     }
@@ -54,16 +71,22 @@ const Cart = (props: Props) => {
             return updatedData;
         });
     };
+
 
     const calculateTotal = (): number => {
         let total = 0;
 
         for (let i = 0; i < props.data.length; i++) {
-            total += props.data[i].price;
+            if (props.data[i].discount > 0) {
+                total += props.data[i].discountPrice * props.data[i].count;
+            } else {
+                total += props.data[i].price * props.data[i].count;
+            }
         }
 
         return total;
     };
+
 
     const deleteItem = (id: string) => {
         props.setData(prevData => {
@@ -111,7 +134,7 @@ const Cart = (props: Props) => {
 
                                             </Image>
 
-                                            <h3 className="mx-3 overflow-hidden">{element.name}</h3>
+                                            <h3 className="mx-3 text-xs truncate w-16 md:w-28 lg:w-40">{element.name}</h3>
                                         </td>
 
                                         <td className="basis-1/4 sm:basis-1/3 flex flex-col justify-center items-center">
@@ -153,9 +176,10 @@ const Cart = (props: Props) => {
                                         </td>
 
                                         <td className="basis-1/4 sm:basis-1/3 flex items-center justify-end">
-
-                                            <p className="mx-2">{element.price}$</p>
-
+                                            {element.discount > 0 ?
+                                                <p className="mx-2">{element.discountPrice}$</p>
+                                                : <p className="mx-2">{element.price}$</p>
+                                            }
                                         </td>
                                     </tr>
 
