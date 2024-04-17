@@ -4,37 +4,44 @@ import { useEffect, useState } from "react";
 import { ProductData } from "../(products)/components/product";
 import { getAllProductsInAllCategories } from "../actions/products";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function BestPrice() {
+export default function FreshIn() {
 
     const [data, setData] = useState<ProductData[]>([])
 
     useEffect(() => {
-
-
         getAllProductsInAllCategories()
             .then((res) => {
-
                 if (res.success) {
-                    let productsWithDiscount = res.success.filter((element) => element.discountPrice > 0 && element.stock > 0);
-                    setData(productsWithDiscount as unknown as ProductData[]);
+                    let productsWithDiscount = res.success;
+    
+                   
+                    productsWithDiscount.sort((a, b) => {
+                        const dateA= new Date(a.date) as any;
+                        const dateB = new Date(b.date) as any;
+                        return dateB - dateA;
+                    });
+    
+                   
+                    let recentProducts = productsWithDiscount.slice(0, 6);
+    
+                    setData(recentProducts as unknown as ProductData[]);
                 }
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error);
             });
-
-
-    },[]);
-
+    }, []);
+    
+    
 
     return (
 
         <section className="container mb-5">
 
-            <h6 className="text-3xl font-black my-5">Products at a great price</h6>
+            <h6 className="text-3xl font-black my-5">Fresh In</h6>
 
             <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 md:gap-4 '>
 
@@ -56,7 +63,7 @@ export default function BestPrice() {
                                         </div>
                                     }
 
-                                    {product.discount > 0 &&
+                                    {product.discount > 0 && product.stock > 0 &&
 
                                         <div className='absolute flex w-12 rounded-lg p-1 items-center justify-center  bg-red-500 text-white'>
                                             <span className='text-xs p-1 font-bold'>{product.discount}%</span>
@@ -105,6 +112,6 @@ export default function BestPrice() {
 
         </section>
 
-    )
 
+    )
 }

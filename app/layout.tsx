@@ -39,12 +39,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
 
       <html lang="en">
-        <Head>
-          <Link
-            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
+      
         <body  className={lato.className} >
           
           <AppWrapper>
