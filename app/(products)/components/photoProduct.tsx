@@ -38,23 +38,23 @@ const PhotoProduct: React.FC<any> = (props) => {
 
             <div className="w-3/5">
                 {items.map((item, index) => (
-                    <Image
+                    <img
                         width={900}
                         height={900}
                         style={{ cursor: 'pointer', maxWidth: '100%' }}
                         key={index}
-                        src={`/products/${item.category}/${item.id}/${item.src}`}
+                        src={`/images/${item.category}/${item.id}/${item.src}`}
                         alt={item.title}
-                    ></Image>
+                    ></img>
                 ))}
             </div>
 
             <div className="w-3/5 flex gap-5 justify-center mx-auto">
       
-                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[1]}`} alt="work" /></div>
-                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[2]}`} alt="work" /></div>
-                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[3]}`} alt="work" /></div>
-                <div className="w-1/4 "><Image width={80} height={80} className="rounded" src={`/products/${param}/${props.data.id}/${props.data.photo[4]}`} alt="work" /></div>
+                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[1]}`} alt="work" /></div>
+                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[2]}`} alt="work" /></div>
+                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[3]}`} alt="work" /></div>
+                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[4]}`} alt="work" /></div>
             </div>
 
         </section>
