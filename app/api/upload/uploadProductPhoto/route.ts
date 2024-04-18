@@ -1,3 +1,5 @@
+'use server'
+
 import { modifyNameAndPhotoById } from "@/app/data/products";
 import { writeFile } from "fs/promises";
 
@@ -41,6 +43,8 @@ export async function POST(req: NextRequest) {
             const imageFilePath = join(path, element.name);
 
             await writeFile(imageFilePath, buffer);
+
+          
         }
 
     }));

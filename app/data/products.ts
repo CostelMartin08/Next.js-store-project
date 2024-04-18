@@ -512,6 +512,18 @@ export const addProduct = async (props: allValues) => {
 
         let add;
 
+        const MAX_PHOTOS = 5;
+        let photoArray: string[] = [];
+
+        if (props?.files) {
+            photoArray = props.files.map((element: File) => element.name);
+        }
+        while (photoArray.length < MAX_PHOTOS) {
+            photoArray.push("");
+        }
+
+        const photo: string[] = photoArray.slice(0, MAX_PHOTOS);
+
         switch (props.collection) {
             case 'laptops':
                 add = db.laptops.create({
@@ -521,7 +533,7 @@ export const addProduct = async (props: allValues) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File) => element.name),
+                        photo: photo,
                         discount: props?.discount,
                         unitsSold: props?.unitsSold,
                         status: props?.status,
@@ -530,6 +542,7 @@ export const addProduct = async (props: allValues) => {
                 })
                 break;
             case 'tablets':
+
                 add = db.tablets.create({
                     data: {
                         name: props.productName,
@@ -537,7 +550,7 @@ export const addProduct = async (props: allValues) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File) => element.name),
+                        photo: photo,
                         discount: props?.discount,
                         unitsSold: props?.unitsSold,
                         status: props?.status,
@@ -553,7 +566,7 @@ export const addProduct = async (props: allValues) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File) => element.name),
+                        photo: photo,
                         discount: props?.discount,
                         unitsSold: props?.unitsSold,
                         status: props?.status,
@@ -569,7 +582,7 @@ export const addProduct = async (props: allValues) => {
                         price: props.price as number,
                         discountPrice: props.discountPrice as number,
                         description: props.description as string,
-                        photo: props?.files.map((element: File) => element.name),
+                        photo: photo,
                         discount: props?.discount,
                         unitsSold: props?.unitsSold,
                         status: props?.status,
@@ -579,7 +592,6 @@ export const addProduct = async (props: allValues) => {
                 break;
             default:
                 throw new Error(`This category don't exist.`);
-
         }
 
         return add;

@@ -79,12 +79,11 @@ async function saveImage(productFormData: addProductsStock, idProduct: string) {
 
         try {
 
-            await writeFile(imageFilePath, buffer);
+            await  writeFile(imageFilePath, buffer);
 
+            console.log(`File ${file.name} has been saved successfully.`);
         } catch (error) {
-
-            return error;
-        }
+            console.error(`Error saving file ${file.name}: ${error}`);
     }
 
-}
+}}
