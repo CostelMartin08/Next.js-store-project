@@ -51,14 +51,14 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     </div>
                                 }
 
-                                <Image
+                                <img
                                     width={400}
                                     height={200}
                                     className='object-contain size-full p-1 '
                                     src={`/images/${props.category}/${product.id}/${product.photo[0]}`}
                                     alt={product.name}>
 
-                                </Image>
+                                </img>
 
                             </section>
 
