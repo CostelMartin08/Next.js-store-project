@@ -2,12 +2,11 @@
 
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        hostname: `https://gadgetgrid.ro`,
-
-      },
-    ],
+   
+      protocol: 'http',
+      hostname: 'gadgetgrid.ro',
+      pathname: '/images/**',
+    
   },
   typescript: {
 
