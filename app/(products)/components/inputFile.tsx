@@ -8,9 +8,6 @@ interface Set {
 
 const InputFile: React.FC<Set> = (props) => {
 
-console.log(props.data[0]);
-
-
     return (
 
         <section className='p-2'>

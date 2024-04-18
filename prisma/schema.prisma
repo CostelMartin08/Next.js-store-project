@@ -127,7 +127,7 @@ model Smartphones {
   date          DateTime
 }
 
-model TV {
+model Smartwatches {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   photo         String[]

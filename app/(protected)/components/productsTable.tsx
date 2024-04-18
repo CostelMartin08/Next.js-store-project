@@ -46,15 +46,15 @@ export const ProductsTable = () => {
 
 
 
-                <tr className='flex'>
+                <tr className='flex text-[10px] md:text-base'>
 
                     <th className="w-4/12" scope="col">Product</th>
                     <th className="w-2/12" scope="col">Status</th>
-                    <th className="w-2/12" scope="col">Inventory</th>
-                    <th className="w-1/12 " scope="col">Units Sold</th>
+                    <th className="w-1/12 md:w-2/12 truncate" scope="col">Inventory</th>
+                    <th className="w-1/12 truncate" scope="col">Units Sold</th>
                     <th className="w-1/12 " scope="col">Stock</th>
                     <th className="w-1/12 " scope="col">Price</th>
-                    <th className="w-1/12 " scope="col">Discount Price</th>
+                    <th className="w-2/12 md:w-1/12 " scope="col">Discount Price</th>
                 </tr>
 
             </thead>
@@ -95,16 +95,17 @@ const ProductData: React.FC<ProductRowProps> = ({reload, setReload, product, ind
             <StatusProduct data={{ product, index }} />
 
         </th>
-        <th className="w-2/12">
+        <th className="w-1/12 md:w-2/12">
 
-            <div className="h-24 w-full  flex items-center justify-center" key={index}>
-                <span>{product.category}</span>
+            <div className="h-24 w-full text-[10px]  md:text-base  flex items-center justify-center" key={index}>
+                <span className="hidden md:block">{product.category}</span>
+                <span className="md:hidden">{product.category.charAt(0)}</span>
             </div>
 
         </th>
         <th className="w-1/12">
             <div className="flex h-24 items-center justify-center">
-                <p className="">{product.unitsSold}</p>
+                <p className="text-[10px] md:text-base">{product.unitsSold}</p>
             </div>
         </th>
         <th className="w-1/12 relative">

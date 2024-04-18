@@ -49,10 +49,10 @@ export const StockProduct: React.FC<StatusProductProps> = ({ data }) => {
     return (
         <>
 
-            <form onSubmit={handleSubmit} className="flex gap-2 h-24 items-center gap-1 justify-center " key={index}>
+            <form onSubmit={handleSubmit} className="flex md:gap-2 h-24 items-center  justify-center " key={index}>
 
                 <input
-                    className="w-8 text-center bg-transparent cursor-pointer"
+                    className="w-8 text-center bg-transparent text-[10px] md:text-base cursor-pointer"
                     type="number"
                     min={0}
                     max={50}

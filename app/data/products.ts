@@ -8,13 +8,13 @@ export const getAllProductsInAllCategoriesFn = async () => {
         const laptops = await db.laptops.findMany();
         const tablets = await db.tablets.findMany();
         const smartphones = await db.smartphones.findMany();
-        const tV = await db.tV.findMany();
+        const smartwatches = await db.smartwatches.findMany();
 
         const allProducts = [
             ...laptops.map(product => ({ ...product, category: 'laptops' })),
             ...tablets.map(product => ({ ...product, category: 'tablets' })),
             ...smartphones.map(product => ({ ...product, category: 'smartphones' })),
-            ...tV.map(product => ({ ...product, category: 'tV' })),
+            ...smartwatches.map(product => ({ ...product, category: 'smartwatches' })),
         ];
 
         allProducts.sort((a, b) => {
@@ -45,8 +45,8 @@ export const getAllProducts = async (category: string): Promise<Product[]> => {
             case 'smartphones':
                 products = await db.smartphones.findMany();
                 break;
-            case 'tv':
-                products = await db.tV.findMany();
+            case 'smartwatches':
+                products = await db.smartwatches.findMany();
                 break;
             default:
                 throw new Error(`This ${category} don't exist.`);
@@ -85,8 +85,8 @@ export const getProductByName = async (category: string, name: string) => {
                     where: { name },
                 });
                 break;
-            case 'tv':
-                product = db.tV.findFirst({
+            case 'smartwatches':
+                product = db.smartwatches.findFirst({
                     where: { name },
                 });
                 break;
@@ -124,8 +124,8 @@ export const getProductById = async (category: string, id: string) => {
                     where: { id },
                 });
                 break;
-            case 'tv':
-                product = db.tV.findFirst({
+            case 'smartwatches':
+                product = db.smartwatches.findFirst({
                     where: { id },
                 });
                 break;
@@ -186,13 +186,13 @@ export const getProductsByIdAndChangeStatus = async (category: string, id: strin
                     });
                 }
                 break;
-            case 'tV':
-                product = await db.tV.findFirst({
+            case 'smartwatches':
+                product = await db.smartwatches.findFirst({
                     where: { id },
                 });
                 if (product) {
 
-                    await db.tV.update({
+                    await db.smartwatches.update({
                         where: { id },
                         data: { status: status },
                     });
@@ -252,13 +252,13 @@ export const getProductsByIdAndChangeStock = async (category: string, id: string
                     });
                 }
                 break;
-            case 'tV':
-                product = await db.tV.findFirst({
+            case 'smartwatches':
+                product = await db.smartwatches.findFirst({
                     where: { id },
                 });
                 if (product) {
 
-                    await db.tV.update({
+                    await db.smartwatches.update({
                         where: { id },
                         data: { stock: stock },
                     });
@@ -315,12 +315,12 @@ export const createDiscountById = async (category: string, id: string, discountP
                     });
                 }
                 break;
-            case 'tV':
-                product = await db.tV.findFirst({
+            case 'smartwatches':
+                product = await db.smartwatches.findFirst({
                     where: { id },
                 });
                 if (product) {
-                    await db.tV.update({
+                    await db.smartwatches.update({
                         where: { id },
                         data: { discountPrice: discountPrice, discount: discount },
                     });
@@ -384,15 +384,15 @@ export const decrementStockById = async (category: string, id: string, count: nu
                     });
                 }
                 break;
-            case 'tv':
-                product = await db.tV.findFirst({
+            case 'smartwatches':
+                product = await db.smartwatches.findFirst({
                     where: { id },
                 });
                 if (product) {
                     let currentStock = stock;
                     let newStock = currentStock - count;
                     let sold = unitsSold + count;
-                    await db.tV.update({
+                    await db.smartwatches.update({
                         where: { id },
                         data: { stock: newStock, unitsSold: sold },
                     });
@@ -475,9 +475,9 @@ export const modifyNameAndPhotoById = async (
                 });
 
                 break;
-            case 'tV':
+            case 'smartwatches':
 
-                await db.tV.update({
+                await db.smartwatches.update({
                     where: {
                         id: id,
                     },
@@ -561,8 +561,8 @@ export const addProduct = async (props: allValues) => {
                     }
                 })
                 break;
-            case 'tv':
-                add = db.tV.create({
+            case 'smartwatches':
+                add = db.smartwatches.create({
                     data: {
                         name: props.productName,
                         stock: props.stock as number,

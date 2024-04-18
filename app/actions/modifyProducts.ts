@@ -1,6 +1,6 @@
 'use server'
 
-import { getProductsByIdAndChangeStatus, getProductsByIdAndChangeStock, createDiscountById, modifyNameAndPhotoById } from "../data/products"
+import { getProductsByIdAndChangeStatus, getProductsByIdAndChangeStock, createDiscountById} from "../data/products"
 import { ProductsStock } from "../types"
 
 

@@ -43,19 +43,19 @@ const ToggleSwitch = () => {
 
                     </div>
 
-                    <ul className="text-xl xl:text-2xl space-y-5">
+                    <ul className="h-80 font-lg space-y-5 text-2xl md:text-3xl">
                         <li><Link onClick={() => toggleMenu()} href='/collections/category?category=laptops'>Laptop</Link></li>
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=tablets'>Tablet</Link></li>
-                        <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=smartphones'>Smartphone</Link></li>
-                        <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=tv'>TV</Link></li>
+                        <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=smartphones'>Smartphones</Link></li>
+                        <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=smartwatches'>Smartwatches</Link></li>
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=contact'>Contact</Link></li>
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=story'>Us Story</Link></li>
                     </ul>
 
                     <div className="text-[25px] space-x-5 py-5">
 
-                        <FontAwesomeIcon icon={faFacebook} />
-                        <FontAwesomeIcon icon={faInstagram} />
+                        <a href='https://www.facebook.com/costel.martinescu.7/'> <FontAwesomeIcon icon={faFacebook} /></a>
+                        <a href='https://www.instagram.com/costelmartinescu/'> <FontAwesomeIcon icon={faInstagram} /></a>
                         <FontAwesomeIcon icon={faXTwitter} />
                         <FontAwesomeIcon icon={faEnvelope} />
 

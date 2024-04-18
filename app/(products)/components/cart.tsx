@@ -1,3 +1,4 @@
+'use client'
 
 import Image from "next/image";
 import { faMinus } from "@fortawesome/free-solid-svg-icons/faMinus";
@@ -6,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartProduct } from "@/app/types";
 import { faCartShopping, faForward } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "@/app/context";
+import Link from "next/link";
+
 
 interface Props {
     data: CartProduct[];
@@ -232,9 +235,9 @@ const Cart = (props: Props) => {
 
                     <p className="text-[16px] sm:text-[25px] text-center font-bold w-4/6">Your cart is empty!</p>
 
-                    <button className="text-[17px] sm:text-[20px] border p-2 sm:p-3 bg-indigo-800 rounded-md text-white w-4/6">
+                    <Link href='/' className="text-[17px] sm:text-[20px] border p-2 sm:p-3 bg-indigo-800 rounded-md text-white w-4/6">
                         Continue Shopping
-                    </button>
+                    </Link>
 
                 </div>
 

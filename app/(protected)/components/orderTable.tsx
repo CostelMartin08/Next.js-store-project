@@ -14,7 +14,7 @@ const OrderTable: React.FC<OrderTableProps> = ({ orders }) => {
     return (
         <table style={{ tableLayout: 'fixed', width: '90%' }} className="table-auto text-sm md:text-base">
 
-            <caption className="text-3xl text-center font-black py-8">
+            <caption className="text-3xl text-center font-black pt-8">
                 Order List
             </caption>
 

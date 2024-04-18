@@ -49,13 +49,13 @@ export default function Header() {
 
         </div>
 
-        <ul className="text-lg w-2/4 hidden lg:flex space-x-4 justify-center items-center clr-gray text-lg xl:text-xl">
+        <ul className="text-lg xl:text-xl w-3/4 hidden lg:flex lg:space-x-3 xl:space-x-4 justify-center items-center">
           <Link href='/collections/category?category=laptops'>Laptop</Link>
           <Link href='/collections/category?category=tablets'>Tablet</Link>
           <Link href='/collections/category?category=smartphones'>Smartphone</Link>
-          <Link href='/collections/category?category=tv'>TV</Link>
+          <Link href='/collections/category?category=smartwatches'>Smartwatches</Link>
           <Link href='/collections/category?category=contact'>Contact</Link>
-          <Link href='/collections/category?category=story'>Us Story</Link>
+          <Link className="truncate" href='/collections/category?category=story'>Us Story</Link>
         </ul>
 
         <div className="flex w-1/4 space-x-4 justify-end items-center">

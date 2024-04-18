@@ -42,11 +42,17 @@ export const StatusProduct: React.FC<StatusProductProps> = ({ data }) => {
                 {loading ? (
                     <LoadingModify />
                 ) : (
-                    <div className="space-x-2">
+                    <div className="md:space-x-2 flex flex-col md:flex-row items-center">
                         {state ? (
-                            <span className="p-2 rounded bg-green-300">Active</span>
+                            <>
+                                <span className="p-2 hidden md:block rounded bg-green-300">Active</span>
+                                <span className="block md:hidden size-3  bg-green-300 rounded-full"></span>
+                            </>
                         ) : (
-                            <span className="p-2 rounded bg-red-300">Disabled</span>
+                            <>
+                                <span className="p-2 hidden md:block rounded bg-red-300">Disabled</span>
+                                <span className="block md:hidden size-3  bg-red-300 rounded-full"></span>
+                            </>
                         )}
                         <FontAwesomeIcon
                             onClick={handleClick}

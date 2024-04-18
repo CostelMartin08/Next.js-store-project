@@ -111,13 +111,13 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
             <div onClick={handleClick} className="flex justify-left gap-3 items-center h-full hover:bg-slate-200 cursor-pointer">
                 <span>{index}.</span>
                 <Image
-                    className="p-1 border-2 rounded"
+                    className="md:p-1 border-2 rounded"
                     src={`/products/${product.category}/${product.id}/${product.photo[0]}`}
                     alt={product.name}
                     height={40}
                     width={40}
                 />
-                <p className="text-left">{product.name}</p>
+                <p className="text-left truncate">{product.name}</p>
             </div>
 
             {state && (

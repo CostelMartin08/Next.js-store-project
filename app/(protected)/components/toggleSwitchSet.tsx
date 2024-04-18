@@ -46,21 +46,20 @@ const ToggleSwitch = () => {
 
                     </div>
 
-                    <ul className="h-80 font-lg space-y-4">
+                    <ul className="h-80 font-lg space-y-10 text-2xl md:text-3xl">
 
 
-                        <li><Link href="/settings">Settings</Link></li>
-                        <li><Link href="/myOrders">My Orders</Link></li>
-                        {user?.role === "ADMIN" && <li><Link href="/admin">Store Management</Link></li>}
+                        <li onClick={() => toggleMenu()}><Link href="/settings">Settings</Link></li>
+                        <li onClick={() => toggleMenu()}><Link href="/myOrders">My Orders</Link></li>
+                        {user?.role === "ADMIN" && <li onClick={() => toggleMenu()}><Link href="/admin">Store Management</Link></li>}
                     </ul>
 
                     <div className="text-[25px] space-x-5">
 
-                        <FontAwesomeIcon icon={faFacebook} />
-                        <FontAwesomeIcon icon={faInstagram} />
+                        <a href='https://www.facebook.com/costel.martinescu.7/'> <FontAwesomeIcon icon={faFacebook} /></a>
+                        <a href='https://www.instagram.com/costelmartinescu/'> <FontAwesomeIcon icon={faInstagram} /></a>
                         <FontAwesomeIcon icon={faXTwitter} />
                         <FontAwesomeIcon icon={faEnvelope} />
-
 
                     </div>
 

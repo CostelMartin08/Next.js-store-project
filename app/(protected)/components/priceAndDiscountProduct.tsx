@@ -70,10 +70,10 @@ export const PriceAndDiscount: React.FC<StatusProductProps> = ({ data }) => {
         <>
             <th className="w-1/12">
                 <div className="flex h-24 items-center justify-center">
-                    <p className="">{product.price}$</p>
+                    <p className="text-[10px] md:text-base">{product.price}$</p>
                 </div>
             </th>
-            <th className="w-1/12 relative p-1" >
+            <th className="w-2/12 md:w-1/12 relative" >
                 <form
                     onSubmit={handleSubmit}
                     className={`${!visible ? 'gap-1' : 'gap-3'} flex h-24 items-center justify-center`}>
@@ -85,8 +85,8 @@ export const PriceAndDiscount: React.FC<StatusProductProps> = ({ data }) => {
                         value={state}
                         onChange={handleChange}
                         type="number"
-                        className="w-[2.3rem] text-center bg-transparent" />
-                    {!visible && <span>$</span>}
+                        className="w-[1.3rem] md:w-[2.3rem] text-center text-[10px] md:text-base bg-transparent" />
+                    {!visible && <span className="text-[10px] md:text-base">$</span>}
                     {
                         visible &&
                         <button className=" text-sm bg-green-100 rounded-lg" type="submit">
@@ -103,7 +103,7 @@ export const PriceAndDiscount: React.FC<StatusProductProps> = ({ data }) => {
                     feedback &&
                     <p
                         style={{ bottom: '8px', left: '50%', transform: 'translateX(-50%)' }}
-                        className="w-max absolute p-1 rounded  bg-green-100 text-[10px]"
+                        className="w-8 md:w-max absolute p-1 rounded  bg-green-100 text-[0.3rem] md:text-[10px]"
                     >Discount created!
                     </p>
                 }

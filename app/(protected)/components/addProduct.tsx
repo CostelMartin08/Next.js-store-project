@@ -172,7 +172,7 @@ export const AddProduct = () => {
                                     <option value="laptops">Laptops</option>
                                     <option value="tablets">Tablets</option>
                                     <option value="smartphones">Smartphones</option>
-                                    <option value="tv">TV</option>
+                                    <option value="smartwatches">Smartwatches</option>
 
                                 </select>
                             </div>
