@@ -106,7 +106,7 @@ const ProductPage = () => {
     return (
 
 
-        <section className="container setappend mx-auto text-md text-white">
+        <section className="container setappend mx-auto py-6 text-white">
 
             {data && (
 
@@ -136,7 +136,7 @@ const ProductPage = () => {
                         <div className="space-y-4 lg:w-3/4">
 
 
-                            <h2 className="font-lg text-black font-black text-2xl ">{data.name}</h2>
+                            <h2 className="font-lg lg:font-xl text-black font-black text-2xl ">{data.name}</h2>
 
                             <p className="pt-2 text-left clr-gray">
                                 {data.description}
@@ -151,7 +151,7 @@ const ProductPage = () => {
                                 {data.discount > 0 ?
                                     <span className="text-black font-black">${data.discountPrice}</span>
                                     :
-                                    <span className="text-black font-black">${data.price}</span>
+                                    <span className="text-black text-lg font-black">${data.price}</span>
                                 }
 
                                 {data?.stock == 0 &&
@@ -160,8 +160,8 @@ const ProductPage = () => {
                                     </div>}
 
                                 {data.discountPrice > 0 && data.stock > 0 &&
-                                    <div className='bg-red-500  p-2 rounded-lg'>
-                                        <span className=' '>{data.discount}%</span>
+                                    <div className='bg-red-500 p-2 rounded-lg'>
+                                        <span className='px-5'>{data.discount}%</span>
                                     </div>}
                             </div>
                             {data.discount > 0 ?

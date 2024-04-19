@@ -1,20 +1,37 @@
-
 .input-drag {
-    max-width: 190px;
-    display: none;
-  }
-  
-  .labelFile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 250px;
-    height: 190px;
-    border: 2px dashed #ccc;
-    align-items: center;
-    text-align: center;
-    padding: 5px;
-    color: #404040;
-    cursor: pointer;
-  }
-  
+  max-width: 190px;
+  display: none;
+}
+
+.labelFile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 250px;
+  height: 190px;
+  border: 2px dashed #ccc;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  color: #404040;
+  cursor: pointer;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                photoProduct                                */
+/* -------------------------------------------------------------------------- */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+}
+
+.grid-item {
+  padding: auto;
+}
+
+.first-item {
+  grid-column: 1 / span 4;
+}

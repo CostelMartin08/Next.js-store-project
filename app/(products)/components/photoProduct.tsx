@@ -1,61 +1,75 @@
 'use client'
 
 import { useSearchParams } from "next/navigation";
-import Image from "next/image";
-//import PhotoViewer from 'photoviewer';
+import { Key, SetStateAction, useCallback, useState } from "react";
 
+import ImageViewer from 'react-simple-image-viewer';
 
+import './components.css';
 
 const PhotoProduct: React.FC<any> = (props) => {
 
-    const searchParams = useSearchParams()
+
+    const [currentImage, setCurrentImage] = useState(0);
+    const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+    const searchParams = useSearchParams();
 
     const param = searchParams.get('q1')
 
-    const items = [
-        {
-            src: props.data?.photo[0],
-            category: param,
-            id: props.data?.id,
-            title: props.data?.title
-        }
-    ];
 
-    const openPhotoViewer = (index: number) => {
-        const options = {
-            index,
-            positionFixed: true,
-        }
+    const openImageViewer = useCallback((index: SetStateAction<number>) => {
+        setCurrentImage(index);
+        setIsViewerOpen(true);
+    }, []);
 
-        //new PhotoViewer(items, options);
 
-    }
+    const closeImageViewer = () => {
+        setCurrentImage(0);
+        setIsViewerOpen(false);
+    };
 
+    const baseURL = `https://gadgetgrid.ro/images/${param}/${props.data.id}/`;
+
+    const imageUrls = props.data.photo.map((fragment: string) => baseURL + fragment);
 
     return (
 
         <section className="flex flex-col justify-center items-center gap-8">
 
-            <div className="w-3/5">
-                {items.map((item, index) => (
-                    <img
-                        width={900}
-                        height={900}
-                        style={{ cursor: 'pointer', maxWidth: '100%' }}
-                        key={index}
-                        src={`/images/${item.category}/${item.id}/${item.src}`}
-                        alt={item.title}
-                    ></img>
-                ))}
-            </div>
 
-            <div className="w-3/5 flex gap-5 justify-center mx-auto">
-      
-                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[1]}`} alt="work" /></div>
-                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[2]}`} alt="work" /></div>
-                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[3]}`} alt="work" /></div>
-                <div className="w-1/4 "><img width={80} height={80} className="rounded" src={`/images/${param}/${props.data.id}/${props.data.photo[4]}`} alt="work" /></div>
+            <div className="grid-container">
+
+                {imageUrls.map((src: string | undefined, index: Key | null | undefined) => (
+
+                    <div className={index === 0 ? `first-item` : ''} key={index}>
+                        <img
+                        className="mx-auto"
+                            src={src}
+                            onClick={() => openImageViewer(index as any)}
+                            width={index === 0 ? 400 : 80}
+                            alt={`${index}`}
+                        />
+
+                    </div>
+
+                ))}
+
+
             </div>
+            {isViewerOpen && (
+                <ImageViewer
+                    src={imageUrls}
+                    currentIndex={currentImage}
+                    disableScroll={false}
+                    closeOnClickOutside={true}
+                    onClose={closeImageViewer}
+                    backgroundStyle={{
+                        backgroundColor: "#31363F",
+                    
+                      }}
+                />
+            )}
 
         </section>
 

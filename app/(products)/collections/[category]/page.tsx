@@ -71,7 +71,7 @@ const CategoryPage = () => {
                             <li>Product Type</li>
                             <li>Mark</li>
                             <li>Model</li>
-                            <li>Compatibility</li>
+                            <li>Type</li>
                         </ul>
 
                     </div>
