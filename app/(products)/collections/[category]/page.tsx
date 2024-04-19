@@ -2,7 +2,7 @@
 
 import { getProducts } from '@/app/actions/products';
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Product } from '@/app/types';
 
 import './products.css';
@@ -89,7 +89,9 @@ const CategoryPage = () => {
                             <p>{error}</p>
                         ) : data ? (
                             <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-2 sm:gap-4'>
-                                <OneProduct category={category || ""} data={data} />
+                           
+                                    <OneProduct category={category || ""} data={data} />
+                          
                             </div>
                         ) : (
                             <p className='text-lg'>There are no products listed in this category</p>
@@ -101,7 +103,7 @@ const CategoryPage = () => {
 
             </section>
 
-       
+
 
         </>
     )

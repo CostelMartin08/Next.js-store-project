@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 export interface ProductData {
@@ -23,7 +23,12 @@ interface ProductProps {
 
 const OneProduct: React.FC<ProductProps> = (props) => {
 
+    const [imageLoaded, setImageLoaded] = useState(false);
 
+    const handleImageLoad = () => {
+      setImageLoaded(true);
+    };
+  
 
     return (
         <>
@@ -55,9 +60,9 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     width={400}
                                     height={200}
                                     className='object-contain size-full p-1 '
-                                    src={`/images/${props.category}/${product.id}/${product.photo[0]}`}
-                                    alt={product.name}>
-
+                                    src={imageLoaded ? `/images/${props.category}/${product.id}/${product.photo[0]}` : '/appPhoto/loading.png'}
+                                    alt={product.name}
+                                    onLoad={handleImageLoad}>
                                 </img>
 
                             </section>
