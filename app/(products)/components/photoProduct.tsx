@@ -40,23 +40,23 @@ const PhotoProduct: React.FC<any> = (props) => {
 
             <div className="grid-container">
 
-                {imageUrls.map((src: string | undefined, index: Key | null | undefined) => (
+                {imageUrls.map((src: string | undefined, index: number) => (
 
-                    <div className={index === 0 ? `first-item` : ''} key={index}>
+                    <div className={index === 0 ? `first-item` : 'grid-item'} key={index}>
                         <img
-                        className="mx-auto"
+                            className="mx-auto"
                             src={src}
-                            onClick={() => openImageViewer(index as any)}
+                            onClick={() => openImageViewer(index)}
                             width={index === 0 ? 400 : 80}
                             alt={`${index}`}
                         />
-
                     </div>
 
                 ))}
 
-
             </div>
+
+
             {isViewerOpen && (
                 <ImageViewer
                     src={imageUrls}
@@ -66,8 +66,8 @@ const PhotoProduct: React.FC<any> = (props) => {
                     onClose={closeImageViewer}
                     backgroundStyle={{
                         backgroundColor: "#31363F",
-                    
-                      }}
+
+                    }}
                 />
             )}
 
