@@ -30,6 +30,10 @@
 
 .grid-item {
   margin: 25px 0px 15px 0px;
+  border: 1px solid rgb(231, 227, 227);
+  padding: 10px;
+  cursor: pointer;
+  
 }
 
 .first-item {

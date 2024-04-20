@@ -17,6 +17,7 @@ import { CartProduct } from '@/app/types';
 import { Product } from '@/app/types';
 import { useAppContext } from '@/app/context';
 import { useCurrentUser } from '@/hooks/use-current-user';
+import Loader from '@/app/components/Loader';
 
 
 const ProductPage = () => {
@@ -108,7 +109,7 @@ const ProductPage = () => {
 
         <section className="container setappend mx-auto py-6 text-white">
 
-            {data && (
+            {data ? (
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
 
@@ -196,7 +197,36 @@ const ProductPage = () => {
 
                 </div>
 
-            )}
+            )
+                :
+
+                <div className="grid grid-cols-1 p-5 pulse">
+
+                    <div className="flex flex-col md:flex-row justify-between bg-neutral-300 h-full pulse rounded-xl p-8 gap-4">
+
+                        <div className='w-full md:w-1/2 flex flex-col items-center '>
+
+                            <div className="bg-neutral-400/50 h-[250px] w-full md:w-[300px] md:h-[300px] lg:h-[400px] lg:w-[400px] pulse rounded-lg"></div>
+                            <div className='flex gap-5 py-5 px-5 w-full md:w-[300px] lg:w-[400px] justify-center'>
+                                <div className='bg-neutral-400/50  h-20 w-20 rounded-lg'></div>
+                                <div className='bg-neutral-400/50  h-20 w-20 rounded-lg'></div>
+                                <div className='bg-neutral-400/50  h-20 w-20 rounded-lg'></div>
+                                <div className='bg-neutral-400/50  h-20 w-20 rounded-lg'></div>
+                            </div>
+
+                        </div>
+
+                        <div className="md:w-1/2 flex  flex-col gap-6 md:gap-2 justify-between md:pb-10">
+
+                            <div className="bg-neutral-400/50 w-full h-12 pulse rounded-md"></div>
+                            <div className="bg-neutral-400/50 w-3/4 h-44 pulse rounded-md"></div>
+                            <div className="bg-neutral-400/50 w-1/5 h-12  pulse rounded-md"></div>
+                            <div className="bg-neutral-400/50 w-2/4 h-16 pulse rounded-md"></div>
+
+                        </div>
+                    </div>
+                </div>
+            }
 
         </section>
 
