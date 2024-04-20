@@ -19,15 +19,16 @@ export const reset = async (email: string) => {
 
     }
 
-
     const passwordResetToken = await generatePasswordResetToken(email);
-    await sendPasswordResetEmail(
+
+    const awaitConfirmation = await sendPasswordResetEmail(
         passwordResetToken.email,
         passwordResetToken.token,
     );
 
+    if (awaitConfirmation) {
 
-    return { success: 'Reset email send' };
-
+        return { success: 'Reset email send!' };
+    }
 
 }
