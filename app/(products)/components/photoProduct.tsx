@@ -1,16 +1,20 @@
 'use client'
 
 import { useSearchParams } from "next/navigation";
-import { Key, SetStateAction, useCallback, useState } from "react";
+import { SetStateAction, useCallback, useState } from "react";
 
-import ImageViewer from 'react-simple-image-viewer';
 
 import './components.css';
 
 import { ProductData } from "./product";
+import ReactSlick from "./react-slick";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
-interface Data {
+
+export interface Data {
     data: ProductData;
+    image?: number;
 }
 
 const PhotoProduct: React.FC<Data> = (props) => {
@@ -41,42 +45,62 @@ const PhotoProduct: React.FC<Data> = (props) => {
         .map((fragment: string) => baseURL + fragment)
 
 
+
+
     return (
 
-        <section className="flex flex-col justify-center items-center gap-8">
+        <section className="w-full">
+
+            {!isViewerOpen &&
+                <section className='grid grid-cols-1  xl:mx-10 gap-2 sm:gap-4'>
+
+                    <div className="flex flex-col justify-center items-center gap-8">
+
+                        <div className="grid-container">
+
+                            {imageUrls
+                                .map((src: string, index: number) => (
+                                    <div className={index === 0 ? `first-item p-4` : 'grid-item'} key={index}>
+                                        <img
+                                            className="mx-auto"
+                                            src={src}
+                                            onClick={() => openImageViewer(index)}
+                                            width={index === 0 ? 400 : 80}
+                                            alt={`${index}`}
+                                        />
+                                    </div>
+                                ))}
 
 
-            <div className="grid-container">
-
-                {imageUrls
-                    .map((src: string, index: number) => (
-                        <div className={index === 0 ? `first-item p-4` : 'grid-item'} key={index}>
-                            <img
-                                className="mx-auto"
-                                src={src}
-                                onClick={() => openImageViewer(index)}
-                                width={index === 0 ? 400 : 80}
-                                alt={`${index}`}
-                            />
                         </div>
-                    ))}
 
-
-            </div>
-
+                    </div>
+                </section>
+            }
 
             {isViewerOpen && (
-                <ImageViewer
-                    src={imageUrls}
-                    currentIndex={currentImage}
-                    disableScroll={false}
-                    closeOnClickOutside={true}
-                    onClose={closeImageViewer}
-                    backgroundStyle={{
-                        backgroundColor: "#31363F",
+                <section
+                    className="fixed size-full md:size-11/12 md:rounded-lg
+                    bg-gray-500 flex flex-col justify-center md:justify-start items-center 
+                    z-30"
+                    style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
 
-                    }}
-                />
+                    <div
+                        onClick={() => closeImageViewer()}
+                        className="w-full text-right">
+                        <button className="text-lg size-8">
+                            <FontAwesomeIcon icon={faX} />
+                        </button>
+                    </div>
+
+                    <section
+                        className=" w-full sm:w-[530px] md:w-[580px]">
+
+                        <ReactSlick data={props.data} image={currentImage} />
+
+                    </section>
+
+                </section>
             )}
 
         </section>

@@ -30,9 +30,9 @@ const OneProduct: React.FC<ProductProps> = (props) => {
             {props.data && (
                 <>
                     {props.data.map((product, index) => (
-                        <div
+                        <Link href={`/products/products?q1=${props.category}&q2=${encodeURIComponent(product?.name)}`}
                             key={index}
-                            style={{ height: '25rem' }}
+                           
                             className="flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg">
 
                             <section className='h-2/5 sm:h-3/5 m-1 relative'>
@@ -84,7 +84,7 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                 </div>
 
                             </section>
-                        </div>
+                        </Link>
                     ))}
                 </>
             )}

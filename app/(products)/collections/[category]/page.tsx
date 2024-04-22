@@ -46,7 +46,7 @@ const CategoryPage = () => {
     return (
 
         <>
-            <section className='container py-10'>
+            <section className='container py-10 relative'>
 
                 <div className='text-center  py-6'>
 
@@ -88,7 +88,7 @@ const CategoryPage = () => {
                         ) : error ? (
                             <p>{error}</p>
                         ) : data ? (
-                            <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-2 sm:gap-4'>
+                            <div>
 
                                 <OneProduct category={category || ""} data={data} />
 

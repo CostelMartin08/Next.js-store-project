@@ -25,8 +25,9 @@
     "nodemailer": "^6.9.13",
     "react": "^18",
     "react-dom": "^18",
-    "react-simple-image-viewer": "^1.2.2",
+    "react-slick": "^0.30.2",
     "react-spinners": "^0.13.8",
+    "react-zoom-pan-pinch": "^3.4.4",
     "sharp": "^0.33.3",
     "uuid": "^9.0.1"
   },
@@ -38,6 +39,7 @@
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
     "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",

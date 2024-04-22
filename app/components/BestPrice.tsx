@@ -41,10 +41,10 @@ export default function BestPrice() {
                 {data && (
                     <>
                         {data.map((product, index) => (
-                            <div
+                            <Link href={`/products/products?q1=${product.category}&q2=${encodeURIComponent(product?.name)}`}
                                 className="flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg shadow-lg"
-                                key={index}
-                                style={{ height: '25rem' }}>
+                                key={index}>
+                                
 
 
                                 <section className='h-2/5 sm:h-3/5 m-1 relative'>
@@ -96,7 +96,7 @@ export default function BestPrice() {
                                     </div>
 
                                 </section>
-                            </div>
+                            </Link>
                         ))}
                     </>
                 )}

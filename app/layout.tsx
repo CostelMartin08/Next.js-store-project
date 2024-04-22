@@ -7,8 +7,7 @@ import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/auth';
 import { AppWrapper } from './context';
 import "./globals.css";
-import Head from 'next/head';
-import Link from 'next/link';
+
 import Footer from './components/top&bottom/Footer';
 
 
@@ -40,12 +39,12 @@ export default async function RootLayout({
 
       <html lang="en">
       
-        <body  className={lato.className} >
-          
+        <body className={lato.className} >
+
           <AppWrapper>
 
             {children}
-            <Footer/>
+            <Footer />
 
           </AppWrapper>
         </body>

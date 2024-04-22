@@ -16,17 +16,17 @@ export default function FreshIn() {
             .then((res) => {
                 if (res.success) {
                     let productsWithDiscount = res.success;
-    
-                   
+
+
                     productsWithDiscount.sort((a, b) => {
-                        const dateA= new Date(a.date) as any;
+                        const dateA = new Date(a.date) as any;
                         const dateB = new Date(b.date) as any;
                         return dateB - dateA;
                     });
-    
-                   
+
+
                     let recentProducts = productsWithDiscount.slice(0, 6);
-    
+
                     setData(recentProducts as unknown as ProductData[]);
                 }
             })
@@ -34,8 +34,8 @@ export default function FreshIn() {
                 console.log(error);
             });
     }, []);
-    
-    
+
+
 
     return (
 
@@ -48,10 +48,9 @@ export default function FreshIn() {
                 {data && (
                     <>
                         {data.map((product, index) => (
-                            <div
+                            <Link href={`/products/products?q1=${product.category}&q2=${encodeURIComponent(product?.name)}`}
                                 className="flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg shadow-lg"
-                                key={index}
-                                style={{ height: '25rem' }}>
+                                key={index}>
 
 
                                 <section className='h-2/5 sm:h-3/5 m-1 relative'>
@@ -103,7 +102,7 @@ export default function FreshIn() {
                                     </div>
 
                                 </section>
-                            </div>
+                            </Link>
                         ))}
                     </>
                 )}
