@@ -6,7 +6,7 @@ import './react-slick.theme.css';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Data } from "./photoProduct";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import React from "react";
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
@@ -32,13 +32,14 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any; }) {
             className={className}
             style={{ ...style, display: "block", backgroundColor: "transparent" }}
             onClick={onClick}>
-    
+
         </div>
     );
 }
 
 const ReactSlick: React.FC<Data> = (props) => {
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const searchParams = useSearchParams();
     const param = searchParams.get('q1')
 
@@ -67,6 +68,17 @@ const ReactSlick: React.FC<Data> = (props) => {
 
     };
 
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
 
     return (
@@ -77,7 +89,9 @@ const ReactSlick: React.FC<Data> = (props) => {
                 {props.data.photo.map((element, index) => {
                     return (
                         <div key={index} className="space-y-2">
-                            <TransformWrapper initialScale={1}>
+                            <TransformWrapper
+                                disabled={windowWidth < 600 ? true : false}
+                                initialScale={1}>
                                 {({ zoomIn, resetTransform }) => (
                                     <React.Fragment>
                                         <div className="flex justify-end gap-2 md:gap-5 text-lg">
