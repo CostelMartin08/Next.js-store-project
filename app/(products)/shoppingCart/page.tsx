@@ -97,7 +97,7 @@ const ShoppingCart = () => {
             {form ?
 
 
-                <div className="flex flex-col md:flex-row px-8 py-5">
+                <div className="flex flex-col lg:flex-row px-8 py-5">
 
 
 

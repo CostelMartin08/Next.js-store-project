@@ -7,7 +7,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Data } from "./photoProduct";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import Image from "next/image";
 import React from "react";
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,6 +55,7 @@ const ReactSlick: React.FC<Data> = (props) => {
                 </a>
             );
         },
+        arrows: false,
         nextArrow: <SampleNextArrow className={undefined} style={undefined} onClick={undefined} />,
         prevArrow: <SamplePrevArrow className={undefined} style={undefined} onClick={undefined} />,
         dotsClass: "slick-dots slick-thumb",
@@ -88,27 +89,31 @@ const ReactSlick: React.FC<Data> = (props) => {
 
                 {props.data.photo.map((element, index) => {
                     return (
-                        <div key={index} className="space-y-2">
-                            <TransformWrapper
-                                disabled={windowWidth < 600 ? true : false}
-                                initialScale={1}>
-                                {({ zoomIn, resetTransform }) => (
-                                    <React.Fragment>
-                                        <div className="flex justify-end gap-2 md:gap-5 text-lg">
-                                            <button className="size-8" onClick={() => zoomIn()}>
-                                                <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
-                                            </button>
-                                            <button className="size-8" onClick={() => resetTransform()}>
-                                                <FontAwesomeIcon icon={faMagnifyingGlassMinus} />
-                                            </button>
-                                        </div>
-                                        <TransformComponent>
-                                            <img className="w-full" alt={`${props.data.name}`} src={`https://gadgetgrid.ro/images/${param}/${props.data.id}/${element}`} />
-                                        </TransformComponent>
-                                    </React.Fragment>
-                                )}
-                            </TransformWrapper>
-                        </div>
+                        <div key={index} className="flex justify-center items-center">
+                        <TransformWrapper
+                            disabled={windowWidth < 600 ? true : false}
+                            initialScale={1}
+                            limitToBounds={true}
+                            centerOnInit={true}
+                            maxScale={4}
+                        >
+                            {({ zoomIn, resetTransform }) => (
+                                <React.Fragment>
+                                    <div className="flex justify-end gap-2 md:gap-5 text-lg overflow-visible">
+                                        <button className="size-8" onClick={() => zoomIn()}>
+                                            <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
+                                        </button>
+                                        <button className="size-8" onClick={() => resetTransform()}>
+                                            <FontAwesomeIcon icon={faMagnifyingGlassMinus} />
+                                        </button>
+                                    </div>
+                                    <TransformComponent>
+                                        <Image width={900} height={900} alt={`${props.data.name}`} src={`https://gadgetgrid.ro/images/${param}/${props.data.id}/${element}`} />
+                                    </TransformComponent>
+                                </React.Fragment>
+                            )}
+                        </TransformWrapper>
+</div>
                     );
                 })}
 

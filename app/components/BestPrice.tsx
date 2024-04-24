@@ -36,17 +36,15 @@ export default function BestPrice() {
 
             <h6 className="text-3xl font-black my-5">Products at a great price</h6>
 
-            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 md:gap-4 '>
+            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 '>
 
                 {data && (
                     <>
                         {data.map((product, index) => (
                             <Link href={`/products/products?q1=${product.category}&q2=${encodeURIComponent(product?.name)}`}
-                                className="flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg shadow-lg"
+                                className="md:h-[20rem] flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg"
                                 key={index}>
                                 
-
-
                                 <section className='h-2/5 sm:h-3/5 m-1 relative'>
 
                                     {product.stock === 0 &&

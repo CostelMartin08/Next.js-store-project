@@ -33,7 +33,7 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                         <Link href={`/products/products?q1=${props.category}&q2=${encodeURIComponent(product?.name)}`}
                             key={index}
                            
-                            className="flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg">
+                            className="md:h-[20rem] flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg">
 
                             <section className='h-2/5 sm:h-3/5 m-1 relative'>
 
@@ -55,7 +55,7 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     width={400}
                                     height={200}
                                     className='object-contain size-full p-1 '
-                                    src={`/images/${props.category}/${product.id}/${product.photo[0]}`}
+                                    src={`/products/${props.category}/${product.id}/${product.photo[0]}`}
                                     alt={product.name}>
 
                                 </img>

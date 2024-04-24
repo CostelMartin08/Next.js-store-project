@@ -115,7 +115,7 @@ const ProductPage = () => {
 
                     <PhotoProduct data={data} />
 
-                    <div className="grid grid-row-5 gap-3 mt-10 lg:mt-0  content-between xl:content-evenly">
+                    <div className="grid  gap-3 mt-10 lg:mt-0  content-between xl:content-evenly">
 
                         {
                             error &&
@@ -137,22 +137,22 @@ const ProductPage = () => {
                         <div className="space-y-4 lg:w-3/4">
 
 
-                            <h2 className="font-lg lg:font-xl text-black font-black text-2xl ">{data.name}</h2>
+                            <h2 className="text-base md:text-xl lg:text-3xl text-black font-black">{data.name}</h2>
 
-                            <p className="pt-2 text-left clr-gray">
+                            <p className="pt-2 text-left text-sm md:text-lg clr-gray">
                                 {data.description}
 
                             </p>
 
                         </div>
 
-                        <div className="space-y-5 ms-3">
+                        <div className="space-y-5">
 
                             <div className="flex space-x-5 items-center relative">
                                 {data.discount > 0 ?
-                                    <span className="text-black font-black">${data.discountPrice}</span>
+                                    <span className="text-black text-lg md:text-2xl font-black">${data.discountPrice}</span>
                                     :
-                                    <span className="text-black text-lg font-black">${data.price}</span>
+                                    <span className="text-black text-lg md:text-2xl font-black">${data.price}</span>
                                 }
 
                                 {data?.stock == 0 &&
@@ -167,7 +167,7 @@ const ProductPage = () => {
                             </div>
                             {data.discount > 0 ?
                                 <div>
-                                    <span className="clr-gray line-through">${data.price}</span>
+                                    <span className="clr-gray text-black text-lg md:text-xl font-black line-through">${data.price}</span>
                                 </div>
                                 : null}
                         </div>
@@ -177,7 +177,7 @@ const ProductPage = () => {
                             {data?.stock !== 0 ?
                                 <button
                                     onClick={() => addProduct(data?.id)}
-                                    className={`w-3/4 md:w-2/4 py-4 rounded-md flex items-center justify-center ${clicked ? 'bg-indigo-800' : 'bg-orange'
+                                    className={`w-full py-2 md:w-2/4 py-4 rounded-md flex items-center justify-center ${clicked ? 'bg-indigo-800' : 'bg-orange'
                                         }`}>
 
                                     <FontAwesomeIcon className='px-3' icon={faCartShopping} />

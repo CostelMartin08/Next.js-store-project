@@ -46,22 +46,22 @@ const CategoryPage = () => {
     return (
 
         <>
-            <section className='container py-10 relative'>
+            <section className='container mb-10 relative'>
 
-                <div className='text-center  py-6'>
+                <div className='text-center py-6'>
 
                     <h4 className='text-5xl font-black'>{letterCapitalized}</h4>
 
                 </div>
 
-                <div className='grid grid-cols-1 lg:grid-cols-[250px_minmax(650px,_1fr)] gap-4 pt-10'>
+                <div className='grid grid-cols-1 lg:grid-cols-[250px_minmax(650px,_1fr)] gap-4 pt-5'>
 
 
                     <div className='hidden lg:block text-md'>
 
                         <div className='flex items-center font-bold mx-4 py-3 border-b-2'>
                             <FontAwesomeIcon className='px-3' icon={faSliders} />
-                            <p className=' text-bolt '>Filter</p>
+                            <p className='font-black '>Filter</p>
 
 
                         </div>
@@ -89,7 +89,7 @@ const CategoryPage = () => {
                             <p>{error}</p>
                         ) : data ? (
 
-                            <div className='grid grid-cols-2 md:grid-cols-3  gap-4 my-16 mx-auto'>
+                            <div className='grid grid-cols-2 md:grid-cols-3  gap-3 md:gap-4 mx-auto'>
                                 <OneProduct category={category || ""} data={data} />
                             </div>
 

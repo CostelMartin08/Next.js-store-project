@@ -52,15 +52,15 @@ const PhotoProduct: React.FC<Data> = (props) => {
         <section className="w-full">
 
             {!isViewerOpen &&
-                <section className='grid grid-cols-1  xl:mx-10 gap-2 sm:gap-4'>
+                <section className='grid grid-cols-1  gap-2 sm:gap-4'>
 
-                    <div className="flex flex-col justify-center items-center gap-8">
+                    <div className="flex flex-col justify-center items-center">
 
                         <div className="grid-container">
 
                             {imageUrls
                                 .map((src: string, index: number) => (
-                                    <div className={index === 0 ? `first-item p-4` : 'grid-item'} key={index}>
+                                    <div className={index === 0 ? `first-item` : 'grid-item'} key={index}>
                                         <img
                                             className="mx-auto"
                                             src={src}
