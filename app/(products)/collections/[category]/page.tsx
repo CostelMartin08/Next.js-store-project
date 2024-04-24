@@ -88,11 +88,11 @@ const CategoryPage = () => {
                         ) : error ? (
                             <p>{error}</p>
                         ) : data ? (
-                            <div>
 
+                            <div className='grid grid-cols-2 md:grid-cols-3  gap-4 my-16 mx-auto'>
                                 <OneProduct category={category || ""} data={data} />
-
                             </div>
+
                         ) : (
                             <p className='text-lg'>There are no products listed in this category</p>
                         )}

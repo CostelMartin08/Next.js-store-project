@@ -7,21 +7,21 @@ async function sendEmail(email: string, subject: string, htmlContent: string) {
     try {
        
         let transporter = nodemailer.createTransport({
-            service: "Outlook365", 
-            host: "smtp.office365.com",
+           
+            host: "email-smtp.eu-north-1.amazonaws.com",
             port: "587",
-            tls: {
-              ciphers: "SSLv3",
-              rejectUnauthorized: false,
-            },
+            secure: false,
             auth: {
               user: process.env.USER,
               pass: process.env.APP_PASSWORD,
             },
+            tls: {
+                ciphers:'SSLv3'
+            }
           });
 
         const mailOption = {
-            from: process.env.USER,
+            from: process.env.EMAIL,
             to: email,
             subject: subject,
             html: htmlContent
