@@ -1,20 +1,24 @@
 import { CartProduct } from "../types";
 import nodemailer from 'nodemailer';
 
+
 async function sendEmail(email: string, subject: string, htmlContent: string) {
 
     try {
-      
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
+       
+        let transporter = nodemailer.createTransport({
+            service: "Outlook365", 
+            host: "smtp.office365.com",
+            port: "587",
+            tls: {
+              ciphers: "SSLv3",
+              rejectUnauthorized: false,
+            },
             auth: {
-                user: process.env.USER,
-                pass: process.env.APP_PASSWORD
-            }
-        });
+              user: process.env.USER,
+              pass: process.env.APP_PASSWORD,
+            },
+          });
 
         const mailOption = {
             from: process.env.USER,
