@@ -13,7 +13,7 @@ import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-function SampleNextArrow(props: { className: any; style: any; onClick: any; }) {
+function NextArrow(props: { className: any; style: any; onClick: any; }) {
     const { className, style, onClick } = props;
     return (
         <div
@@ -24,7 +24,7 @@ function SampleNextArrow(props: { className: any; style: any; onClick: any; }) {
     );
 }
 
-function SamplePrevArrow(props: { className: any; style: any; onClick: any; }) {
+function PrevArrow(props: { className: any; style: any; onClick: any; }) {
     const { className, style, onClick } = props;
     return (
         <div
@@ -56,8 +56,8 @@ const ReactSlick: React.FC<Data> = (props) => {
             );
         },
         arrows: false,
-        nextArrow: <SampleNextArrow className={undefined} style={undefined} onClick={undefined} />,
-        prevArrow: <SamplePrevArrow className={undefined} style={undefined} onClick={undefined} />,
+        nextArrow: <NextArrow className={undefined} style={undefined} onClick={undefined} />,
+        prevArrow: <PrevArrow className={undefined} style={undefined} onClick={undefined} />,
         dotsClass: "slick-dots slick-thumb",
         initialSlide: props.image,
         dots: true,
@@ -81,15 +81,13 @@ const ReactSlick: React.FC<Data> = (props) => {
         };
     }, []);
 
-
     return (
 
-        <div>
-            <Slider {...settings}>
+        <Slider {...settings}>
 
-                {props.data.photo.map((element, index) => {
-                    return (
-                        <div key={index} className="flex justify-center items-center">
+            {props.data.photo.map((element, index) => {
+                return (
+                    <div key={index} className="flex justify-center items-center">
                         <TransformWrapper
                             disabled={windowWidth < 600 ? true : false}
                             initialScale={1}
@@ -113,13 +111,12 @@ const ReactSlick: React.FC<Data> = (props) => {
                                 </React.Fragment>
                             )}
                         </TransformWrapper>
-</div>
-                    );
-                })}
+                    </div>
+                );
+            })}
 
-            </Slider>
+        </Slider>
 
-        </div>
     )
 
 

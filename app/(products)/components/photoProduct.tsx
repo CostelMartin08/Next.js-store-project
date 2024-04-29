@@ -3,7 +3,6 @@
 import { useSearchParams } from "next/navigation";
 import { SetStateAction, useCallback, useState } from "react";
 
-
 import './components.css';
 
 import { ProductData } from "./product";
@@ -80,21 +79,21 @@ const PhotoProduct: React.FC<Data> = (props) => {
 
             {isViewerOpen && (
                 <section
-                    className="fixed size-full md:size-11/12 md:rounded-lg
-                    bg-gray-500 flex flex-col justify-center md:justify-start items-center 
+                    className="absolute size-full md:size-11/12 md:rounded-lg
+                    bg-gray-500 flex flex-col  md:justify-start items-center
                     z-30"
                     style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
 
                     <div
                         onClick={() => closeImageViewer()}
                         className="w-full text-right">
-                        <button className="text-lg size-8">
+                        <button className="text-xl font-black size-9">
                             <FontAwesomeIcon icon={faX} />
                         </button>
                     </div>
 
                     <section
-                        className=" w-full sm:w-[530px] md:w-[580px]">
+                        className=" w-full my-auto md:my-1 sm:w-[530px]  md:w-[580px]">
 
                         <ReactSlick data={props.data} image={currentImage} />
 
