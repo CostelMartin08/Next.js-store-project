@@ -8,7 +8,7 @@ export const sendTwoFactorEmail = async (
     token: string,
 ) => {
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: "verify@gadgetgrid.ro",
         to: email,
         subject: "2FA Code",
         html: `<p>Your 2FA code: ${token}</p>`
@@ -18,9 +18,9 @@ export const sendPasswordResetEmail = async (
     email: string,
     token: string,
 ) => {
-    const resetLink = `http://localhost:3000/auth/new-password?token=${token}`
+    const resetLink = `https://gadgetgrid.ro/auth/new-password?token=${token}`
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: "verify@gadgetgrid.ro",
         to: email,
         subject: "Reset your password",
         html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
@@ -32,7 +32,7 @@ export const sendVerificationEmail = async (
 ) => {
     const confirmLink = `https://gadgetgrid.ro/auth/new-verification?token=${token}`;
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: "verify@gadgetgrid.ro",
         to: email,
         subject: "Confirma email-ul",
         html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`
@@ -90,7 +90,7 @@ export const sendOrderConfirmation = async (
 
 
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: "verify@gadgetgrid.ro",
         to: email,
         subject: "Confirm Order",
         html: htmlContent
