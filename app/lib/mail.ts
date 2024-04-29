@@ -1,104 +1,99 @@
+import { Resend } from "resend";
 import { CartProduct } from "../types";
-import nodemailer from 'nodemailer';
 
 
-async function sendEmail(email: string, subject: string, htmlContent: string) {
-
-    try {
-       
-        let transporter = nodemailer.createTransport({
-           
-            host: "email-smtp.eu-north-1.amazonaws.com",
-            port: "587",
-            secure: false,
-            auth: {
-              user: process.env.USER,
-              pass: process.env.APP_PASSWORD,
-            },
-            tls: {
-                ciphers:'SSLv3'
-            }
-          });
-
-        const mailOption = {
-            from: process.env.EMAIL,
-            to: email,
-            subject: subject,
-            html: htmlContent
-        };
-
-        await new Promise((resolve, reject) => {
-            transporter.sendMail(mailOption, (err, info) => {
-              if (err) {
-                console.error(err);
-                reject(err);
-              } else {
-                resolve(info);
-              }
-            });
-          });
-
-        return true;
-
-    } catch (error) {
-        return { json: { message: "Failed to Send Email" }, status: 500 };
-    }
+const resend = new Resend(process.env.RESEND_API_KEY);
+export const sendTwoFactorEmail = async (
+    email: string,
+    token: string,
+) => {
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "2FA Code",
+        html: `<p>Your 2FA code: ${token}</p>`
+    });
+};
+export const sendPasswordResetEmail = async (
+    email: string,
+    token: string,
+) => {
+    const resetLink = `http://localhost:3000/auth/new-password?token=${token}`
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Reset your password",
+        html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
+    })
+};
+export const sendVerificationEmail = async (
+    email: string,
+    token: string
+) => {
+    const confirmLink = `https://gadgetgrid.ro/auth/new-verification?token=${token}`;
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Confirma email-ul",
+        html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`
+    });
 }
 
-export const sendTwoFactorEmail = async (email: string, token: string) => {
-    const htmlContent = `<p>Your 2FA code: ${token}</p>`;
-    return await sendEmail(email, "2FA Code", htmlContent);
-}
-
-export const sendPasswordResetEmail = async (email: string, token: string) => {
-    const resetLink = `https://gadgetgrid.ro/auth/new-password?token=${token}`;
-    const htmlContent = `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`;
-    return await sendEmail(email, "Reset your password", htmlContent);
-}
-
-export const sendVerificationEmail = async (email: string, token: string) => {
-    const confirmLink = `http://gadgetgrid.ro/auth/new-verification?token=${token}`;
-    const htmlContent = `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`;
-    return await sendEmail(email, "Confirma email-ul", htmlContent);
-}
 
 export const sendOrderConfirmation = async (
     data: CartProduct[],
     email: string,
-    name: string
+    name: string,
 ) => {
-    let htmlContent = `
-        <section>
-            <h2>Buna ${name},</h2>
-            <p>Comanda dumneavoastra a fost comfirmata. </p>
-        </section>
-    `;
+
+    let htmlContent =
+        `
+    <section>
+    <h2>Buna ${name},</h2>
+    <p>Comanda dumneavoastra a fost comfirmata. </p>
+    </section>   
+    
+    `
+
 
     Object.entries(data).forEach(([key, value]) => {
-        htmlContent += `
+        htmlContent +=
+            `
             <table>
-                <caption>Produsele Comandate:</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Number</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">${key}</th>
-                        <td>
-                            <img src=${value.photo} width=80px height=80px alt=${value.name}>
-                            <h3>${value.name}</h3>
-                        </td>
-                        <td><h2>${value.price}</h2>$</td>
-                    </tr>
-                </tbody>
-            </table>
+  <caption>
+    Produsele Comandate:
+  </caption>
+  <thead>
+    <tr>
+    <th scope="col">Number</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">${key}</th>
+      <td>
+      <img src=${value.photo} width=80px height=80px alt=${value.name}>
+      <h3>${value.name}</h3>
+      
+      </td>
+      <td><h2>${value.price}</h2>$</td>
+      
+    </tr>
+   
+  </tbody>
+</table>
         `;
     });
 
-    return await sendEmail(email, "Confirm Order", htmlContent);
-};
 
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Confirm Order",
+        html: htmlContent
+
+    });
+}
