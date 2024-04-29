@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { CartProduct } from "../types";
+import { EmailTemplate } from "./emailTemplate";
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -11,7 +12,7 @@ export const sendTwoFactorEmail = async (
         from: "verify@gadgetgrid.ro",
         to: email,
         subject: "2FA Code",
-        html: `<p>Your 2FA code: ${token}</p>`
+        html: `<h6>Your 2FA code: ${token}</h6>`
     });
 };
 export const sendPasswordResetEmail = async (
@@ -23,7 +24,7 @@ export const sendPasswordResetEmail = async (
         from: "verify@gadgetgrid.ro",
         to: email,
         subject: "Reset your password",
-        html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
+        html: `<h6>Click <a href="${resetLink}">here</a> to reset password.</h6>`
     })
 };
 export const sendVerificationEmail = async (
@@ -34,8 +35,9 @@ export const sendVerificationEmail = async (
     await resend.emails.send({
         from: "verify@gadgetgrid.ro",
         to: email,
-        subject: "Confirma email-ul",
-        html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`
+        subject: "Email verification",
+        html: `<h6>Click <a href="${confirmLink}">here</a> to confirm email.</h6>`,
+
     });
 }
 
@@ -46,54 +48,15 @@ export const sendOrderConfirmation = async (
     name: string,
 ) => {
 
-    let htmlContent =
-        `
-    <section>
-    <h2>Buna ${name},</h2>
-    <p>Comanda dumneavoastra a fost comfirmata. </p>
-    </section>   
-    
-    `
-
-
-    Object.entries(data).forEach(([key, value]) => {
-        htmlContent +=
-            `
-            <table>
-  <caption>
-    Produsele Comandate:
-  </caption>
-  <thead>
-    <tr>
-    <th scope="col">Number</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">${key}</th>
-      <td>
-      <img src=${value.photo} width=80px height=80px alt=${value.name}>
-      <h3>${value.name}</h3>
-      
-      </td>
-      <td><h2>${value.price}</h2>$</td>
-      
-    </tr>
-   
-  </tbody>
-</table>
-        `;
-    });
-
+    console.log(data)
 
     await resend.emails.send({
         from: "verify@gadgetgrid.ro",
         to: email,
         subject: "Confirm Order",
-        html: htmlContent
+        html: null,
+        react: EmailTemplate({ data,  name }),
+
 
     });
 }
