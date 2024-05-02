@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { CartProduct } from "@/app/types";
 import ToggleSwitch from "./toggleSwitch";
-import Image from "next/image";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useCurrentUser } from "@/hooks/use-current-user";

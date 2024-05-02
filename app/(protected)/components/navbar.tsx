@@ -60,7 +60,8 @@ export const Navbar = () => {
 
                         className="hover-element cursor-pointer">
 
-                        {user?.image ? <Image width={80} height={80} className="size-7 rounded-full" alt={`${user.id}`} src={`/photo/${user?.image}`}></Image> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
+                        {user?.image ? <img width={80} height={80} className="size-7 rounded-full" alt={`${user.id}`} 
+                        src={`https://gadgetgrid.ro/profilePhoto/${user?.id}/${user.image}`}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
 
                     </div>
 
