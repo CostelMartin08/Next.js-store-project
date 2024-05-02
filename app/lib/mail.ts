@@ -12,7 +12,7 @@ export const sendTwoFactorEmail = async (
         from: "verify@gadgetgrid.ro",
         to: email,
         subject: "2FA Code",
-        html: `<h6>Your 2FA code: ${token}</h6>`
+        html: `<p>Your 2FA code: ${token}</p>`
     });
 };
 export const sendPasswordResetEmail = async (
@@ -24,7 +24,7 @@ export const sendPasswordResetEmail = async (
         from: "verify@gadgetgrid.ro",
         to: email,
         subject: "Reset your password",
-        html: `<h6>Click <a href="${resetLink}">here</a> to reset password.</h6>`
+        html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
     })
 };
 export const sendVerificationEmail = async (
@@ -36,7 +36,7 @@ export const sendVerificationEmail = async (
         from: "verify@gadgetgrid.ro",
         to: email,
         subject: "Email verification",
-        html: `<h6>Click <a href="${confirmLink}">here</a> to confirm email.</h6>`,
+        html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`,
 
     });
 }
