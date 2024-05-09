@@ -134,7 +134,7 @@ export default function LoginForm() {
                 {succes}</div>
 
             )}
-            <button className="submit bg-emerald-950 font-black">{showTwoFactor ? "Confirm" : "SignIn"}</button>
+            <button style={{backgroundColor: 'rgb(26, 26, 26)'}} className="submit font-black">{showTwoFactor ? "Confirm" : "SignIn"}</button>
           </form>
 
           <button className="border-2 p-2 rounded-xl text-[18px]  text-center" onClick={() => onClick("github")}

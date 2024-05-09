@@ -55,10 +55,10 @@ export const PhotoMenu = () => {
                     onChange={(e) => setFile(e.target.files?.[0])}
                     id="picture"
                     type="file"
-                    className="bg-[#ffffff] border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition" />
+                    className="border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition" />
 
                 <button
-                    style={{ right: 0 }}
+                    style={{ right: 0, backgroundColor:'rgb(26, 26, 26)' }}
                     className="absolute py-3 bg-emerald-950 text-white px-3 h-full rounded-r-lg"
                     type="submit">Apply</button>
 

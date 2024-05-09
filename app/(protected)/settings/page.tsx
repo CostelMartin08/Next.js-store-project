@@ -98,7 +98,7 @@ const SettingPage = () => {
                                         Name:
                                     </label>
                                     <input
-                                        className="bg-[#ffffff] border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
+                                        className="bg-transparent border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
                                         type="text"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
@@ -115,7 +115,7 @@ const SettingPage = () => {
                                             </label>
                                             <input
                                                 autoComplete="off"
-                                                className="bg-[#ffffff] border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
+                                                className="bg-transparent border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
                                                 type="email"
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
@@ -129,7 +129,7 @@ const SettingPage = () => {
                                             <input
                                                 autoComplete="off"
                                                 placeholder="Enter your password"
-                                                className="bg-[#ffffff] border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
+                                                className="bg-transparent border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
                                                 type="password"
                                                 onChange={(e) => setPassword(e.target.value)}
                                             />
@@ -143,13 +143,13 @@ const SettingPage = () => {
                                                 autoComplete="off"
                                                 onChange={(e) => setNewPassword(e.target.value)}
                                                 placeholder="Enter your new password"
-                                                className="bg-[#ffffff] border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
+                                                className="bg-transparent border-2 border-[#3e3e3e] rounded-lg text-black px-6 py-3 text-base hover:border-[#fff] cursor-pointer transition"
                                                 type="password"
                                             />
 
                                         </div>
 
-                                        <div className="flex flex-row items-center justify-between rounded-lg border p-3">
+                                        <div className="flex flex-row items-center justify-between rounded-md border p-3">
                                             <label className="py-1">
                                                 Two Factor Auth:
                                             </label>
@@ -194,12 +194,12 @@ const SettingPage = () => {
 
                 </div>
 
-                <div className="basis-2/5 h-[40rem] pt-10 md:p-3 lg:p-10">
+                <div className="basis-2/5  pt-10  md:py-4 lg:p-10">
 
-                    <div className="text-slate-600 border bg-white flex justify-center items-center flex-col h-full rounded relative">
+                    <div className="h-[25rem] md:h-[40rem] text-slate-600 border bg-white flex justify-center items-center flex-col h-full rounded relative">
 
 
-                        <p className="font-black text-lg p-4  mb-10">Info Card</p>
+                        <p className="font-black text-2xl p-4  mb-10 z-10">Info Card</p>
 
                         <p
                             style={{ zIndex: '10' }}
@@ -209,7 +209,7 @@ const SettingPage = () => {
                         </p>
 
                         <FontAwesomeIcon
-                            className="text-slate-200/50 font-black text-9xl absolute"
+                            className="text-slate-200/50 font-black text-[20rem] absolute"
                             style={{
                                 top: '50%',
                                 left: '50%',

@@ -52,7 +52,7 @@ export const NewVerificationForm = () => {
 
         <div className="w-100 h-dvh flex items-center">
 
-            <div className="w-96 h-2/4  container mx-auto p-20 border">
+            <div className="w-[30rem] h-2/4  container mx-auto  border">
 
 
                 <h3 className="text-center pb-5 text-[30px]">New verification!</h3>
@@ -72,6 +72,7 @@ export const NewVerificationForm = () => {
                             <div className="bg-green-600 text-white w-fit text-sm py-2 px-3 rounded-md mt-1">
                                 {success}
                             </div>
+                           
                         </div>
                     )}
                     {error && (
@@ -84,10 +85,6 @@ export const NewVerificationForm = () => {
 
                     )}
 
-
-
-
-                    <a href="/auth/signIn"> <button className="submit w-80">Click to SignIn</button></a>
 
                 </div>
             </div>

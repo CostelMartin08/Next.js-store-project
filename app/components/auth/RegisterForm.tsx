@@ -136,7 +136,7 @@ export default function RegisterForm() {
                             {succes}
                         </div>
                     )}
-                    <button className="submit bg-emerald-950 font-black">Submit</button>
+                    <button style={{backgroundColor: 'rgb(26, 26, 26)'}} className="submit font-black">Submit</button>
                     <Link href="/signIn" className="border-2 p-2 rounded-xl text-[18px]  text-center">Continue with GitHub
                         <FontAwesomeIcon className=" px-4 text-[14px] sm:text-[23px] md:text-[25px]" icon={faGithub} />
                     </Link>
