@@ -15,12 +15,14 @@ export default function Home() {
     <>
 
       <HeaderBanner />
-      <Header />
+      <div style={{backgroundColor: 'rgb(233 233 233)'}} className="sticky top-0 z-20">
+        <Header />
+      </div>
       <Banner />
       <BestPrice />
-      <Promo/>
+      <Promo />
       <FreshIn />
-      
+
     </>
 
   );

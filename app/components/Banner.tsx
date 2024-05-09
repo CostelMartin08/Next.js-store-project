@@ -11,7 +11,7 @@ const Banner = () => {
 
     return (
 
-        <section className='bg-gray-700'>
+        <section style={{backgroundColor:'rgb(26 26 26)'}} className=''>
 
             <div className='hidden container h-[35rem] w-full md:flex flex-col py-14'>
 

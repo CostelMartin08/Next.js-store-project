@@ -10,7 +10,9 @@ const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
     <>
       <HeaderBanner />
-      <Header />
+      <div className="sticky top-0 bg-white z-10">
+        <Header />
+      </div>
       {children}
     </>
   );

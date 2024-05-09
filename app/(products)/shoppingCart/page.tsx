@@ -83,7 +83,7 @@ const ShoppingCart = () => {
 
     return (
 
-        <section className="container h-dvh relative">
+        <section className="container relative">
 
             {!form ?
                 <div className="text-center">
@@ -97,7 +97,7 @@ const ShoppingCart = () => {
             {form ?
 
 
-                <div className="flex flex-col lg:flex-row px-8 py-5">
+                <div className="flex flex-col bg-white rounded-md  lg:flex-row px-8 pb-10 mt-10">
 
 
 
@@ -108,7 +108,7 @@ const ShoppingCart = () => {
                             className="flex flex-col md:w-max mx-auto space-y-6">
 
 
-                            <p className="text-[20px] w-max">Complete your data</p>
+                            <p className="text-[25px] font-black w-max py-5">Complete your data</p>
 
                             <input
                                 className="border rounded p-3"

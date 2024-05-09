@@ -23,7 +23,7 @@ const Order = () => {
 
                 <p className=" font-black text-xl">Your order has been successfully placed! </p>
 
-                <p className="text-stone-600 text-md">A confirmation email was sent to costelmartinescu2000@gmail.com</p>
+                <p className="text-stone-600 text-md">A confirmation email was sent</p>
 
                 <div className="pt-6">
                     <a className="font-black p-3 rounded-lg bg-emerald-950 text-white" href="/">Back to shopping</a>

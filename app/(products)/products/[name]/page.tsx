@@ -107,11 +107,11 @@ const ProductPage = () => {
     return (
 
 
-        <section className="container setappend mx-auto py-6 text-white">
+        <section className=" container setappend mx-auto mt-10 text-white">
 
             {data ? (
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
+                <div className="grid grid-cols-1 lg:grid-cols-2 p-5 bg-white rounded-md">
 
                     <PhotoProduct data={data} />
 
@@ -121,7 +121,7 @@ const ProductPage = () => {
                             error &&
                             <>
                                 <div className='bg-red-700 h-8 w-max rounded flex items-center text-center'>
-                                    <h2 className=' px-3'>Eroare: {error}</h2>
+                                    <h2 className=' px-3'>Error: {error}</h2>
                                 </div>
                             </>
                         }

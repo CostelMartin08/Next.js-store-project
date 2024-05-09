@@ -10,7 +10,7 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import "./components.css";
 
-import Image from "next/image";
+
 
 export const Navbar = () => {
 

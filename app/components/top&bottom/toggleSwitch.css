@@ -23,7 +23,7 @@
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    border: 1px solid white;
+    border: 1px solid rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;

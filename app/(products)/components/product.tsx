@@ -39,14 +39,14 @@ const OneProduct: React.FC<ProductProps> = (props) => {
 
                                 {product.stock === 0 &&
 
-                                    <div className='absolute flex w-20 rounded-lg p-1 items-center justify-center  bg-black text-white'>
+                                    <div className='absolute flex w-20 rounded-lg p-2 items-center justify-center  bg-black text-white'>
                                         <span className='text-xs p-1 font-bold'>Sold out</span>
                                     </div>
                                 }
 
                                 {product.discount > 0 && product.stock > 0 &&
 
-                                    <div className='absolute flex w-12 rounded-lg p-1 items-center justify-center  bg-red-500 text-white'>
+                                    <div className='absolute flex w-12 rounded-lg p-2 items-center justify-center  bg-red-500 text-white'>
                                         <span className='text-xs p-1 font-bold'>{product.discount}%</span>
                                     </div>
                                 }

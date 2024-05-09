@@ -107,7 +107,7 @@ const Cart = (props: Props) => {
                 <>
                     <h6 className="text-[38px]  py-6 font-bold">Your Cart</h6>
 
-                    <section className="flex flex-col lg:flex-row px-2 sm:px-6 lg:space-x-4">
+                    <section className="flex flex-col bg-white rounded-md py-10 lg:flex-row px-2 sm:px-6 lg:space-x-4">
 
 
                         <table className="table-fixed lg:basis-4/6">

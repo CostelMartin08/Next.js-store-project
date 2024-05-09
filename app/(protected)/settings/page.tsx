@@ -74,7 +74,7 @@ const SettingPage = () => {
     }
 
     return (
-        <section className="container pb-10  flex flex-col items-center">
+        <section className="container flex flex-col items-center">
 
             <div className="flex items-center justify-center space-x-3 pt-4">
                 <h3 className=" text-center text-[25px] ">Settings</h3>
@@ -194,7 +194,7 @@ const SettingPage = () => {
 
                 </div>
 
-                <div className="basis-2/5 h-[40rem]  md:p-3 lg:p-10">
+                <div className="basis-2/5 h-[40rem] pt-10 md:p-3 lg:p-10">
 
                     <div className="text-slate-600 border bg-white flex justify-center items-center flex-col h-full rounded relative">
 

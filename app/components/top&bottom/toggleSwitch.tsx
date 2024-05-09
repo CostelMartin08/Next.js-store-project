@@ -35,15 +35,15 @@ const ToggleSwitch = () => {
 
             {menuOpen && (
 
-                <div className="menu bg-gray-700 px-10 py-10">
+                <div className="menu bg-white px-10 py-10">
 
-                    <div className="button-x">
+                    <div className="button-x text-black">
 
                         <FontAwesomeIcon className="text-[20px]" onClick={() => toggleMenu()} icon={faXmark} />
 
                     </div>
 
-                    <ul className="h-80 font-lg space-y-5 text-2xl md:text-3xl">
+                    <ul className="h-80 text-black font-black space-y-5 text-3xl md:text-3xl">
                         <li><Link onClick={() => toggleMenu()} href='/collections/category?category=laptops'>Laptop</Link></li>
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=tablets'>Tablet</Link></li>
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=smartphones'>Smartphones</Link></li>
@@ -52,7 +52,7 @@ const ToggleSwitch = () => {
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=story'>Us Story</Link></li>
                     </ul>
 
-                    <div className="text-[25px] space-x-5 py-5">
+                    <div className="text-[25px] text-black space-x-5 py-5">
 
                         <a href='https://www.facebook.com/costel.martinescu.7/'> <FontAwesomeIcon icon={faFacebook} /></a>
                         <a href='https://www.instagram.com/costelmartinescu/'> <FontAwesomeIcon icon={faInstagram} /></a>

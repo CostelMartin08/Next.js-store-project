@@ -9,7 +9,9 @@ const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
     <>
       <HeaderBanner />
-      <Navbar />
+      <div style={{ backgroundColor: 'rgb(233 233 233)' }} className="sticky top-0 z-20">
+        <Navbar />
+      </div>
       {children}
     </>
   );

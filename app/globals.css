@@ -7,6 +7,7 @@ body {
     margin: 0;
     font-family: theme("fontFamily.custom");
     font-weight: 400;
+    background-color: rgb(233 233 233);
 }
 
 
