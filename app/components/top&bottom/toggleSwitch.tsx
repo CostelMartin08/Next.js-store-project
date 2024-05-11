@@ -48,8 +48,8 @@ const ToggleSwitch = () => {
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=tablets'>Tablet</Link></li>
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=smartphones'>Smartphones</Link></li>
                         <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=smartwatches'>Smartwatches</Link></li>
-                        <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=contact'>Contact</Link></li>
-                        <li> <Link onClick={() => toggleMenu()} href='/collections/category?category=story'>Us Story</Link></li>
+                        <li> <Link onClick={() => toggleMenu()} href='/contact'>Contact</Link></li>
+                        <li> <Link onClick={() => toggleMenu()} href='/usStory'>Us Story</Link></li>
                     </ul>
 
                     <div className="text-[25px] text-black space-x-5 py-5">

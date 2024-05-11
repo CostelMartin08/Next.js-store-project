@@ -62,9 +62,6 @@ export const PriceAndDiscount: React.FC<StatusProductProps> = ({ data }) => {
 
     }
 
-
-
-
     return (
 
         <>

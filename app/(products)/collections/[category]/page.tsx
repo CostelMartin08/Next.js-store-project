@@ -14,7 +14,6 @@ import { faSliders } from '@fortawesome/free-solid-svg-icons/faSliders';
 import Loader from '@/app/components/Loader';
 
 
-
 const CategoryPage = () => {
 
 
@@ -59,14 +58,13 @@ const CategoryPage = () => {
 
                     <div className='hidden lg:block text-md'>
 
-                        <div className='flex items-center font-bold mx-4 py-3 border-b-2'>
-                            <FontAwesomeIcon className='px-3' icon={faSliders} />
-                            <p className='font-black '>Filter</p>
-
+                        <div className='flex items-center font-bold  py-3 border-b-2'>
+                            <FontAwesomeIcon className='pe-3' icon={faSliders} />
+                            <p className='font-black text-xl'>Filter</p>
 
                         </div>
 
-                        <ul className='px-5 pt-5 flex flex-col justify-left space-y-7 cursor-pointer font-black'>
+                        <ul id='filter' className='mt-5 flex flex-col justify-left space-y-6 cursor-pointer font-black'>
                             <li>Price</li>
                             <li>Product Type</li>
                             <li>Mark</li>
@@ -79,7 +77,7 @@ const CategoryPage = () => {
                     <div>
                         {loading ? (
 
-                            <div className='grid grid-cols-2 xl:grid-cols-3 xl:mx-10 gap-2 sm:gap-4'>
+                            <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 xl:mx-10 gap-2 sm:gap-4'>
 
                                 <Loader />
 

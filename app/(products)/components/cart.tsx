@@ -41,7 +41,7 @@ const Cart = (props: Props) => {
                 return item;
             });
 
-            sessionStorage.setItem('cart', JSON.stringify(updatedData));
+            localStorage.setItem('cart', JSON.stringify(updatedData));
 
             return updatedData;
         });
@@ -69,7 +69,7 @@ const Cart = (props: Props) => {
                 return item;
             });
 
-            sessionStorage.setItem('cart', JSON.stringify(updatedData));
+            localStorage.setItem('cart', JSON.stringify(updatedData));
 
             return updatedData;
         });
@@ -94,7 +94,7 @@ const Cart = (props: Props) => {
     const deleteItem = (id: string) => {
         props.setData(prevData => {
             const updatedData = prevData.filter(item => item.id !== id);
-            sessionStorage.setItem('cart', JSON.stringify(updatedData));
+            localStorage.setItem('cart', JSON.stringify(updatedData));
             setState(updatedData);
             return updatedData;
         });

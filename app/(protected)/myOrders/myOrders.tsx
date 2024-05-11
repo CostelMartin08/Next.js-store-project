@@ -1,4 +1,5 @@
-'use client';
+'use client'
+
 import { getsAllOrders } from "@/app/actions/orders";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useEffect, useState } from "react";

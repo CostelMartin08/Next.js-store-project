@@ -1,7 +1,5 @@
 'use client'
 
-
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cart from "../components/cart";
@@ -14,6 +12,7 @@ import { orderProcessing } from "@/app/actions/shoppingCart";
 
 import { FormData } from "@/app/types";
 import { CartProduct } from "@/app/types";
+
 const ShoppingCart = () => {
 
     const user = useCurrentUser();
@@ -39,7 +38,7 @@ const ShoppingCart = () => {
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            const cart: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
+            const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
             setData(cart);
         }
     }, []);
@@ -53,7 +52,7 @@ const ShoppingCart = () => {
 
             .then((res) => {
                 if ('success' in res) {
-                    sessionStorage.clear();
+                    localStorage.clear();
                     router.push('/shoppingCart/orderPlaced')
                 } else {
                     setError(res.error);
@@ -79,8 +78,6 @@ const ShoppingCart = () => {
         return total;
     };
 
-    console.log(error)
-
     return (
 
         <section className="container relative">
@@ -89,9 +86,8 @@ const ShoppingCart = () => {
                 <div className="text-center">
 
                     <Cart data={data} setForm={setForm} setData={setData} />
-
-
                 </div>
+                
                 : null}
 
             {form ?

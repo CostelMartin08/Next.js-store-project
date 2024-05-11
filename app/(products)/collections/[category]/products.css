@@ -3,51 +3,82 @@
 /* -------------------------------------------------------------------------- */
 
 .img {
-    object-fit: contain;
+  object-fit: contain;
 }
-
 
 .span {
-    display: flex;
-    position: absolute;
-    left: 8px;
-    top: 8px;
-    justify-content: center;
-    border: 1px solid;
-    border-radius: 20px;
-    width: 80px;
-    padding: 4px;
-    color: white;
+  display: flex;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 20px;
+  width: 80px;
+  padding: 4px;
+  color: white;
 }
 
 
-.position{
-    position: absolute;
-    left: 8px;
-    top: 8px;
+.position {
+  position: absolute;
+  left: 8px;
+  top: 8px;
 }
+
 .discount-price {
-    justify-content: center;
-    text-align: center;
-    border: 1px solid;
-    border-radius: 20px;
-    width: 55px;
-    padding: 2px;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 20px;
+  width: 55px;
+  padding: 2px;
 }
 
 @keyframes pulse {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
+  0% {
+    opacity: 1;
   }
-  
-  .pulse {
-    animation: pulse 1.5s ease-in-out infinite;
+
+  50% {
+    opacity: 0.5;
   }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   Filter                                   */
+/* -------------------------------------------------------------------------- */
+#filter{
+  padding: 0;
+}
+
+#filter li {
+  position: relative;
   
+}
+
+#filter li::after {
+  z-index: 100;
+  content: 'Oops. I have not implemented the logic for filtering';
+  position: absolute;
+  font-size: 13px;
+  left: 0;
+  top: 140%;
+  display: none;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+#filter li:hover::after {
+  display: block;
+}

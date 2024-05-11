@@ -23,7 +23,7 @@ export default function Header() {
   useEffect(() => {
 
     if (typeof window !== 'undefined') {
-      const cart: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
+      const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
       setData(cart);
 
     }
@@ -54,8 +54,8 @@ export default function Header() {
           <Link href='/collections/category?category=tablets'>Tablet</Link>
           <Link href='/collections/category?category=smartphones'>Smartphone</Link>
           <Link href='/collections/category?category=smartwatches'>Smartwatches</Link>
-          <Link href='/collections/category?category=contact'>Contact</Link>
-          <Link className="truncate" href='/collections/category?category=story'>Us Story</Link>
+          <Link href='/contact'>Contact</Link>
+          <Link className="truncate" href='/usStory'>Us Story</Link>
         </ul>
 
         <div className="flex w-1/4 space-x-4 justify-end items-center">

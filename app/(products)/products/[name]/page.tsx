@@ -2,7 +2,6 @@
 
 import { getProductsById, getProductsByName } from '@/app/actions/products';
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons/faCartShopping';
 
@@ -12,13 +11,10 @@ import { useRouter } from 'next/navigation';
 import PhotoProduct from '../../components/photoProduct';
 import Link from 'next/link';
 
-
 import { CartProduct } from '@/app/types';
 import { Product } from '@/app/types';
 import { useAppContext } from '@/app/context';
 import { useCurrentUser } from '@/hooks/use-current-user';
-import Loader from '@/app/components/Loader';
-
 
 const ProductPage = () => {
 
@@ -78,7 +74,7 @@ const ProductPage = () => {
                     unitsSold: 0
                 };
 
-                const cartItems: CartProduct[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
+                const cartItems: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
                 const existingItemIndex = cartItems.findIndex(item => item.id === cartProduct.id);
 
@@ -90,7 +86,7 @@ const ProductPage = () => {
                     cartItems.push(cartProduct);
                     setState(cartItems)
 
-                    sessionStorage.setItem('cart', JSON.stringify(cartItems));
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
                     setSuccess('Your product added in your cart!');
 
                 }

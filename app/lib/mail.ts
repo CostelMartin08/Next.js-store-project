@@ -4,6 +4,8 @@ import { EmailTemplate } from "./emailTemplate";
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+
 export const sendTwoFactorEmail = async (
     email: string,
     token: string,
@@ -15,6 +17,8 @@ export const sendTwoFactorEmail = async (
         html: `<p>Your 2FA code: ${token}</p>`
     });
 };
+
+
 export const sendPasswordResetEmail = async (
     email: string,
     token: string,
@@ -27,6 +31,8 @@ export const sendPasswordResetEmail = async (
         html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
     })
 };
+
+
 export const sendVerificationEmail = async (
     email: string,
     token: string
@@ -59,4 +65,22 @@ export const sendOrderConfirmation = async (
 
 
     });
+}
+
+
+export const sendEmailContact = async (
+    name: string,
+    email: string,
+    phone: string,
+    message: string
+) => {
+
+    await resend.emails.send({
+        from: "verify@gadgetgrid.ro",
+        to: 'gadgetgridservices@gmail.com',
+        subject: "Message!",
+        html: `<p>Salut Constantin! Aveti un mesaj de la ${name}: ${message}. Nr telefon: ${phone}, Email: ${email} </p>`,
+     
+    });
+
 }

@@ -40,12 +40,12 @@ export const settings = async (
 
 
     //Verification email/ Trimiterea email-ului de verificare!!!!!!
-  {/*  if (value.email && value.email !== user.email) {
+    if (value.email && value.email !== user.email) {
 
         const existingUser = await getUserByEmail(value.email);
 
         if (existingUser && existingUser.id !== user.id) {
-            return { error: 'Email already in user!' };
+            return { error: 'Email already in used!' };
         }
 
         const verificationToken = await generateVerificationToken(
@@ -58,11 +58,9 @@ export const settings = async (
         )
 
         return { success: 'Verification email sent!' };
+    }
 
 
-    }*/}
-
-    //Verification password
     if (value.password && value.newPassword && dbUser.password) {
 
         const passwordMatch = await bcrypt.compare(

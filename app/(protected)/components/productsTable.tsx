@@ -1,7 +1,5 @@
 "use client"
 
-import Image from "next/image";
-
 import { getAllProductsInAllCategories } from "@/app/actions/products";
 import { ProductsStock } from "@/app/types";
 import { useEffect, useState } from "react";

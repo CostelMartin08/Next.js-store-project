@@ -44,8 +44,6 @@ const PhotoProduct: React.FC<Data> = (props) => {
         .map((fragment: string) => baseURL + fragment)
 
 
-
-
     return (
 
         <section className="w-full">

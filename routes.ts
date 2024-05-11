@@ -3,6 +3,8 @@ import localhostUrl from "./nodeEnv";
 export const publicRoutes = [
 
     "/",
+    "/contact",
+    "usStory",
     "/collections",
     "/collections/category",
     "/products/products",

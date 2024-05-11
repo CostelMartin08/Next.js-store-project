@@ -62,7 +62,8 @@ export default function LoginForm() {
   };
 
 
-  const onClick = (provider: "google" | "github") => {
+  const onClick = (provider:"github") => {
+
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT,
     });
