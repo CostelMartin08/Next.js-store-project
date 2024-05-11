@@ -29,6 +29,8 @@ export default function Header() {
     }
   }, [state]);
 
+  let imagePath = user?.isOAuth ? user.image : `https://gadgetgrid.ro/profilePhoto/${user?.id}/${user?.image}`;
+
   return (
 
     <header className="container">
@@ -85,7 +87,7 @@ export default function Header() {
           <Link href="/settings">
 
             {user?.image ? <img className="size-7 rounded-full" height={80} width={80} alt={`${user?.id}`}
-              src={`https://gadgetgrid.ro/profilePhoto/${user?.id}/${user.image}`}></img>
+              src={`${imagePath}`}></img>
               :
               <FontAwesomeIcon className="text-md sm:text-lg px-1" icon={faUser}
               />

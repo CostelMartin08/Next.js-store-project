@@ -20,6 +20,8 @@ export const Navbar = () => {
         signOut();
     }
 
+    let imagePath = user?.isOAuth ? user.image : `https://gadgetgrid.ro/profilePhoto/${user?.id}/${user?.image}`;
+
     return (
 
         <header className='container'>
@@ -61,7 +63,7 @@ export const Navbar = () => {
                         className="hover-element cursor-pointer">
 
                         {user?.image ? <img width={80} height={80} className="size-7 rounded-full" alt={`${user.id}`} 
-                        src={`https://gadgetgrid.ro/profilePhoto/${user?.id}/${user.image}`}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
+                        src={`${imagePath}`}></img> : <FontAwesomeIcon className="text-[14px] sm:text-[23px] md:text-[25px]" icon={faUser} />}
 
                     </div>
 
