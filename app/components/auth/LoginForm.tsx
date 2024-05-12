@@ -24,7 +24,6 @@ export default function LoginForm() {
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
 
     try {
@@ -39,9 +38,8 @@ export default function LoginForm() {
       if (res.ok) {
 
         router.push(DEFAULT_LOGIN_REDIRECT);
-
+        window.location.reload();
       } else {
-
         const data = await res.json();
 
         if (data?.error) {
@@ -54,15 +52,13 @@ export default function LoginForm() {
         if (data?.twoFactor) {
           setShowTwoFactor(true);
         }
-
       }
     } catch (error) {
       setError('SignIn error. Please try again later!');
     }
   };
 
-
-  const onClick = (provider:"github") => {
+  const onClick = (provider: "github") => {
 
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT,
@@ -72,9 +68,9 @@ export default function LoginForm() {
 
   return (
 
-    <section 
-    style={{height: '90dvh'}}
-    className="grid place-items-center ">
+    <section
+      style={{ height: '90dvh' }}
+      className="grid place-items-center ">
 
       <div className="md:w-3/4 container ">
 
@@ -82,7 +78,7 @@ export default function LoginForm() {
 
           <form className="form-mod" onSubmit={handleSubmit}>
             <p className="title text-2xl">enter the account </p>
-        
+
             {showTwoFactor && (
               <>
                 <div className="flex-area">
@@ -135,7 +131,7 @@ export default function LoginForm() {
                 {succes}</div>
 
             )}
-            <button style={{backgroundColor: 'rgb(26, 26, 26)'}} className="submit font-black">{showTwoFactor ? "Confirm" : "SignIn"}</button>
+            <button style={{ backgroundColor: 'rgb(26, 26, 26)' }} className="submit font-black">{showTwoFactor ? "Confirm" : "SignIn"}</button>
           </form>
 
           <button className="border-2 p-2 rounded-xl text-[18px]  text-center" onClick={() => onClick("github")}
