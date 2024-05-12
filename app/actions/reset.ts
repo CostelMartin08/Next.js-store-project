@@ -31,4 +31,6 @@ export const reset = async (email: string) => {
         return { success: 'Reset email send!' };
     }
 
+    return {error:'Err!'}
+
 }

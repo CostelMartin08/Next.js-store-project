@@ -87,15 +87,12 @@ const ShoppingCart = () => {
 
                     <Cart data={data} setForm={setForm} setData={setData} />
                 </div>
-                
+
                 : null}
 
             {form ?
 
-
                 <div className="flex flex-col bg-white rounded-md  lg:flex-row px-8 pb-10 mt-10">
-
-
 
                     <div className="basis-4/4 lg:basis-2/4">
 

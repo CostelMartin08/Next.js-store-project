@@ -17,31 +17,32 @@ export default function ResetForm() {
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
         e.preventDefault();
 
         if (!email) {
-            setError("Toate campurile sunt necesare!");
-            return;
+            return setError("This field is required!");
         }
 
         reset(email)
-        .then((data) => {
-            setSuccess(data.success as string);
-            setError(data.error as string);
-        })
-        .catch(() => {
-            setError("Something went wrong!");
-        })
+            .then((data) => {
+                setError('');
+                return setSuccess(data.success as string);
+
+            })
+            .catch((error) => {
+                setError(error);
+            })
 
     }
 
     return (
 
-        <section style={{height: '90dvh'}} className="grid place-items-center ">
+        <section style={{ height: '90dvh' }} className="grid place-items-center ">
 
-            <div className="md:w-3/4 container ">
+            <div className="md:w-3/4 container">
 
-                <form className="form-register md:p-7 mx-auto" onSubmit={handleSubmit}>
+                <form className="form-register md:p-7 mx-auto rounded-md" onSubmit={handleSubmit}>
                     <p className="title text-2xl">reset password </p>
                     <p className="message">Enter your e-mail</p>
 
@@ -64,7 +65,7 @@ export default function ResetForm() {
                             {success}
                         </div>
                     )}
-                    <button className="submit bg-emerald-950 font-black">Send reset Email</button>
+                    <button style={{ backgroundColor: 'rgb(26, 26, 26)' }} className="submit font-black">Send reset Email</button>
 
                 </form>
 

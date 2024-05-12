@@ -38,7 +38,7 @@ export const Navbar = () => {
                 <div className="w-2/4 lg:w-1/4 flex  items-center justify-center lg:justify-start ">
 
                     <Link href="/">
-                        <h1 className="text-xl xl:text-2xl font-black">GandgetGrid</h1>
+                        <h1 className="text-xl xl:text-2xl font-black">GadgetGrid</h1>
                     </Link>
 
                 </div>

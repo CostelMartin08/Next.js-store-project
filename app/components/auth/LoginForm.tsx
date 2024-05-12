@@ -136,11 +136,11 @@ export default function LoginForm() {
 
           <button className="border-2 p-2 rounded-xl text-[18px]  text-center" onClick={() => onClick("github")}
           >Continue with GitHub
-            <FontAwesomeIcon className=" px-4 text-[14px] sm:text-[23px] md:text-[25px]" icon={faGithub} />
+            <FontAwesomeIcon className=" px-4 text-[16px] sm:text-[23px] md:text-[25px]" icon={faGithub} />
           </button>
 
         </div>
-        <p className="signin py-3">Do not have an account yet? <Link href="/auth/register">Sign up</Link> </p>
+        <p className="signin py-4 ">Do not have an account yet? <Link className="font-black px-1" href="/auth/register">Sign up</Link> </p>
       </div>
 
     </section >

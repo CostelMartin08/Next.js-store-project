@@ -18,18 +18,26 @@ export const sendTwoFactorEmail = async (
     });
 };
 
-
+//try catch pentru toate functiile te rogg
 export const sendPasswordResetEmail = async (
     email: string,
     token: string,
 ) => {
     const resetLink = `https://gadgetgrid.ro/auth/new-password?token=${token}`
-    await resend.emails.send({
-        from: "verify@gadgetgrid.ro",
-        to: email,
-        subject: "Reset your password",
-        html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
-    })
+    try {
+        await resend.emails.send({
+            from: "verify@gadgetgrid.ro",
+            to: email,
+            subject: "Reset your password",
+            html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
+        })
+
+        return true;
+    } catch (error) {
+
+        return false;
+    }
+
 };
 
 
@@ -61,7 +69,7 @@ export const sendOrderConfirmation = async (
         to: email,
         subject: "Confirm Order",
         html: null,
-        react: EmailTemplate({ data,  name }),
+        react: EmailTemplate({ data, name }),
 
 
     });
@@ -80,7 +88,7 @@ export const sendEmailContact = async (
         to: 'gadgetgridservices@gmail.com',
         subject: "Message!",
         html: `<p>Salut Constantin! Aveti un mesaj de la ${name}: ${message}. Nr telefon: ${phone}, Email: ${email} </p>`,
-     
+
     });
 
 }
