@@ -20,7 +20,7 @@ export const Navbar = () => {
         signOut();
     }
 
-    let imagePath = user?.isOAuth ? user.image : `https://gadgetgrid.ro/profilePhoto/${user?.id}/${user?.image}`;
+    let imagePath = user?.image ;
 
     return (
 

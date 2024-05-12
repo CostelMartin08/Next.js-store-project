@@ -66,7 +66,7 @@ export const updateUserImage = async (id: string, image: string): Promise<User> 
       where: { id: id },
 
       data: {
-        image: image
+        image: `https://gadgetgrid.ro/profilePhoto/${id}/${image}`
 
       }
     });

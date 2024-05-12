@@ -29,7 +29,7 @@ export default function Header() {
     }
   }, [state]);
 
-  let imagePath = user?.isOAuth ? user.image : `https://gadgetgrid.ro/profilePhoto/${user?.id}/${user?.image}`;
+  let imagePath = user?.image ;
 
   return (
 
@@ -46,7 +46,7 @@ export default function Header() {
         <div className="w-2/4 lg:w-1/4 flex  items-center justify-center lg:justify-start ">
 
           <Link href="/">
-            <h1 className="text-xl xl:text-2xl font-black">GandgetGrid</h1>
+            <h1 className="text-xl xl:text-2xl font-black">GadgetGrid</h1>
           </Link>
 
         </div>
