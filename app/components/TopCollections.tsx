@@ -90,11 +90,11 @@ export function TopCollections() {
 
                                         {product.discountPrice > 0 ?
                                             <>
-                                                <p className="text-slate-800 font-black">{product.discountPrice}$</p>
-                                                <p className="text-slate-400 line-through ">{product.price}$</p>
+                                                <p className="text-slate-800 font-black">{product.discountPrice}€</p>
+                                                <p className="text-slate-400 line-through ">{product.price}€</p>
                                             </>
                                             :
-                                            <p className="text-slate-800 font-black">{product.price}$</p>
+                                            <p className="text-slate-800 font-black">{product.price}€</p>
                                         }
 
                                     </div>

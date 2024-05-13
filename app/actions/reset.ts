@@ -22,6 +22,7 @@ export const reset = async (email: string) => {
     const passwordResetToken = await generatePasswordResetToken(email);
 
     const awaitConfirmation = await sendPasswordResetEmail(
+        existingUser.name as string,
         passwordResetToken.email,
         passwordResetToken.token,
     );
@@ -31,6 +32,6 @@ export const reset = async (email: string) => {
         return { success: 'Reset email send!' };
     }
 
-    return {error:'Err!'}
+    return { error: 'Err!' }
 
 }

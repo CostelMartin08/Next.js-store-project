@@ -213,9 +213,9 @@ const ShoppingCart = () => {
                                             <h3 className="mx-3 text-sm truncate w-40 md:w-44">{element.name}</h3>
                                         </div>
                                         {element.discount > 0 ?
-                                            <span className="text-sm w-12 font-bold">{element.discountPrice} $</span>
+                                            <span className="text-sm w-12 font-bold">{element.discountPrice} €</span>
                                             :
-                                            <span className="text-sm w-12 font-bold">{element.price} $</span>
+                                            <span className="text-sm w-12 font-bold">{element.price} €</span>
                                         }
                                     </div>
                                 ))
@@ -224,10 +224,10 @@ const ShoppingCart = () => {
 
                             <div className="w-4/4 md:w-3/4 mx-auto  flex flex-col justify-start space-y-3">
                                 <span>
-                                    Transport: 10$
+                                    Transport: 5€
                                 </span>
                                 <h3 className="text-[25px]">
-                                    Total: {calculateTotal()}$
+                                    Total: {calculateTotal()}€
                                 </h3>
                             </div>
                         </div>

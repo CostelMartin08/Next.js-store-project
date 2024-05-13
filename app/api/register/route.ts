@@ -27,6 +27,7 @@ export async function POST(req: any) {
         const verificationToken = await generateVerificationToken(email);
 
         await sendVerificationEmail(
+            name,
             verificationToken.email,
             verificationToken.token,
         )

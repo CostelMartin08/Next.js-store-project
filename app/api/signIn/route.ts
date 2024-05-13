@@ -35,6 +35,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         );
 
         await sendVerificationEmail(
+            existingUser.name as string,
             verificationToken.email,
             verificationToken.token,
         );
@@ -87,6 +88,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             const twoFactorToken = await generateTwoFactorToken(existingUser.email)
 
             await sendTwoFactorEmail(
+                existingUser.name as string,
                 twoFactorToken.email,
                 twoFactorToken.token,
             );

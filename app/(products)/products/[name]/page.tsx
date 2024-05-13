@@ -146,9 +146,9 @@ const ProductPage = () => {
 
                             <div className="flex space-x-5 items-center relative">
                                 {data.discount > 0 ?
-                                    <span className="text-black text-lg md:text-2xl font-black">${data.discountPrice}</span>
+                                    <span className="text-black text-lg md:text-2xl font-black">{data.discountPrice}€</span>
                                     :
-                                    <span className="text-black text-lg md:text-2xl font-black">${data.price}</span>
+                                    <span className="text-black text-lg md:text-2xl font-black">{data.price}€</span>
                                 }
 
                                 {data?.stock == 0 &&
@@ -163,7 +163,7 @@ const ProductPage = () => {
                             </div>
                             {data.discount > 0 ?
                                 <div>
-                                    <span className="clr-gray text-black text-lg md:text-xl font-black line-through">${data.price}</span>
+                                    <span className="clr-gray text-black text-lg md:text-xl font-black line-through">{data.price}€</span>
                                 </div>
                                 : null}
                         </div>

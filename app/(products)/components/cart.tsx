@@ -180,8 +180,8 @@ const Cart = (props: Props) => {
 
                                         <td className="basis-1/4 sm:basis-1/3 flex items-center justify-end">
                                             {element.discount > 0 ?
-                                                <p className="mx-2">{element.discountPrice}$</p>
-                                                : <p className="mx-2">{element.price}$</p>
+                                                <p className="mx-2">{element.discountPrice}€</p>
+                                                : <p className="mx-2">{element.price}€</p>
                                             }
                                         </td>
                                     </tr>
@@ -199,7 +199,7 @@ const Cart = (props: Props) => {
 
                                 <div className="w-4/6 space-y-4">
                                     <p className="text-[15px] font-light">Subtotal:{calculateTotal()} </p>
-                                    <p className="text-[20px] font-bold">Total price: {calculateTotal()} $</p>
+                                    <p className="text-[20px] font-bold">Total price: {calculateTotal()}€</p>
                                 </div>
                                 <textarea
                                     className="w-4/6 border rounded-md h-32 w-8/9"
