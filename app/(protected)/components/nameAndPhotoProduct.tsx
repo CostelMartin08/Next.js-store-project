@@ -110,9 +110,9 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
         <>
             <div onClick={handleClick} className="flex justify-left gap-3 items-center h-full hover:bg-slate-200 cursor-pointer">
                 <span>{index}.</span>
-                <Image
+                <img
                     className="md:p-1 border-2 rounded"
-                    src={`/products/${product.category}/${product.id}/${product.photo[0]}`}
+                    src={`https://gadgetgrid.ro/images/${product.category}/${product.id}/${product.photo[0]}`}
                     alt={product.name}
                     height={40}
                     width={40}

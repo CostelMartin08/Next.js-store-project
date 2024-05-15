@@ -128,14 +128,14 @@ const Cart = (props: Props) => {
 
                                         <td className="basis-2/4 sm:basis-1/3 my-auto flex items-center">
 
-                                            <Image
+                                            <img
                                                 width={400}
                                                 height={400}
                                                 className="img w-20"
-                                                src={`/products/${element.category}/${element.id}/${element.photo[0]}`}
+                                                src={`https://gadgetgrid.ro/images/${element.category}/${element.id}/${element.photo[0]}`}
                                                 alt={element.name}>
 
-                                            </Image>
+                                            </img>
 
                                             <h3 className="mx-3 text-xs truncate w-16 md:w-28 lg:w-40">{element.name}</h3>
                                         </td>
