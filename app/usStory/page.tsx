@@ -7,6 +7,7 @@ import SvgGG from '../../public/appPhoto/GadgetGrid.svg';
 import Auth from '../../public/appPhoto/auth.png';
 import Admin from '../../public/appPhoto/admin-user.png';
 
+
 export default function UsStory() {
 
 
@@ -132,6 +133,17 @@ export default function UsStory() {
                             alt="code">
 
                         </Image>
+
+                    </div>
+
+
+                    <div className="bg-white rounde-md mt-10">
+
+                        <video controls>
+                            <source src="https://gadgetgrid.ro/video/video1.mp4" type="video/mp4" />
+                            {/* Alte surse video pot fi adăugate aici pentru compatibilitatea cu browserele */}
+                            Your browser does not support the video tag.
+                        </video>
 
                     </div>
 
