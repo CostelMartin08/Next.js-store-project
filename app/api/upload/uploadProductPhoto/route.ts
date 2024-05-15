@@ -1,7 +1,6 @@
 'use server'
 
 import { modifyNameAndPhotoById } from "@/app/data/products";
-import { mkdir, writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 import { join } from "path";
 import fs from 'fs/promises';
@@ -30,11 +29,16 @@ export async function POST(req: NextRequest) {
 
     }
 
-    const fileObjects = files.filter(element => element instanceof File);
+    const fileObjects = files.filter(element => element as object);
+    
+    //const file: File | null = formData.get('file') as unknown as File
 
+
+   // console.log(file)
+    console.log(fileObjects)
     await Promise.all(fileObjects.map(async (element) => {
 
-        if (element instanceof File) {
+        if (element instanceof Object) {
 
             const bytes = await element.arrayBuffer();
             const buffer = Buffer.from(bytes);
