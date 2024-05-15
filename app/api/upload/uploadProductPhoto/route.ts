@@ -41,14 +41,7 @@ export async function POST(req: NextRequest) {
             const path = join(process.cwd(), 'public', 'products', category, id,);
             const imageFilePath = join(path, element.name);
 
-            if (await directoryExists(path)) {
-
-                await emptyDirectory(path);
-
-            } else {
-
                 await fs.mkdir(path, { recursive: true });
-            }
 
             await fs.writeFile(imageFilePath, buffer);
         }
