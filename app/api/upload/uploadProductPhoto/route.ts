@@ -30,12 +30,10 @@ export async function POST(req: NextRequest) {
     }
 
     const fileObjects = files.filter(element => element);
- 
+
     await Promise.all(fileObjects.map(async (element) => {
 
-       
-        if (element instanceof File) {
-          console.log(element)
+        if (typeof element !== 'string') {
 
             const bytes = await element.arrayBuffer();
             const buffer = Buffer.from(bytes);
