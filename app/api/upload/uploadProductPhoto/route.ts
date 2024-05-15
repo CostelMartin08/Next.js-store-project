@@ -1,7 +1,7 @@
 'use server'
 
 import { modifyNameAndPhotoById } from "@/app/data/products";
-import { writeFile } from "fs/promises";
+import { mkdir, writeFile } from "fs/promises";
 
 import { NextRequest, NextResponse } from "next/server";
 import { join } from "path";
@@ -33,22 +33,19 @@ export async function POST(req: NextRequest) {
     const fileObjects = files.filter(element => element instanceof File);
 
     await Promise.all(fileObjects.map(async (element) => {
-
         if (element instanceof File) {
             const bytes = await element.arrayBuffer();
             const buffer = Buffer.from(bytes);
-
+    
             const path = join(process.cwd(), 'public', 'products', category, id);
-
+    
+            await mkdir(path, { recursive: true });
+    
             const imageFilePath = join(path, element.name);
-
+    
             await writeFile(imageFilePath, buffer);
-
-          
         }
-
     }));
-
 
     return NextResponse.json({ success: 'The changes were successful!' });
 

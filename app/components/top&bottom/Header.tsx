@@ -52,9 +52,9 @@ export default function Header() {
         </div>
 
         <ul className="text-lg xl:text-xl w-3/4 hidden lg:flex lg:space-x-3 xl:space-x-4 justify-center items-center">
-          <Link href='/collections/category?category=laptops'>Laptop</Link>
-          <Link href='/collections/category?category=tablets'>Tablet</Link>
-          <Link href='/collections/category?category=smartphones'>Smartphone</Link>
+          <Link href='/collections/category?category=laptops'>Laptops</Link>
+          <Link href='/collections/category?category=tablets'>Tablets</Link>
+          <Link href='/collections/category?category=smartphones'>Smartphones</Link>
           <Link href='/collections/category?category=smartwatches'>Smartwatches</Link>
           <Link href='/contact'>Contact</Link>
           <Link className="truncate" href='/usStory'>Us Story</Link>

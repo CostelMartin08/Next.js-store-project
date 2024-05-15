@@ -160,9 +160,9 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
                                         {fileObj.file ?
 
                                             (typeof fileObj.file === 'string' ? (
-                                                <Image
+                                                <img
                                                     className="cursor-pointer w-full"
-                                                    src={`/products/${product.category}/${product.id}/${fileObj.file}`}
+                                                    src={`https://gadgetgrid.ro/images/${product.category}/${product.id}/${fileObj.file}`}
                                                     alt={product.photo[index]}
                                                     width={80}
                                                     height={80}
