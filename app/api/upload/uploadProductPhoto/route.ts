@@ -2,10 +2,10 @@
 
 import { modifyNameAndPhotoById } from "@/app/data/products";
 import { mkdir, writeFile } from "fs/promises";
-
 import { NextRequest, NextResponse } from "next/server";
 import { join } from "path";
-
+import fs from 'fs/promises';
+import { PathLike } from "fs";
 
 
 export async function POST(req: NextRequest) {
@@ -33,17 +33,25 @@ export async function POST(req: NextRequest) {
     const fileObjects = files.filter(element => element instanceof File);
 
     await Promise.all(fileObjects.map(async (element) => {
+
         if (element instanceof File) {
+
             const bytes = await element.arrayBuffer();
             const buffer = Buffer.from(bytes);
-    
-            const path = join(process.cwd(), 'public', 'products', category, id);
-    
-            await mkdir(path, { recursive: true });
-    
+
+            const path = join(process.cwd(), 'public', 'products', category, id,);
             const imageFilePath = join(path, element.name);
-    
-            await writeFile(imageFilePath, buffer);
+
+            if (await directoryExists(path)) {
+
+                await emptyDirectory(path);
+
+            } else {
+
+                await fs.mkdir(path, { recursive: true });
+            }
+
+            await fs.writeFile(imageFilePath, buffer);
         }
     }));
 
@@ -51,3 +59,21 @@ export async function POST(req: NextRequest) {
 
 
 }
+
+async function directoryExists(path: PathLike) {
+    try {
+        await fs.access(path);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+async function emptyDirectory(path: any) {
+    const files = await fs.readdir(path);
+    for (const file of files) {
+        const filePath = join(path, file);
+        await fs.rm(filePath, { force: true, recursive: true });
+    }
+}
+
