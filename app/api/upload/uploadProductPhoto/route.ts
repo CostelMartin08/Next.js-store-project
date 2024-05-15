@@ -29,16 +29,13 @@ export async function POST(req: NextRequest) {
 
     }
 
-    const fileObjects = files.filter(element => element as object);
-    
-    //const file: File | null = formData.get('file') as unknown as File
-
-
-   // console.log(file)
-    console.log(fileObjects)
+    const fileObjects = files.filter(element => element);
+ 
     await Promise.all(fileObjects.map(async (element) => {
 
-        if (element instanceof Object) {
+       
+        if (element instanceof File) {
+          console.log(element)
 
             const bytes = await element.arrayBuffer();
             const buffer = Buffer.from(bytes);
