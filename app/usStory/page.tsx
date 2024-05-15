@@ -5,6 +5,7 @@ import HeaderBanner from "../components/top&bottom/headerBanner"
 import Image from "next/image";
 import SvgGG from '../../public/appPhoto/GadgetGrid.svg';
 import Auth from '../../public/appPhoto/auth.png';
+import Admin from '../../public/appPhoto/admin-user.png';
 
 export default function UsStory() {
 
@@ -36,24 +37,34 @@ export default function UsStory() {
                     </div>
 
 
-                    <div className='bg-white p-14 text-left md:text-center flex flex-col items-center gap-8 rounded-md mt-10'>
+                    <div className='bg-white p-8 md:p-14 text-left md:text-center flex flex-col items-center gap-8 rounded-md mt-10'>
 
                         <h4 className="text-4xl font-black">What is GadgetGrid?</h4>
-                        <p className="md:w-[45rem] text-sm md:text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus elit, eleifend eu libero in,
-                            vulputate mattis arcu. Nam tempor molestie tellus vel rutrum. Praesent sed dapibus arcu. Aenean
-                            molestie tristique velit. Duis semper nisi at neque dignissim feugiat.
-                            Quisque libero urna, laoreet sed eleifend in, rutrum eu turpis.
+                        <p className="md:w-[45rem] text-sm md:text-lg">
+                            GadgetGrid is a web application that I created entirely in two months,
+                            using the Next.js framework and TypeScript. This project gave me the
+                            opportunity to familiarize myself with and learn these technologies.
                         </p>
-                        <p className="md:w-[45rem] text-sm md:text-lg">Curabitur.
-                            Curabitur nec dui sed tortor posuere vulputate. Integer ullamcorper euismod dui nec
-                            sodales. Quisque sed diam in sapien facilisis congue sit amet vitae libero. Nulla
-                            eleifend ligula posuere tellus aliquam, in dapibus turpis efficitur. Mauris aliquam
-                            ex eu sodales fermentum. Ut nunc tortor, rutrum at ultrices id, dignissim sed magna.</p>
+                        <p className="md:w-[45rem] text-sm md:text-lg">
+                            For over a year now, I decided to venture into the world of web development,
+                            during which time I have created presentation websites and web applications,
+                            evolving from simple HTML/CSS projects to full-stack web applications.
+                        </p>
+                        <p className="md:w-[45rem] text-sm md:text-lg">
+                            Both with other applications and with GadgetGrid, my satisfaction lies in
+                            publishing these projects. It gives me immense pleasure to open a browser
+                            on a phone or tablet and see something I created.
+                        </p>
+                        <p className="md:w-[45rem] text-sm md:text-lg">
+                            GadgetGrid is a portfolio project, but I have tried to offer an experience as close as
+                            possible to that of an online store. There are still many details to resolve, but I believe
+                            I now have a decent production version.
+                        </p>
 
                     </div>
 
 
-                    <div className="flex flex-col items-center md:place-items-start md:flex-row gap-8 bg-white p-14 rounded-md mt-10">
+                    <div className="flex flex-col items-center md:place-items-start md:flex-row gap-8 bg-white p-8 md:p-14 rounded-md mt-10">
 
                         <Image
                             className="rounded-md"
@@ -88,6 +99,44 @@ export default function UsStory() {
 
                         </div>
                     </div>
+
+
+                    <div className="bg-white flex flex-col-reverse justify-center items-center md:flex-row gap-8 rounded-md mt-10 p-8 md:p-14 ">
+
+                        <div className="text-left md:text-lg space-y-8 text-left md:text-justify">
+
+                            <p>
+                                Inspired by the e-commerce platform Shopify, we have developed a similar
+                                system for managing products, aiming to provide an efficient and intuitive
+                                experience to users.
+                            </p>
+                            <p>
+                                Through this system, users with administrator roles
+                                are empowered to add new products to the catalog and modify existing ones.
+                            </p>
+                            <p>
+                                This functionality enables flexible management of the entire inventory,
+                                including updating descriptions, enhancing images, and adjusting prices
+                                to meet the ever-changing market demands and preferences.
+                            </p>
+
+
+                        </div>
+
+                        <Image
+                            quality={100}
+                            className="rounded-md"
+                            src={Admin}
+                            width={300}
+                            height={300}
+                            alt="code">
+
+                        </Image>
+
+                    </div>
+
+
+
 
                 </div>
 
