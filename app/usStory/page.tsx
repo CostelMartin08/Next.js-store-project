@@ -7,10 +7,26 @@ import SvgGG from '../../public/appPhoto/GadgetGrid.svg';
 import Auth from '../../public/appPhoto/auth.png';
 import Admin from '../../public/appPhoto/admin-user.png';
 
-import poster from '../../public/appPhoto/poster1.png';
+import { useEffect, useState } from "react";
 
 export default function UsStory() {
 
+    const [poster, setPoster] = useState('https://gadgetgrid.ro/poster/posterLg.png');
+
+    const updatePoster = () => {
+        if (window.innerWidth >= 768) {
+            setPoster('https://gadgetgrid.ro/poster/posterLg.png');
+        } else {
+            setPoster('https://gadgetgrid.ro/poster/posterSm.png');
+        }
+    };
+
+    useEffect(() => {
+        updatePoster();
+
+        window.addEventListener('resize', updatePoster);
+        return () => window.removeEventListener('resize', updatePoster);
+    }, []);
 
 
     return (
@@ -140,10 +156,11 @@ export default function UsStory() {
 
                     <div className="bg-white rounded-md mt-10">
 
-                        <video 
-                        className="rounded-md w-full" 
-                
-                        poster='https://gadgetgrid.ro/poster/poster1.png' controls>
+                        <video
+                            id='poster'
+                            className="rounded-md w-full"
+
+                            poster={poster} controls>
                             <source src="https://gadgetgrid.ro/video/video1.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
@@ -153,10 +170,10 @@ export default function UsStory() {
 
 
 
-            </div>
+                </div>
 
 
-        </section >
+            </section >
 
         </>
 
