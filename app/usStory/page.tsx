@@ -11,13 +11,19 @@ import { useEffect, useState } from "react";
 
 export default function UsStory() {
 
-    const [poster, setPoster] = useState('https://gadgetgrid.ro/poster/posterLg.png');
+    const [poster1, setPoster1] = useState('https://gadgetgrid.ro/poster/loginPromoLg.png');
+    const [poster2, setPoster2] = useState('https://gadgetgrid.ro/poster/addProductPromoLg.png');
+    const [poster3, setPoster3] = useState('https://gadgetgrid.ro/poster/posterLg.png');
 
     const updatePoster = () => {
         if (window.innerWidth >= 768) {
-            setPoster('https://gadgetgrid.ro/poster/posterLg.png');
+            setPoster1('https://gadgetgrid.ro/poster/loginPromoLg.png');
+            setPoster2('https://gadgetgrid.ro/poster/addProductPromoLg.png');
+            setPoster3('https://gadgetgrid.ro/poster/loginPromoLg.png');
         } else {
-            setPoster('https://gadgetgrid.ro/poster/posterSm.png');
+            setPoster1('https://gadgetgrid.ro/poster/loginPromoSm.png');
+            setPoster2('https://gadgetgrid.ro/poster/addProductPromoSm.png');
+            setPoster3('https://gadgetgrid.ro/poster/loginPromoSm.png');
         }
     };
 
@@ -118,6 +124,25 @@ export default function UsStory() {
                         </div>
                     </div>
 
+                    <div className="mt-10">
+
+                        <h5 className="text-3xl md:text-6xl font-black">The authentication process</h5>
+
+                    </div>
+
+                    <div className="bg-white rounded-md mt-10">
+
+                        <video
+                            id='poster'
+                            className="rounded-md w-full"
+
+                            poster={poster1} controls>
+                            <source src="https://gadgetgrid.ro/video/login.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+
+                    </div>
+
 
                     <div className="bg-white flex flex-col-reverse justify-center items-center md:flex-row gap-8 rounded-md mt-10 p-8 md:p-14 ">
 
@@ -153,6 +178,12 @@ export default function UsStory() {
 
                     </div>
 
+                    <div className="mt-10">
+
+                        <h5 className="text-3xl md:text-6xl font-black">Add products</h5>
+
+                    </div>
+
 
                     <div className="bg-white rounded-md mt-10">
 
@@ -160,15 +191,32 @@ export default function UsStory() {
                             id='poster'
                             className="rounded-md w-full"
 
-                            poster={poster} controls>
-                            <source src="https://gadgetgrid.ro/video/video1.mp4" type="video/mp4" />
+                            poster={poster2} controls>
+                            <source src="https://gadgetgrid.ro/video/addProduct.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
 
                     </div>
 
+                    <div className="mt-10">
+
+                        <h5 className="text-3xl md:text-6xl font-black">Inventory management</h5>
+
+                    </div>
 
 
+                    <div className="bg-white rounded-md mt-10">
+
+                        <video
+                            id='poster'
+                            className="rounded-md w-full"
+
+                            poster={poster3} controls>
+                            <source src="https://gadgetgrid.ro/video/video1.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+
+                    </div>
 
                 </div>
 

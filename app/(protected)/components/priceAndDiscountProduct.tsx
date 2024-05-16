@@ -67,7 +67,7 @@ export const PriceAndDiscount: React.FC<StatusProductProps> = ({ data }) => {
         <>
             <th className="w-1/12">
                 <div className="flex h-24 items-center justify-center">
-                    <p className="text-[10px] md:text-base">{product.price}$</p>
+                    <p className="text-[10px] md:text-base">{product.price}€</p>
                 </div>
             </th>
             <th className="w-2/12 md:w-1/12 relative" >
@@ -83,7 +83,7 @@ export const PriceAndDiscount: React.FC<StatusProductProps> = ({ data }) => {
                         onChange={handleChange}
                         type="number"
                         className="w-[1.3rem] md:w-[2.3rem] text-center text-[10px] md:text-base bg-transparent" />
-                    {!visible && <span className="text-[10px] md:text-base">$</span>}
+                    {!visible && <span className="text-[10px] md:text-base">€</span>}
                     {
                         visible &&
                         <button className=" text-sm bg-green-100 rounded-lg" type="submit">
