@@ -23,8 +23,6 @@ interface ProductProps {
 
 const OneProduct: React.FC<ProductProps> = (props) => {
 
-
-
     return (
         <>
             {props.data && (
@@ -32,7 +30,7 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                     {props.data.map((product, index) => (
                         <Link href={`/products/products?q1=${props.category}&q2=${encodeURIComponent(product?.name)}`}
                             key={index}
-                           
+
                             className="md:h-[20rem] flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg">
 
                             <section className='h-2/5 sm:h-3/5 m-1 relative'>

@@ -41,7 +41,7 @@ model User {
   emailVerified         DateTime?
   password              String?
   image                 String?
-  role                  UserRole               @default(ADMIN)
+  role                  UserRole               @default(USER)
   accounts              Account[]
   order                 Orders[]
   isTwoFactorEnabled    Boolean                @default(false)
