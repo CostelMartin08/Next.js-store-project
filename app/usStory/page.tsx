@@ -102,7 +102,7 @@ export default function UsStory() {
 
                         <div className="space-y-10 text-left md:text-justify">
 
-                            <p className="md:w-[45rem] text-sm md:text-lg">
+                            <p className="text-sm md:text-lg">
                                 Auth.js is a JavaScript library for authentication and authorization,
                                 which facilitates the implementation of authentication functionalities
                                 in web applications. Within this project, we have opted for both
@@ -110,13 +110,13 @@ export default function UsStory() {
                                 the target audience of this application.
                             </p>
 
-                            <p className="md:w-[45rem] text-sm md:text-lg">
+                            <p className="text-sm md:text-lg">
                                 GadgetGrid offers a straightforward authentication experience.
                                 From email address verification to two-factor authentication
                                 and password reset.
                             </p>
 
-                            <p className="md:w-[45rem] text-sm md:text-lg">
+                            <p className="text-sm md:text-lg">
                                 I would like to mention that GadgetGrid is a demonstrative application
                                 without any economic purpose. The collected data, specifically email
                                 addresses and profile photos, are deleted upon request.
@@ -149,16 +149,16 @@ export default function UsStory() {
 
                         <div className="space-y-8 text-left md:text-justify">
 
-                            <p className="md:w-[45rem] text-sm md:text-lg">
+                            <p className="text-sm md:text-lg">
                                 Inspired by the e-commerce platform Shopify, we have developed a similar
                                 system for managing products, aiming to provide an efficient and intuitive
                                 experience to users.
                             </p>
-                            <p className="md:w-[45rem] text-sm md:text-lg">
+                            <p className="text-sm md:text-lg">
                                 Through this system, users with administrator roles
                                 are empowered to add new products to the catalog and modify existing ones.
                             </p>
-                            <p className="md:w-[45rem] text-sm md:text-lg">
+                            <p className="text-sm md:text-lg">
                                 This functionality enables flexible management of the entire inventory,
                                 including updating descriptions, enhancing images, and adjusting prices
                                 to meet the ever-changing market demands and preferences.
