@@ -114,7 +114,7 @@ export const sendOrderConfirmation = async (
         from: "confirm-order@gadgetgrid.ro",
         to: email,
         subject: "Order Confirmation",
-        html: null,
+        html: '',
         react: EmailTemplate({ data, name }),
 
 
