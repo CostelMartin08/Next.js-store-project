@@ -19,8 +19,13 @@ const lato = Lato({
 })
 
 export const metadata = {
-  title: 'StoreApp',
-  description: 'Project'
+  title:'GadgetGrid',
+  description:'Online Store',
+  icons: {
+    icon: '/favicon/favicon-32x32.png',
+    shortcut: '/favicon/favicon-32x32.png',
+    apple: '/favicon/apple-touch-icon.png',
+  }
 }
 
 export default async function RootLayout({
@@ -38,7 +43,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
 
       <html lang="en">
-      
+  
         <body className={lato.className} >
 
           <AppWrapper>
