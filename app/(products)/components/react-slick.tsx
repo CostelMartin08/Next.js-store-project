@@ -51,7 +51,7 @@ const ReactSlick: React.FC<Data> = (props) => {
             return (
 
                 <a>
-                    <Image alt='photo' height={80} width={80} src={`products/${param}/${props.data.id}/${props.data.photo[index + 1]}`} />
+                    <Image alt='photo' height={80} width={80} src={`/products/${param}/${props.data.id}/${props.data.photo[index + 1]}`} />
                 </a>
             );
         },
