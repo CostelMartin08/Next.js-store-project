@@ -29,13 +29,13 @@ export default function Header() {
     }
   }, [state]);
 
-  let imagePath = user?.image ;
+  let imagePath = user?.image;
 
   return (
 
     <header className="container">
 
-      <section className="text-sm md:text-md flex py-6 w-full  sm:px-6 px-2">
+      <section className="text-sm md:text-md flex sm:px-6 px-2 py-6 w-full ">
 
         <div className="w-1/4 lg:hidden flex justify-start">
 
@@ -46,7 +46,9 @@ export default function Header() {
         <div className="w-2/4 lg:w-1/4 flex  items-center justify-center lg:justify-start ">
 
           <Link href="/">
+
             <h1 className="text-xl xl:text-2xl font-black">GadgetGrid</h1>
+
           </Link>
 
         </div>

@@ -110,12 +110,13 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
         <>
             <div onClick={handleClick} className="flex justify-left gap-3 items-center h-full hover:bg-slate-200 cursor-pointer">
                 <span>{index}.</span>
-                <img
+                <Image
                     className="md:p-1 border-2 rounded"
-                    src={`https://gadgetgrid.ro/images/${product.category}/${product.id}/${product.photo[0]}`}
+                    src={`products/${product.category}/${product.id}/${product.photo[0]}`}
                     alt={product.name}
                     height={40}
                     width={40}
+                    loading="lazy"
                 />
                 <p className="text-left truncate">{product.name}</p>
             </div>
@@ -160,12 +161,13 @@ const NameAndPhoto: React.FC<StatusProductProps> = ({ data }) => {
                                         {fileObj.file ?
 
                                             (typeof fileObj.file === 'string' ? (
-                                                <img
+                                                <Image
                                                     className="cursor-pointer w-full"
-                                                    src={`https://gadgetgrid.ro/images/${product.category}/${product.id}/${fileObj.file}`}
+                                                    src={`/products/${product.category}/${product.id}/${fileObj.file}`}
                                                     alt={product.photo[index]}
                                                     width={80}
                                                     height={80}
+                                                    loading="lazy"
                                                 />) : (
                                                 <div className="border-2 h-full flex flex-col gap-2 justify-center items-center">
 

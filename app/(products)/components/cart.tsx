@@ -8,6 +8,7 @@ import { CartProduct } from "@/app/types";
 import { faCartShopping, faForward } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "@/app/context";
 import Link from "next/link";
+import { lazy } from "react";
 
 
 interface Props {
@@ -128,14 +129,14 @@ const Cart = (props: Props) => {
 
                                         <td className="basis-2/4 sm:basis-1/3 my-auto flex items-center">
 
-                                            <img
+                                            <Image
                                                 width={400}
                                                 height={400}
                                                 className="img w-20"
-                                                src={`https://gadgetgrid.ro/images/${element.category}/${element.id}/${element.photo[0]}`}
-                                                alt={element.name}>
-
-                                            </img>
+                                                src={`/products/${element.category}/${element.id}/${element.photo[0]}`}
+                                                alt={element.name}
+                                                loading="lazy">
+                                            </Image>
 
                                             <h3 className="mx-3 text-xs truncate w-16 md:w-28 lg:w-40">{element.name}</h3>
                                         </td>

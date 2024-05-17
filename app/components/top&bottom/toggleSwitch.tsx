@@ -28,7 +28,6 @@ const ToggleSwitch = () => {
 
             <div id="menuToggle">
 
-
                 <FontAwesomeIcon className="text-xl xl:text-2xl m-0" onClick={() => toggleMenu()} icon={faBars} />
 
             </div>

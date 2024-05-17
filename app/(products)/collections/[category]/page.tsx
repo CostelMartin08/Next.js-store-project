@@ -92,7 +92,7 @@ const CategoryPage = () => {
                             </div>
 
                         ) : (
-                            <p className='text-lg'>There are no products listed in this category</p>
+                            <p className='text-2xl'>There are no products listed in this category</p>
                         )}
 
                     </div>

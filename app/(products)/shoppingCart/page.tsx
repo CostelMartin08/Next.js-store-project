@@ -203,13 +203,14 @@ const ShoppingCart = () => {
                                         key={index}>
 
                                         <div className="flex items-center space-x-3">
-                                            <img
+                                            <Image
                                                 width={400}
                                                 height={400}
                                                 className="w-8 sm:w-12"
-                                                src={`https://gadgetgrid.ro/images/${element.category}/${element.id}/${element.photo[0]}`}
-                                                alt={element.name}>
-                                            </img>
+                                                src={`/products/${element.category}/${element.id}/${element.photo[0]}`}
+                                                alt={element.name}
+                                                loading='lazy'>
+                                            </Image>
                                             <h3 className="mx-3 text-sm truncate w-40 md:w-44">{element.name}</h3>
                                         </div>
                                         {element.discount > 0 ?

@@ -24,7 +24,6 @@ export default function FreshIn() {
                         return dateB - dateA;
                     });
 
-
                     let recentProducts = productsWithDiscount.slice(0, 6);
 
                     setData(recentProducts as unknown as ProductData[]);
@@ -74,7 +73,8 @@ export default function FreshIn() {
                                         height={200}
                                         className='object-contain size-full p-1 '
                                         src={`/products/${product.category}/${product.id}/${product.photo[0]}`}
-                                        alt={product.name}>
+                                        alt={product.name}
+                                        loading="lazy">
 
                                     </Image>
 

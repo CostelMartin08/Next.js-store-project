@@ -53,6 +53,7 @@ export const settings = async (
         );
 
         await sendVerificationEmail(
+            existingUser?.name as string,
             verificationToken.email,
             verificationToken.token,
         )

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-
+import Image from 'next/image';
 
 export interface ProductData {
     id: string;
@@ -49,14 +49,15 @@ const OneProduct: React.FC<ProductProps> = (props) => {
                                     </div>
                                 }
 
-                                <img
+                                <Image
                                     width={400}
                                     height={200}
                                     className='object-contain size-full p-1 '
-                                    src={`https://gadgetgrid.ro/images/${props.category}/${product.id}/${product.photo[0]}`}
-                                    alt={product.name}>
+                                    src={`/products/${props.category}/${product.id}/${product.photo[0]}`}
+                                    alt={product.name}
+                                    loading='lazy'>
 
-                                </img>
+                                </Image>
 
                             </section>
 

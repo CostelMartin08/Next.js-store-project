@@ -10,8 +10,6 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import "./components.css";
 
-
-
 export const Navbar = () => {
 
 

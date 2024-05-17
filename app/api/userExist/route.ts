@@ -1,22 +1,16 @@
 
 import { getUserByEmail } from "@/app/data/user";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-
-export async function POST(req: { json: () => PromiseLike<{ email: string; }> | { email: string; }; }) {
-
+export async function POST(req: NextRequest) {
     try {
-
-        let { email } = await req.json();
+        const { email } = await req.json();
 
         const user = await getUserByEmail(email);
 
         return NextResponse.json({ user });
-
     } catch (error) {
-
-        console.log("Error!");
+        console.error("Error!", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
-
-
 }

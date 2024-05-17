@@ -27,7 +27,7 @@ export default function BestPrice() {
             });
 
 
-    },[]);
+    }, []);
 
 
     return (
@@ -44,7 +44,7 @@ export default function BestPrice() {
                             <Link href={`/products/products?q1=${product.category}&q2=${encodeURIComponent(product?.name)}`}
                                 className="md:h-[20rem] flex flex-col items-left bg-white border-2 border-gray-200 rounded-lg"
                                 key={index}>
-                                
+
                                 <section className='h-2/5 sm:h-3/5 m-1 relative'>
 
                                     {product.stock === 0 &&
@@ -94,7 +94,9 @@ export default function BestPrice() {
                                     </div>
 
                                 </section>
+
                             </Link>
+
                         ))}
                     </>
                 )}

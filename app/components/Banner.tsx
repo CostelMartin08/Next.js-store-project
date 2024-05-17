@@ -4,8 +4,7 @@ import Image from 'next/image';
 
 import img from '../../public/appPhoto/GalaxyPromo.svg';
 import imgSm from '../../public/appPhoto/GalaxyPromoSm.svg';
-import svgLg from './svg/smartWatch.svg';
-import svgSm from './svg/smartWatchSm.svg';
+
 import Link from 'next/link';
 
 const Banner = () => {

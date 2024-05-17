@@ -7,56 +7,47 @@ import { updateUserImage } from '@/app/data/user';
 import fs from 'fs/promises';
 import { PathLike } from 'node:fs';
 
-
 export async function POST(req: NextRequest) {
-
     const user = await currentUser();
     const data = await req.formData();
 
     if (!user) {
-        return NextResponse.json({ error: "Unauthorized!" });
+        return NextResponse.json({ error: "Unauthorized!" }, { status: 401 });
     }
 
-    const file: File | null = data.get('file') as unknown as File
+    const file: File | null = data.get('file') as unknown as File;
 
     if (!file) {
-        return NextResponse.json({ error: 'You must upload a photo to continue!' })
+        return NextResponse.json({ error: 'You must upload a photo to continue!' }, { status: 400 });
     }
 
     const userImage = await updateUserImage(user?.id as string, file.name);
 
     if (!userImage) {
-        return { error: 'Process failed!' }
+        return NextResponse.json({ error: 'Process failed!' }, { status: 500 });
     }
 
-    saveFile(file, user.id as string);
+    await saveFile(file, user.id as string);
 
-    return NextResponse.json({ success: 'Profile photo successfully changed!' });
+    return NextResponse.json({ success: 'Profile photo successfully changed!' }, { status: 200 });
 }
 
-
 async function saveFile(file: { arrayBuffer: () => any; name: string; }, user: string) {
-
     try {
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
-        const path = join(process.cwd(), 'public', 'photo', 'profilePhoto', user,);
+        const path = join(process.cwd(), 'public', 'photo', 'profilePhoto', user);
         const imageFilePath = join(path, file.name);
 
         if (await directoryExists(path)) {
-
             await emptyDirectory(path);
-
         } else {
-
             await fs.mkdir(path, { recursive: true });
         }
 
         await fs.writeFile(imageFilePath, buffer);
-
     } catch (error) {
-
         console.error('Error:', error);
     }
 }

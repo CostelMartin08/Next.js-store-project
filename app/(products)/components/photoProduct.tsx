@@ -9,7 +9,7 @@ import { ProductData } from "./product";
 import ReactSlick from "./react-slick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
-
+import Image from "next/image";
 
 export interface Data {
     data: ProductData;
@@ -38,7 +38,7 @@ const PhotoProduct: React.FC<Data> = (props) => {
         setIsViewerOpen(false);
     };
 
-    const baseURL = `https://gadgetgrid.ro/images/${param}/${props.data.id}/`;
+    const baseURL = `/products/${param}/${props.data.id}/`;
 
     const imageUrls = props?.data.photo.filter((fragmnet: string) => fragmnet.length >= 3)
         .map((fragment: string) => baseURL + fragment)
@@ -56,17 +56,22 @@ const PhotoProduct: React.FC<Data> = (props) => {
                         <div className="grid-container">
 
                             {imageUrls
-                                .map((src: string, index: number) => (
-                                    <div className={index === 0 ? `first-item` : 'grid-item'} key={index}>
-                                        <img
-                                            className="mx-auto"
-                                            src={src}
-                                            onClick={() => openImageViewer(index)}
-                                            width={index === 0 ? 400 : 80}
-                                            alt={`${index}`}
-                                        />
-                                    </div>
-                                ))}
+                                .map((src: string, index: number) => {
+                                    return (
+                                        <div className={index === 0 ? `first-item` : 'grid-item'} key={index}>
+                                            <Image
+                                                className="mx-auto"
+                                                src={src}
+                                                onClick={() => openImageViewer(index)}
+                                                width={index === 0 ? 400 : 80}
+                                                height={index === 0 ? 300 : 60} 
+                                                alt={`${index}`}
+                                                style={{ cursor: 'pointer' }} 
+                                                loading="lazy">
+                                            </Image> 
+                                        </div>
+                                    );
+                                })}
 
 
                         </div>

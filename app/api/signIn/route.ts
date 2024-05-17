@@ -18,83 +18,60 @@ interface UserCredentials {
     code: string;
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
-
+export async function POST(req: NextRequest) {
     const { email, password, code } = await req.json();
-
 
     const existingUser = await getUserByEmail(email);
 
     if (!existingUser || !existingUser.email || !existingUser.password) {
-        return { error: "Email does not exist!" }
+        return NextResponse.json({ error: "Email does not exist!" }, { status: 404 });
     }
 
     if (!existingUser.emailVerified) {
-        const verificationToken = await generateVerificationToken(
-            existingUser.email,
-        );
+        const verificationToken = await generateVerificationToken(existingUser.email);
 
         await sendVerificationEmail(
             existingUser.name as string,
             verificationToken.email,
-            verificationToken.token,
+            verificationToken.token
         );
 
-        return { success: "Confirmation email sent!" };
+        return NextResponse.json({ success: "Confirmation email sent!" }, { status: 200 });
     }
 
     if (existingUser.isTwoFactorEnabled && existingUser.email) {
-
         if (code) {
+            const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
 
-            const twoFactorToken = await getTwoFactorTokenByEmail(
-                existingUser.email
-            );
-
-            if (!twoFactorToken) {
-                return NextResponse.json({ error: 'Invalid code' }, { status: 404 })
-            }
-
-            if (twoFactorToken.token !== code) {
-                return NextResponse.json({ error: 'Invalid code' }, { status: 404 })
+            if (!twoFactorToken || twoFactorToken.token !== code) {
+                return NextResponse.json({ error: 'Invalid code' }, { status: 404 });
             }
 
             const hasExpired = new Date(twoFactorToken.expires) < new Date();
 
             if (hasExpired) {
-                return NextResponse.json({ error: 'Code expired' }, { status: 404 })
+                return NextResponse.json({ error: 'Code expired' }, { status: 404 });
             }
 
-            await db.twoFactorToken.delete({
-                where: { id: twoFactorToken.id }
-            });
+            await db.twoFactorToken.delete({ where: { id: twoFactorToken.id } });
 
-            const existingConfirmation = await getTwoFactorConfirmationByUserId(
-                existingUser.id
-            );
+            const existingConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
 
             if (existingConfirmation) {
-                await db.twoFactorConfirmation.delete({
-                    where: { id: existingConfirmation.id }
-                });
+                await db.twoFactorConfirmation.delete({ where: { id: existingConfirmation.id } });
             }
 
-            await db.twoFactorConfirmation.create({
-                data: {
-                    userId: existingUser.id,
-                }
-            });
+            await db.twoFactorConfirmation.create({ data: { userId: existingUser.id } });
         } else {
-            const twoFactorToken = await generateTwoFactorToken(existingUser.email)
+            const twoFactorToken = await generateTwoFactorToken(existingUser.email);
 
             await sendTwoFactorEmail(
                 existingUser.name as string,
                 twoFactorToken.email,
-                twoFactorToken.token,
+                twoFactorToken.token
             );
 
-
-            return NextResponse.json({ twoFactor: true }, { status: 403 })
+            return NextResponse.json({ twoFactor: true }, { status: 403 });
         }
     }
 
@@ -102,24 +79,20 @@ export async function POST(req: NextRequest, res: NextResponse) {
         await signIn("credentials", {
             email,
             password,
-            redirectTo: DEFAULT_LOGIN_REDIRECT,
+            redirectTo: DEFAULT_LOGIN_REDIRECT
         });
 
-
+        return NextResponse.json({ success: 'Signed in successfully' }, { status: 200 });
     } catch (error) {
-
         if (error instanceof AuthError) {
             switch (error.type) {
-
                 case "CredentialsSignin":
-
-                    return NextResponse.json({ error: 'Invalid credentials' }, { status: 404 })
+                    return NextResponse.json({ error: 'Invalid credentials' }, { status: 404 });
                 default:
-                    return NextResponse.json({ error: 'Something went wrong!' }, { status: 500 })
+                    return NextResponse.json({ error: 'Something went wrong!' }, { status: 500 });
             }
         }
 
         throw error;
     }
-
 }

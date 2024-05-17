@@ -49,7 +49,7 @@ const ProductPage = () => {
                 });
 
         }
-    }, [param]);
+    }, [param, category, decodedName]);
 
 
 

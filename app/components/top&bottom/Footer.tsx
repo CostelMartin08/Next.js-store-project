@@ -9,7 +9,7 @@ export default function Footer() {
 
 
     return (
-        <footer className=" py-10">
+        <footer className="py-10">
 
             <div className="container">
 
@@ -106,9 +106,7 @@ export default function Footer() {
                     <p>© 2024, gadgetgrid.ro.</p>
                 </div>
 
-
             </div>
-
 
         </footer>
     )
