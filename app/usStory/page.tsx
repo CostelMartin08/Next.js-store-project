@@ -66,24 +66,24 @@ export default function UsStory() {
                         <h4 className="text-4xl font-black">What is GadgetGrid?</h4>
 
                         <p className="md:w-[45rem] text-sm md:text-lg">
-                            GadgetGrid is a web application that I created entirely in two months,
-                            using the Next.js framework and TypeScript. This project gave me the
-                            opportunity to familiarize myself with and learn these technologies.
+                            GadgetGrid is a web application that I created entirely in two months using the Next.js
+                            framework and TypeScript. This project gave me the opportunity to familiarize myself
+                            with and learn these technologies.
                         </p>
                         <p className="md:w-[45rem] text-sm md:text-lg">
-                            For over a year now, I decided to venture into the world of web development,
-                            during which time I have created presentation websites and web applications,
+                            For over a year now, I have been venturing into the world of web development.
+                            During this time, I have created presentation websites and web applications,
                             evolving from simple HTML/CSS projects to full-stack web applications.
                         </p>
                         <p className="md:w-[45rem] text-sm md:text-lg">
-                            Both with other applications and with GadgetGrid, my satisfaction lies in
-                            publishing these projects. It gives me immense pleasure to open a browser
-                            on a phone or tablet and see something I created.
+                            With both other applications and GadgetGrid, my satisfaction lies in publishing
+                            these projects. It gives me immense pleasure to open a browser on a phone or
+                            tablet and see something I created.
                         </p>
                         <p className="md:w-[45rem] text-sm md:text-lg">
                             GadgetGrid is a portfolio project, but I have tried to offer an experience as close as
-                            possible to that of an online store. There are still many details to resolve, but I believe
-                            I now have a decent production version.
+                            possible to that of an online store. There are still many details to resolve, but I
+                            believe I now have a decent production version.
                         </p>
 
                     </div>
@@ -103,23 +103,20 @@ export default function UsStory() {
                         <div className="space-y-10 text-left md:text-justify">
 
                             <p className="text-sm md:text-lg">
-                                Auth.js is a JavaScript library for authentication and authorization,
-                                which facilitates the implementation of authentication functionalities
-                                in web applications. Within this project, we have opted for both
-                                credential-based login and integration with GitHub, considering
-                                the target audience of this application.
+                                Auth.js is a JavaScript library for authentication and authorization that
+                                facilitates the implementation of authentication functionalities in web applications.
+                                For this project, we have opted for both credential-based login and integration with GitHub,
+                                considering the target audience of this application.
                             </p>
 
                             <p className="text-sm md:text-lg">
-                                GadgetGrid offers a straightforward authentication experience.
-                                From email address verification to two-factor authentication
-                                and password reset.
+                                GadgetGrid offers a straightforward authentication experience, including email address verification,
+                                two-factor authentication, and password reset.
                             </p>
 
                             <p className="text-sm md:text-lg">
-                                I would like to mention that GadgetGrid is a demonstrative application
-                                without any economic purpose. The collected data, specifically email
-                                addresses and profile photos, are deleted upon request.
+                                I would like to mention that GadgetGrid is a demonstrative application without any economic purpose.
+                                The collected data, specifically email addresses and profile photos, are deleted upon request.
                             </p>
 
                         </div>
